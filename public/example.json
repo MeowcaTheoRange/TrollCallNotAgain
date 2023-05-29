@@ -1,0 +1,65 @@
+{
+  "Default": {
+    "color": "#000000",
+    "handle": "",
+    "quirk": [
+      {
+        "type": "prefix",
+        "prefix": "["
+      },
+      {
+        "type": "suffix",
+        "suffix": "]"
+      },
+      {
+        "type": "simple",
+        "find": " ",
+        "replace": "]~["
+      }
+    ]
+  },
+  "mpewfmnkp;ewfmk;ewf": {
+    "handle": "AC",
+    "color": "#416600",
+    "quirk": [
+      {
+        "type": "prefix",
+        "prefix": ":33 < "
+      },
+      {
+        "type": "prefix",
+        "prefix": "X33 < ",
+        "condition": "!"
+      },
+      {
+        "type": "simple",
+        "find": "ee",
+        "replace": "33",
+        "condition": "awnaw"
+      },
+      {
+        "type": "suffix",
+        "suffix": "wefnkewjnklewnklewf",
+        "condition": "???"
+      },
+      {
+        "type": "simple",
+        "find": "ee",
+        "replace": "wewg",
+        "condition": "???"
+      },
+      {
+        "type": "regex",
+        "regex": "balls",
+        "replace": "among us",
+        "condition": "sussy"
+      },
+      {
+        "type": "random",
+        "regex": "two bit",
+        "replaces": ["stupid"],
+        "condition": "idiot"
+      }
+    ]
+  }
+}
