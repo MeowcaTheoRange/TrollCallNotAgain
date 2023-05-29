@@ -1,14 +1,15 @@
 import Link from "next/link";
 import "./Nav.css";
+import { name } from "@/types/assist/branding";
 
 export default function Nav() {
   return (
     <div className="Nav">
       <span className="logo">
-        <Link href="/">TROLLCALL</Link>
+        <Link href="/">{name}</Link>
       </span>
-      <span className="place">This is what in where you are.</span>
-      <span className="path">This is where you are.</span>
+      <span className="place">Test</span>
+      <span className="path">Test, test</span>
     </div>
   );
 }

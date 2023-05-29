@@ -11,8 +11,8 @@
 }
 
 :root {
-  --pri-box: #800000;
-  --pri-text: #ff8080;
+  --pri-box: #404040;
+  --pri-text: #c0c0c0;
   --sec-box: #808080;
   --sec-text: #ffffff;
 }
@@ -41,7 +41,12 @@ body div.layout {
   width: 100%;
   height: max-content;
   max-width: 768px;
-  border: 1px solid red;
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+  justify-content: flex-start;
+  gap: 8px;
+  /* border: 1px solid red; */
 }
 
 /* INDV. ELEMENT STYLES */
@@ -56,4 +61,17 @@ a {
 a:hover {
   text-decoration: underline;
   text-shadow: 0 0 4px currentcolor;
+}
+
+hr {
+  /* visibility: hidden; */
+  width: 100%;
+  color: transparent;
+  padding: 0;
+  margin: 8px 0;
+}
+
+hr.hidden {
+  visibility: hidden;
+  margin: 2px 0;
 }

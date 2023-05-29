@@ -1,0 +1,42 @@
+.Box {
+  border: 1px solid var(--sec-text);
+  background-color: var(--sec-box);
+  color: var(--sec-text);
+  border-radius: 2px;
+  padding: 8px;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: flex-start;
+}
+
+.Box.primary {
+  border: 1px solid var(--pri-text);
+  background-color: var(--pri-box);
+  color: var(--pri-text);
+}
+
+.Box .title {
+  padding: 0;
+  margin: 0;
+  font-family: "TrollCall Display", sans-serif;
+  font-size: 18px;
+  line-height: 24px;
+  text-transform: uppercase;
+  display: inline-block;
+  width: 100%;
+}
+
+.Box .children {
+  width: 100%;
+}
+
+.Box hr {
+  border: none;
+  border-bottom: 1px solid var(--sec-text);
+}
+
+.Box.primary hr {
+  border: none;
+  border-bottom: 1px solid var(--pri-text);
+}

@@ -22,8 +22,10 @@
 .Nav .place {
   font-family: "TrollCall Display", sans-serif;
   font-size: 16px;
+  line-height: 20px;
   text-transform: uppercase;
 }
 .Nav .place {
   font-size: 14px;
+  line-height: 18px;
 }
