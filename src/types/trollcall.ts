@@ -1,8 +1,8 @@
 import { ClientFlair, ServerFlair, SubmitFlair } from "./flair";
 import { ClientTroll, ServerTroll, SubmitTroll } from "./troll";
-import { ClientUser, ServerUser, SubmitUser } from "./user";
+import { ClientUser, ServerUser } from "./user";
 
-export type SubmitTC = SubmitFlair | SubmitTroll | SubmitUser;
+export type SubmitTC = SubmitFlair | SubmitTroll;
 export type ServerTC = ServerFlair | ServerTroll | ServerUser;
 export type ClientTC = ClientFlair | ClientTroll | ClientUser;
 

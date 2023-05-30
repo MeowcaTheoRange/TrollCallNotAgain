@@ -1,13 +1,16 @@
 .Box {
-  border: 1px solid var(--sec-text);
-  background-color: var(--sec-box);
-  color: var(--sec-text);
-  border-radius: 2px;
   padding: 8px;
   display: flex;
   flex-direction: column;
   align-items: flex-start;
   justify-content: flex-start;
+}
+
+.Box.solid {
+  border: 1px solid var(--sec-text);
+  background-color: var(--sec-box);
+  color: var(--sec-text);
+  border-radius: 2px;
 }
 
 .Box.primary {
@@ -27,8 +30,19 @@
   width: 100%;
 }
 
+.Box .title.small {
+  font-size: 14px;
+  line-height: 18px;
+}
+
 .Box .children {
   width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: flex-start;
+  gap: 8px;
+  padding: 8px;
 }
 
 .Box hr {

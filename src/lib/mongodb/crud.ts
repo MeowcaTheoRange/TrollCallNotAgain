@@ -11,9 +11,9 @@ export async function readOne(collection: string, find: any) {
   return await selectedCollection.findOne(find);
 }
 
-export async function readMany(collection: string, find: any) {
+export function readMany(collection: string, find: any) {
   const selectedCollection = mainDB.collection(collection);
-  return await selectedCollection.find(find);
+  return selectedCollection.find(find);
 }
 
 export async function updateOne(collection: string, find: any, update: any) {

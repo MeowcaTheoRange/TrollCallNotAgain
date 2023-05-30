@@ -6,16 +6,20 @@ export default function Box({
   children,
   hr,
   primary,
+  small,
+  noBG,
 }: {
   title?: string;
   children?: ReactNode;
   hr?: boolean;
   primary?: boolean;
+  small?: boolean;
+  noBG?: boolean;
 }) {
   return (
-    <div className={`Box${primary ? " primary" : ""}`}>
-      {title && <p className="title">{title}</p>}
-      {hr ? <hr /> : <hr className="hidden" />}
+    <div className={`Box${primary ? " primary" : ""}${noBG ? "" : " solid"}`}>
+      {title && <p className={`title${small ? " small" : ""}`}>{title}</p>}
+      {hr && <hr />}
       <div className="children">{children}</div>
     </div>
   );

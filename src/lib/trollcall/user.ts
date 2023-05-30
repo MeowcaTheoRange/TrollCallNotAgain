@@ -1,6 +1,8 @@
 import { ObjectId } from "mongodb";
-import { readOne } from "../mongodb/crud";
+import { readMany, readOne } from "../mongodb/crud";
 import { ClientUser, ServerUser } from "@/types/user";
+import { ServerTrollToClientTroll } from "./troll";
+import { ServerTroll } from "@/types/troll";
 
 export async function getUser(name: string) {
   return await readOne("users", { name });
@@ -8,6 +10,20 @@ export async function getUser(name: string) {
 
 export async function getUserByID(_id: ObjectId) {
   return await readOne("users", { _id });
+}
+
+export async function getTrollsByUser(user: string, limit?: number) {
+  const userObj = await getUser(user);
+  const trollArr = readMany("trolls", {
+    owners: userObj?._id,
+  }).limit(limit || 0);
+  let trollList = [];
+  while (await trollArr.hasNext()) {
+    trollList.push(
+      await ServerTrollToClientTroll((await trollArr.next()) as ServerTroll)
+    );
+  }
+  if (trollArr != null) return trollList;
 }
 
 export async function ServerUserToClientUser(
@@ -18,8 +34,17 @@ export async function ServerUserToClientUser(
     description: serverUser.description,
     url: serverUser.url,
     color: serverUser.color,
-    // @ts-ignore for now, make @/lib/trollcall/flair.ts
-    flairs: await Promise.all(serverUser.flairs.map(async (flairId) => {})),
+    // @ts-ignore
+    flairs: null,
   };
+
+  // // get flairs
+  // let flairCursor = readMany("flairs", { _id: { $in: serverUser.flairs } });
+  // let flairList = [];
+  // while (await flairCursor.hasNext()) {
+  //   flairList.push(await ServerFlairToClientFlair(await flairCursor.next() as ServerFlair));
+  // }
+  // clientUser.flairs = flairList;
+
   return clientUser;
 }

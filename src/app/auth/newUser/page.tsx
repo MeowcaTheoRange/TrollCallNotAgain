@@ -6,11 +6,9 @@ import { name } from "@/types/assist/branding";
 import { useSession } from "next-auth/react";
 
 export default function Home() {
-  const { data } = useSession();
-
   return (
-    <Box title={`Hello, ${data?.user?.name ?? "user"}!`} primary>
-      Welcome back to {name}!
+    <Box title={`Hello, new user!`} primary>
+      Welcome to {name}!
     </Box>
   );
 }

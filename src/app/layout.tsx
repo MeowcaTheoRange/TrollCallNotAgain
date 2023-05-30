@@ -1,9 +1,8 @@
-import Box from "@/components/Box/Box";
+import AuthContext from "@/components/AuthContext/AuthContext";
+import Footer from "@/components/Footer/Footer";
 import Nav from "@/components/Nav/Nav";
 import "@/styles/globals.css";
 import "@/styles/normalize.css";
-import { name } from "@/types/assist/branding";
-import Head from "next/head";
 
 export default function RootLayout({
   children,
@@ -13,11 +12,13 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body>
-        <Nav />
-        <div className="layout">
-          {children}
-          <Box title={name}>I'm a footer!</Box>
-        </div>
+        <AuthContext>
+          <Nav />
+          <div className="layout">
+            {children}
+            <Footer />
+          </div>
+        </AuthContext>
       </body>
     </html>
   );

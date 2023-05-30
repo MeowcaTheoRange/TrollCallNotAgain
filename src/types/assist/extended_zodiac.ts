@@ -55,6 +55,7 @@ export type ClassType = {
   gender: ClassGender; // just for "canon check"; this is not actually enforced
   disposition: ClassDisposition;
   pair: string;
+  inverse: string;
   keyword: string;
   shelf: ClassShelfType;
 };
@@ -66,6 +67,7 @@ export const Class: { [key: string]: ClassType } = {
     disposition: ClassDisposition.Active,
     keyword: "Control",
     pair: "Heir",
+    inverse: "Seer",
     shelf: ClassShelf.Magician,
   },
   Heir: {
@@ -74,6 +76,7 @@ export const Class: { [key: string]: ClassType } = {
     disposition: ClassDisposition.Passive,
     keyword: "Influence",
     pair: "Witch",
+    inverse: "Mage",
     shelf: ClassShelf.Magician,
   },
   Mage: {
@@ -82,6 +85,7 @@ export const Class: { [key: string]: ClassType } = {
     disposition: ClassDisposition.Active,
     keyword: "Experience",
     pair: "Seer",
+    inverse: "Heir",
     shelf: ClassShelf.Prophet,
   },
   Seer: {
@@ -90,6 +94,7 @@ export const Class: { [key: string]: ClassType } = {
     disposition: ClassDisposition.Passive,
     keyword: "Study",
     pair: "Mage",
+    inverse: "Witch",
     shelf: ClassShelf.Prophet,
   },
   Prince: {
@@ -98,6 +103,7 @@ export const Class: { [key: string]: ClassType } = {
     disposition: ClassDisposition.Active,
     keyword: "Demolish",
     pair: "Bard",
+    inverse: "Sylph",
     shelf: ClassShelf.Destroyer,
   },
   Bard: {
@@ -106,6 +112,7 @@ export const Class: { [key: string]: ClassType } = {
     disposition: ClassDisposition.Passive,
     keyword: "Deconstruct",
     pair: "Prince",
+    inverse: "Maid",
     shelf: ClassShelf.Destroyer,
   },
   Maid: {
@@ -114,6 +121,7 @@ export const Class: { [key: string]: ClassType } = {
     disposition: ClassDisposition.Active,
     keyword: "Generate",
     pair: "Sylph",
+    inverse: "Bard",
     shelf: ClassShelf.Healer,
   },
   Sylph: {
@@ -122,6 +130,7 @@ export const Class: { [key: string]: ClassType } = {
     disposition: ClassDisposition.Passive,
     keyword: "Mend",
     pair: "Maid",
+    inverse: "Prince",
     shelf: ClassShelf.Healer,
   },
   Thief: {
@@ -130,6 +139,7 @@ export const Class: { [key: string]: ClassType } = {
     disposition: ClassDisposition.Active,
     keyword: "Take",
     pair: "Rogue",
+    inverse: "Page",
     shelf: ClassShelf.Stealer,
   },
   Rogue: {
@@ -138,6 +148,7 @@ export const Class: { [key: string]: ClassType } = {
     disposition: ClassDisposition.Passive,
     keyword: "Share",
     pair: "Thief",
+    inverse: "Knight",
     shelf: ClassShelf.Stealer,
   },
   Knight: {
@@ -146,6 +157,7 @@ export const Class: { [key: string]: ClassType } = {
     disposition: ClassDisposition.Active,
     keyword: "Exploit",
     pair: "Page",
+    inverse: "Rogue",
     shelf: ClassShelf.Warrior,
   },
   Page: {
@@ -154,6 +166,7 @@ export const Class: { [key: string]: ClassType } = {
     disposition: ClassDisposition.Passive,
     keyword: "Empower",
     pair: "Knight",
+    inverse: "Thief",
     shelf: ClassShelf.Warrior,
   },
   Lord: {
@@ -162,6 +175,7 @@ export const Class: { [key: string]: ClassType } = {
     disposition: ClassDisposition.Active,
     keyword: "Dominate",
     pair: "Muse",
+    inverse: "Muse",
     shelf: ClassShelf.Master,
   },
   Muse: {
@@ -170,6 +184,7 @@ export const Class: { [key: string]: ClassType } = {
     disposition: ClassDisposition.Passive,
     keyword: "Inspire",
     pair: "Lord",
+    inverse: "Lord",
     shelf: ClassShelf.Master,
   },
 };

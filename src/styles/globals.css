@@ -11,10 +11,10 @@
 }
 
 :root {
-  --pri-box: #404040;
-  --pri-text: #c0c0c0;
-  --sec-box: #808080;
-  --sec-text: #ffffff;
+  --pri-box: #888880;
+  --pri-text: #fffff8;
+  --sec-box: #484840;
+  --sec-text: #c8c8c0;
 }
 
 * {
@@ -23,9 +23,9 @@
 
 body {
   font-family: "Space Grotesk", sans-serif;
-  background-color: var(--pri-box);
+  background-color: var(--sec-box);
   background-image: url(/assets/pattern.png);
-  color: var(--pri-text);
+  color: var(--sec-text);
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -71,7 +71,10 @@ hr {
   margin: 8px 0;
 }
 
-hr.hidden {
-  visibility: hidden;
-  margin: 2px 0;
+p {
+  margin: 0;
+}
+
+span {
+  margin: 0;
 }
