@@ -1,15 +1,25 @@
 import Box from "../Box/Box";
-import { domain, name, source, sourceCopyright } from "@/types/assist/branding";
+import {
+  domain,
+  brand,
+  source,
+  sourceCopyright,
+  fullDomain,
+} from "@/types/assist/branding";
 import "./Footer.css";
 
 export default function Footer() {
   return (
-    <Box title={domain} hr small>
-      <p>Created by MeowcaTheoRange.</p>
-      <p>{domain} domain owned by Redact4K.</p>
+    <Box title={fullDomain} hr small>
       <p>
-        The {name} name is derived from {source}. The name may be used in an
-        entity context or a project context.
+        {brand.code} rev. 3 ver. 0.1.0 created by {brand.owner}.
+      </p>
+      <p>
+        {fullDomain} domain owned by {domain.owner}.
+      </p>
+      <p>
+        The {brand.name} name is derived from {source}. The name may be used in
+        an entity context or a project context.
       </p>
       <p>{sourceCopyright}</p>
     </Box>

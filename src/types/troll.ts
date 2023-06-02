@@ -1,6 +1,10 @@
 import * as yup from "yup";
 import { ColorSchema, ObjectIdSchema, PolicySchema } from "./assist/generics";
-import { ClassList, TrueSignList } from "./assist/extended_zodiac";
+import {
+  ClassList,
+  ClassNameList,
+  TrueSignList,
+} from "./assist/extended_zodiac";
 import { ClientFlairSchema } from "./flair";
 import { ClientUserSchema } from "./user";
 
@@ -62,7 +66,7 @@ export const SubmitTrollSchema = yup
     // Hiveswap identity
     trueSign: yup.string().required().oneOf(TrueSignList),
     falseSign: yup.string().notRequired().oneOf(TrueSignList), // "Keelez Bunbat"
-    class: yup.string().required().oneOf(ClassList),
+    class: yup.string().required().oneOf(ClassNameList),
 
     // Trollian
     username: yup

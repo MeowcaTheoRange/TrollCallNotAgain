@@ -1,25 +1,36 @@
-import { WithId } from "mongodb";
+import { ObjectId, WithId } from "mongodb";
 import { readMany, readOne } from "../mongodb/crud";
-import { ServerUserToClientUser, getUser } from "./user";
+import { ServerUserToClientUser, getUserByName } from "./user";
 import { ClientTroll, ServerTroll } from "@/types/troll";
 import { Class, TrueSign } from "@/types/assist/extended_zodiac";
 import { ServerUser } from "@/types/user";
 import { ServerFlair } from "@/types/flair";
-
-export async function getTroll(user: string, troll: string) {
-  const userObj = await getUser(user);
-  const trollObj = (await readOne("trolls", {
-    "name.0": troll,
-    owners: userObj?._id,
-  })) as WithId<ServerTroll> | null;
-  if (trollObj != null) return trollObj;
-}
 
 export async function getTrollByID(_id: string) {
   const trollObj = (await readOne("trolls", {
     _id,
   })) as WithId<ServerTroll> | null;
   if (trollObj != null) return trollObj;
+}
+
+export async function getTrollByName(name: string) {
+  const trollObj = (await readOne("trolls", {
+    "name.0": name,
+  })) as WithId<ServerTroll> | null;
+  if (trollObj != null) return trollObj;
+}
+
+export async function getTrollsByUser(user: any, limit?: number) {
+  const trollArr = readMany("trolls", {
+    owners: user?._id,
+  }).limit(limit || 0);
+  let trollList = [];
+  while (await trollArr.hasNext()) {
+    trollList.push(
+      await ServerTrollToClientTroll((await trollArr.next()) as ServerTroll)
+    );
+  }
+  if (trollArr != null) return trollList;
 }
 
 export async function ServerTrollToClientTroll(

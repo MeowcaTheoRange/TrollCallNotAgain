@@ -4,26 +4,12 @@ import { ClientUser, ServerUser } from "@/types/user";
 import { ServerTrollToClientTroll } from "./troll";
 import { ServerTroll } from "@/types/troll";
 
-export async function getUser(name: string) {
-  return await readOne("users", { name });
-}
-
-export async function getUserByID(_id: ObjectId) {
+export async function getUserByID(_id: string) {
   return await readOne("users", { _id });
 }
 
-export async function getTrollsByUser(user: string, limit?: number) {
-  const userObj = await getUser(user);
-  const trollArr = readMany("trolls", {
-    owners: userObj?._id,
-  }).limit(limit || 0);
-  let trollList = [];
-  while (await trollArr.hasNext()) {
-    trollList.push(
-      await ServerTrollToClientTroll((await trollArr.next()) as ServerTroll)
-    );
-  }
-  if (trollArr != null) return trollList;
+export async function getUserByName(name: string) {
+  return await readOne("users", { name });
 }
 
 export async function ServerUserToClientUser(

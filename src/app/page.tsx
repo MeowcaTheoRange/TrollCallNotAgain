@@ -1,16 +1,14 @@
-"use client";
-
 import Box from "@/components/Box/Box";
-import styles from "@/styles/page.module.css";
-import { name } from "@/types/assist/branding";
-import { useSession } from "next-auth/react";
+import { brand } from "@/types/assist/branding";
+import ColorManager from "@/components/ColorManager/ColorManager";
 
 export default function Home() {
-  const { data } = useSession();
-
   return (
-    <Box title={`Hello, ${data?.user?.name ?? "user"}!`} primary>
-      Welcome back to {name}!
-    </Box>
+    <>
+      <ColorManager mainColor={[0xff, 0xff, 0xe0]} />
+      <Box title={`Hello!`} primary>
+        Welcome back to {brand.name}!
+      </Box>
+    </>
   );
 }

@@ -189,7 +189,8 @@ export const Class: { [key: string]: ClassType } = {
   },
 };
 
-export const ClassList = Object.keys(Class);
+export const ClassList = Object.values(Class);
+export const ClassNameList = Object.keys(Class);
 
 export type SignColorType = {
   name: string;
@@ -227,6 +228,8 @@ export const Sway: { [key: string]: SwayType } = {
       "Derse Dreamers have personalities marked by a distinct and restless skepticism. Whatever their waking circumstances, chances are they will live in a state of dissatisfaction. Rebellion is in their blood, manifesting whether they are fighting back against a fascist dictatorship, or the most recent trend in casual footwear. Derse Dreamers are cerebral and self-aware; they have a far better grasp on the landscape of their own minds than on the world around them, which they can find alienating and confusing. But as so much of their identity is built on control, they will do their utmost to hide any insecurities, often with false humility or self-deprecating humor. They may be inflexible and pessimistic, but they are also great problem solvers, facing conflicts head-on with shrewd, calculating minds. They see one true path among an infinite snarl of wrong ones. They tend to be introverted, but if you win their trust Derse Dreamers are extremely powerful allies. However, they find sincere vulnerability difficult and will often keep people at arm's length. Letting go and living in the moment is hard for a Derse Dreamer; they constantly look toward the future and analyze the past.",
   },
 };
+
+export const SwayList = Object.values(Sway);
 
 export const Aspect: { [key: string]: AspectType } = {
   Time: {
@@ -291,6 +294,8 @@ export const Aspect: { [key: string]: AspectType } = {
   },
 };
 
+export const AspectList = Object.values(Aspect);
+
 export const SignColor: {
   [key: string]: SignColorType;
 } = {
@@ -327,7 +332,7 @@ export const SignColor: {
     description:
       "Olive Signs are, by and large, incredibly agreeable people. They are generous and enthusiastic, ready to offer help to anyone who needs it. Luck plays a large role in their lives; Olive Signs have a knack for being in the right place at the right time. And even in the case that their luck goes bad, they can ride rough patches out without falling too far into depression or hopelessness. That said, Olive Signs are most comfortable with things that they are familiar with; new places and ideas often alarm them, resulting in a dogmatic insistence that their way is the right way. They can be quite bossy and domineering, although that usually comes out of a genuine belief that they know best and can help the ones they care about. They are extremely faithful friends and lovers, ready to drop everything and go into helper mode. However, if their trust is breached, there's no going back. No one can hold a grudge like an Olive Sign, and they aren't afraid to just pick up and leave if they decide something isn't working for them. Romance and companionship are extremely important to them, so even if they get hurt, their hearts remain open.",
     sign: "Leo",
-    color: new Color3(1, 1, 0),
+    color: new Color3(0, 1, 0),
   },
   Jade: {
     name: "Jade",
@@ -379,6 +384,8 @@ export const SignColor: {
     color: new Color3(1, 0, 0.5),
   },
 };
+
+export const SignColorList = Object.values(SignColor);
 
 export const TrueSign: {
   [key: string]: TrueSignType;

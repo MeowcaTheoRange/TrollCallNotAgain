@@ -20,6 +20,6 @@ export const ServerFlairSchema = SubmitFlairSchema.shape({
 
 export type ServerFlair = yup.InferType<typeof ServerFlairSchema>;
 
-export const ClientFlairSchema = ServerFlairSchema.shape({});
+export const ClientFlairSchema = SubmitFlairSchema.shape({});
 
 export type ClientFlair = yup.InferType<typeof ClientFlairSchema>;

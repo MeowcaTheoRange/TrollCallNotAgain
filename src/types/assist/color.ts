@@ -1,4 +1,8 @@
 export type ColorTypes = [number, number, number] | string | number;
+
+const clamp = (n: number, mi: number, ma: number) =>
+  Math.max(mi, Math.min(n, ma));
+
 export class Color3 {
   R: number;
   G: number;
@@ -7,6 +11,9 @@ export class Color3 {
     this.R = red;
     this.G = green;
     this.B = blue;
+  }
+  static clone(color3: Color3) {
+    return new Color3(color3.R, color3.G, color3.B);
   }
   static fromRGB(red: number, green: number, blue: number) {
     return new Color3(red / 255, green / 255, blue / 255);
@@ -39,7 +46,7 @@ export class Color3 {
       else if (typeof value === "string") return Color3.fromHex(value);
       else if (typeof value === "number") return Color3.fromInt(value);
     }
-    return "Not a valid color type";
+    throw new Error("Not a valid color type");
   }
   static isColor(
     value: [number, number, number] | string | number,
@@ -58,9 +65,30 @@ export class Color3 {
     return this.toInt().toString(16).padStart(6, "0");
   }
   toInt() {
-    return (this.R << 16) + (this.G << 8) + this.B;
+    return (
+      (Math.round(this.R * 255) << 16) +
+      (Math.round(this.G * 255) << 8) +
+      Math.round(this.B * 255)
+    );
   }
-  toRGB() {
+  toRGB(): [number, number, number] {
     return [this.R * 255, this.G * 255, this.B * 255];
+  }
+  multiply(mult: number) {
+    return new Color3(this.R * mult, this.G * mult, this.B * mult);
+  }
+  lighten(mult: number) {
+    return new Color3(
+      clamp(this.R + (mult / 100) * (1 - this.R), 0, 1),
+      clamp(this.G + (mult / 100) * (1 - this.G), 0, 1),
+      clamp(this.B + (mult / 100) * (1 - this.B), 0, 1)
+    );
+  }
+  darken(mult: number) {
+    return new Color3(
+      clamp(this.R - (mult / 100) * this.R, 0, 1),
+      clamp(this.G - (mult / 100) * this.G, 0, 1),
+      clamp(this.B - (mult / 100) * this.B, 0, 1)
+    );
   }
 }
