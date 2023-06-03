@@ -14,6 +14,7 @@ export default function TrueSignPage({ params }: { params: { sign: string } }) {
       <Box title={gottenSign.name} primary>
         <div className="paragraph">
           <img
+            className="icon"
             width={96}
             height={96}
             src={`/assets/signs/${gottenSign.color.name}/${gottenSign.name}.svg`}

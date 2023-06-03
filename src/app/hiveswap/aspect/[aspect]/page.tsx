@@ -12,6 +12,7 @@ export default function AspectPage({ params }: { params: { aspect: string } }) {
       <Box title={gottenAspect.name} primary>
         <div className="paragraph">
           <img
+            className="icon"
             width={96}
             height={96}
             src={`/assets/aspect/${gottenAspect.name}.svg`}

@@ -14,6 +14,7 @@ export default function Aspects() {
           </h1>
           <div className="paragraph">
             <img
+              className="icon"
               width={96}
               height={96}
               src={`/assets/aspect/${aspect.name}.svg`}

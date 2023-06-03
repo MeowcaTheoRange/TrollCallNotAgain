@@ -2,6 +2,7 @@ import { ObjectId, WithId } from "mongodb";
 import { readMany, readOne } from "../mongodb/crud";
 import { ClientUser, ServerUser } from "@/types/user";
 import { getFlairsByArray } from "./flair";
+import { TrueSign } from "@/types/assist/extended_zodiac";
 
 export async function getUserByID(_id: string) {
   const userObj = (await readOne("users", {
@@ -40,6 +41,7 @@ export async function ServerUserToClientUser(
     description: serverUser.description,
     url: serverUser.url,
     color: serverUser.color,
+    trueSign: TrueSign[serverUser.trueSign],
     // @ts-ignore
     flairs: null,
   };

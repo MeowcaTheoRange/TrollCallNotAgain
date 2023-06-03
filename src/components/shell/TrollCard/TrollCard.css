@@ -7,10 +7,37 @@
   flex-direction: column;
   gap: 8px;
   padding: 8px;
+  width: 100%;
+  box-shadow: 0 0 0 transparent;
+  transition: box-shadow 0.25s;
+  cursor: pointer;
 }
 
-.imagedesc {
+.TrollCard:hover {
+  box-shadow: 0 0 8px var(--pri-text);
+}
+
+.TrollCard .imagedesc {
   display: flex;
   flex-direction: row;
   gap: 8px;
+  width: 100%;
+}
+
+.TrollCard .image {
+  height: 256px;
+  object-fit: contain;
+}
+
+.TrollCard .moreflex {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 8px;
+  padding: 8px;
+  width: 100%;
+}
+
+.TrollCard .wrap {
+  flex-wrap: wrap;
 }

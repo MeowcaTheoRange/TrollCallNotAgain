@@ -12,6 +12,7 @@ export default function SwayPage({ params }: { params: { sway: string } }) {
       <Box title={gottenSway.name} primary>
         <div className="paragraph">
           <img
+            className="icon"
             width={96}
             height={96}
             src={`/assets/sway/${gottenSway.name}.png`}

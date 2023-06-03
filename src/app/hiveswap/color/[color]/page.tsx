@@ -14,6 +14,7 @@ export default function SwayPage({ params }: { params: { color: string } }) {
       <Box title={gottenSignColor.name} primary>
         <div className="paragraph">
           <img
+            className="icon"
             width={96}
             height={96}
             src={`/assets/signs/${gottenSignColor.name}/${gottenSignColor.sign}.svg`}

@@ -14,6 +14,7 @@ export default function Colors() {
           </h1>
           <div className="paragraph">
             <img
+              className="icon"
               width={96}
               height={96}
               src={`/assets/signs/${color.name}/${color.sign}.svg`}

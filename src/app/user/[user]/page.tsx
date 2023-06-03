@@ -8,6 +8,7 @@ import Flair from "@/components/shell/Flair/Flair";
 import { getTrollsByUser } from "@/lib/trollcall/troll";
 import { AdaptivePossessive } from "@/types/assist/language";
 import TrollCard from "@/components/shell/TrollCard/TrollCard";
+import SignBadge from "@/components/SignBadge/SignBadge";
 
 export default async function UserPage({
   params,
@@ -38,6 +39,7 @@ export default async function UserPage({
             <Flair key={i} flair={flair} />
           ))}
         </div>
+        <SignBadge trueSign={user.trueSign} />
         <div className="content">
           <ReactMarkdown>{user.description}</ReactMarkdown>
         </div>
