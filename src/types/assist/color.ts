@@ -1,4 +1,12 @@
-export type ColorTypes = [number, number, number] | string | number;
+import * as yup from "yup";
+
+export type ColorTypes = [number, number, number];
+
+export const ColorSchema = yup.tuple([
+  yup.number().required().min(0).max(255),
+  yup.number().required().min(0).max(255),
+  yup.number().required().min(0).max(255),
+]);
 
 const clamp = (n: number, mi: number, ma: number) =>
   Math.max(mi, Math.min(n, ma));

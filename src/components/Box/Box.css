@@ -1,12 +1,13 @@
 .Box {
-  padding: 8px;
   display: flex;
   flex-direction: column;
   align-items: flex-start;
   justify-content: flex-start;
+  width: 100%;
 }
 
 .Box.solid {
+  padding: 8px;
   border: 1px solid var(--sec-text);
   background-color: var(--sec-box);
   color: var(--sec-text);

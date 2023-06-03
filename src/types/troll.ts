@@ -1,12 +1,14 @@
 import * as yup from "yup";
-import { ColorSchema, ObjectIdSchema, PolicySchema } from "./assist/generics";
+import { ObjectIdSchema, PolicySchema } from "./assist/generics";
 import {
   ClassList,
   ClassNameList,
   TrueSignList,
+  TrueSignSchema,
 } from "./assist/extended_zodiac";
 import { ClientFlairSchema } from "./flair";
 import { ClientUserSchema } from "./user";
+import { ColorSchema } from "./assist/color";
 
 export const SubmitTrollSchema = yup
   .object({
@@ -150,7 +152,7 @@ export const SubmitTrollSchema = yup
     species: yup.string().notRequired(), // "Troll-*" if defined. Otherwise, just "Troll".
     height: yup.number().required().positive(), // Inches
     age: yup.number().required().positive(), // Sweeps
-
+    image: yup.string().required().url(),
     // Meta stuff
     policies: yup
       .object({
@@ -171,17 +173,17 @@ export type SubmitTroll = yup.InferType<typeof SubmitTrollSchema>;
 export const ServerTrollSchema = SubmitTrollSchema.shape({
   // Ownership
   _id: ObjectIdSchema.required(),
-  owners: yup.array().of(ObjectIdSchema).required().min(1),
-  flairs: yup.array().of(ObjectIdSchema).required(),
+  owners: yup.array().of(ObjectIdSchema.required()).required().min(1),
+  flairs: yup.array().of(ObjectIdSchema.required()).required(),
 });
 
 export type ServerTroll = yup.InferType<typeof ServerTrollSchema>;
 
 export const ClientTrollSchema = SubmitTrollSchema.shape({
-  owners: yup.array().of(ClientUserSchema).required().min(1),
-  flairs: yup.array().of(ClientFlairSchema).required(),
-  trueSign: yup.object().required(),
-  falseSign: yup.object().notRequired(),
+  owners: yup.array().of(ClientUserSchema.required()).required().min(1),
+  flairs: yup.array().of(ClientFlairSchema.required()).required(),
+  trueSign: TrueSignSchema.required(),
+  falseSign: TrueSignSchema.notRequired(),
   class: yup.object().required(),
 });
 

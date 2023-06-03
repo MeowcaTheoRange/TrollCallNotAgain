@@ -1,15 +1,35 @@
-import { ObjectId } from "mongodb";
+import { ObjectId, WithId } from "mongodb";
 import { readMany, readOne } from "../mongodb/crud";
 import { ClientUser, ServerUser } from "@/types/user";
-import { ServerTrollToClientTroll } from "./troll";
-import { ServerTroll } from "@/types/troll";
+import { getFlairsByArray } from "./flair";
 
 export async function getUserByID(_id: string) {
-  return await readOne("users", { _id });
+  const userObj = (await readOne("users", {
+    _id,
+  })) as WithId<ServerUser> | null;
+  if (userObj != null) return userObj;
+  return null;
 }
 
 export async function getUserByName(name: string) {
-  return await readOne("users", { name });
+  const userObj = (await readOne("users", {
+    name,
+  })) as WithId<ServerUser> | null;
+  if (userObj != null) return userObj;
+  return null;
+}
+
+export async function getUsersByArray(array: ObjectId[]) {
+  const userArr = readMany("users", {
+    _id: { $in: array },
+  });
+  let userList = [];
+  while (await userArr.hasNext()) {
+    userList.push(
+      await ServerUserToClientUser((await userArr.next()) as ServerUser)
+    );
+  }
+  return userList;
 }
 
 export async function ServerUserToClientUser(
@@ -23,14 +43,7 @@ export async function ServerUserToClientUser(
     // @ts-ignore
     flairs: null,
   };
-
-  // // get flairs
-  // let flairCursor = readMany("flairs", { _id: { $in: serverUser.flairs } });
-  // let flairList = [];
-  // while (await flairCursor.hasNext()) {
-  //   flairList.push(await ServerFlairToClientFlair(await flairCursor.next() as ServerFlair));
-  // }
-  // clientUser.flairs = flairList;
+  clientUser.flairs = await getFlairsByArray(serverUser.flairs);
 
   return clientUser;
 }

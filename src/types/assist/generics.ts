@@ -6,10 +6,6 @@ export const ObjectIdSchema = yup.mixed((value): value is ObjectId =>
   ObjectId.isValid(value)
 );
 
-export const ColorSchema = yup
-  .mixed((value): value is ColorTypes => Color3.isColor(value))
-  .transform((v, i, c) => (c.isType(v) ? v : Color3.assumeColor(v, true)));
-
 export const PolicySchema = yup
   .string()
   .oneOf(["yes", "ask", "no"])

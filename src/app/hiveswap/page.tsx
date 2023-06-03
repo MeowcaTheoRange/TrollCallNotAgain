@@ -1,13 +1,9 @@
 import Box from "@/components/Box/Box";
-import { brand } from "@/types/assist/branding";
-import ColorManager from "@/components/ColorManager/ColorManager";
 import Link from "next/link";
-import Image from "next/image";
 
 export default function Hiveswap() {
   return (
     <>
-      <ColorManager mainColor={[0x80, 0x00, 0xff]} />
       <Box title={`Hiveswap`} primary>
         <p>
           Welcome to the Hiveswap portion of TrollCall. Here we pay homage to
@@ -29,37 +25,31 @@ export default function Hiveswap() {
         <hr />
         <div className="gallery">
           <Link href="/hiveswap/aspect/...">
-            <p>
-              <h1>Aspects</h1>
-              <img
-                src={"/assets/hiveswap/aspects.png"}
-                width="256"
-                height="256"
-                alt="Aspects"
-              ></img>
-            </p>
+            <h1>Aspects</h1>
+            <img
+              src={"/assets/hiveswap/aspects.png"}
+              width="256"
+              height="256"
+              alt="Aspects"
+            ></img>
           </Link>
           <Link href="/hiveswap/sway/...">
-            <p>
-              <h1>Sway</h1>
-              <img
-                src={"/assets/hiveswap/sway.png"}
-                width="256"
-                height="256"
-                alt="Sway"
-              ></img>
-            </p>
+            <h1>Sway</h1>
+            <img
+              src={"/assets/hiveswap/sway.png"}
+              width="256"
+              height="256"
+              alt="Sway"
+            ></img>
           </Link>
           <Link href="/hiveswap/color/...">
-            <p>
-              <h1>Colors</h1>
-              <img
-                src={"/assets/hiveswap/signs.png"}
-                width="256"
-                height="256"
-                alt="Colors"
-              ></img>
-            </p>
+            <h1>Colors</h1>
+            <img
+              src={"/assets/hiveswap/signs.png"}
+              width="256"
+              height="256"
+              alt="Colors"
+            ></img>
           </Link>
         </div>
       </Box>

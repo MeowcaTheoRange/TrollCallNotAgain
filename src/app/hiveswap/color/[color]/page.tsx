@@ -10,7 +10,7 @@ export default function SwayPage({ params }: { params: { color: string } }) {
   if (gottenSignColor == null) return notFound();
   return (
     <>
-      <ColorManager mainColor={gottenSignColor.color.toRGB()} />
+      <ColorManager mainColor={gottenSignColor.color} />
       <Box title={gottenSignColor.name} primary>
         <div className="paragraph">
           <img

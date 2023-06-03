@@ -1,28 +1,34 @@
 import { ObjectId, WithId } from "mongodb";
 import { readMany, readOne } from "../mongodb/crud";
-import { ServerUserToClientUser, getUserByName } from "./user";
+import { ServerUserToClientUser, getUserByName, getUsersByArray } from "./user";
 import { ClientTroll, ServerTroll } from "@/types/troll";
 import { Class, TrueSign } from "@/types/assist/extended_zodiac";
 import { ServerUser } from "@/types/user";
 import { ServerFlair } from "@/types/flair";
+import { getFlairsByArray } from "./flair";
 
 export async function getTrollByID(_id: string) {
   const trollObj = (await readOne("trolls", {
     _id,
   })) as WithId<ServerTroll> | null;
   if (trollObj != null) return trollObj;
+  return null;
 }
 
-export async function getTrollByName(name: string) {
+export async function getTrollByName(name: string, user: any) {
+  if (user == null) return null;
   const trollObj = (await readOne("trolls", {
+    owners: user._id,
     "name.0": name,
   })) as WithId<ServerTroll> | null;
   if (trollObj != null) return trollObj;
+  return null;
 }
 
 export async function getTrollsByUser(user: any, limit?: number) {
+  if (user == null) return null;
   const trollArr = readMany("trolls", {
-    owners: user?._id,
+    owners: user._id,
   }).limit(limit || 0);
   let trollList = [];
   while (await trollArr.hasNext()) {
@@ -31,6 +37,7 @@ export async function getTrollsByUser(user: any, limit?: number) {
     );
   }
   if (trollArr != null) return trollList;
+  return null;
 }
 
 export async function ServerTrollToClientTroll(
@@ -50,6 +57,7 @@ export async function ServerTrollToClientTroll(
     owners: null,
     gender: serverTroll.gender,
     height: serverTroll.height,
+    image: serverTroll.image,
     name: [...serverTroll.name],
     policies: { ...serverTroll.policies },
     preferences: {
@@ -63,26 +71,11 @@ export async function ServerTrollToClientTroll(
     textColor: serverTroll.textColor, // I don't even know what this type is or what it could be. For all I know, it's a `[number, number, number] | string | number`.
     // This is not good.
     trueSign: TrueSign[serverTroll.trueSign],
+    falseSign: serverTroll.falseSign ? TrueSign[serverTroll.falseSign] : null,
     username: serverTroll.username,
   };
-
-  // // get flairs
-  // let flairCursor = readMany("flairs", { _id: { $in: serverTroll.flairs } });
-  // let flairList = [];
-  // while (await flairCursor.hasNext()) {
-  //   flairList.push(await ServerFlairToClientFlair(await flairCursor.next() as ServerFlair));
-  // }
-  // clientTroll.flairs = flairList;
-
-  // get owners
-  let ownerCursor = readMany("users", { _id: { $in: serverTroll.owners } });
-  let ownerList = [];
-  while (await ownerCursor.hasNext()) {
-    ownerList.push(
-      await ServerUserToClientUser((await ownerCursor.next()) as ServerUser)
-    );
-  }
-  clientTroll.owners = ownerList;
+  clientTroll.flairs = await getFlairsByArray(serverTroll.flairs);
+  clientTroll.owners = await getUsersByArray(serverTroll.owners);
 
   return clientTroll;
 }

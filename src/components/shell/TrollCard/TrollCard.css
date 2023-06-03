@@ -1,0 +1,16 @@
+.TrollCard {
+  border: 1px solid var(--pri-text);
+  background-color: var(--pri-box);
+  color: var(--pri-text);
+  border-radius: 2px;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  padding: 8px;
+}
+
+.imagedesc {
+  display: flex;
+  flex-direction: row;
+  gap: 8px;
+}

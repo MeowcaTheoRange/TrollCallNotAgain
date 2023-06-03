@@ -10,7 +10,7 @@ export default function TrueSignPage({ params }: { params: { sign: string } }) {
   if (gottenSign == null) return notFound();
   return (
     <>
-      <ColorManager mainColor={gottenSign.color.color.toRGB()} />
+      <ColorManager mainColor={gottenSign.color.color} />
       <Box title={gottenSign.name} primary>
         <div className="paragraph">
           <img
