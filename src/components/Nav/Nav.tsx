@@ -1,7 +1,7 @@
-import Link from "next/link";
-import "./Nav.css";
 import { brand } from "@/types/assist/branding";
+import Link from "next/link";
 import Flexbox from "../Flexbox/Flexbox";
+import "./Nav.css";
 
 export default function Nav() {
   return (

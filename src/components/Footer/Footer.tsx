@@ -1,11 +1,11 @@
-import Box from "../Box/Box";
 import {
-  domain,
   brand,
+  domain,
+  fullDomain,
   source,
   sourceCopyright,
-  fullDomain,
 } from "@/types/assist/branding";
+import Box from "../Box/Box";
 import "./Footer.css";
 
 export default function Footer() {

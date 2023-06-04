@@ -1,8 +1,8 @@
 import * as yup from "yup";
-import { ObjectIdSchema, PolicySchema } from "./assist/generics";
-import { ClientFlairSchema } from "./flair";
 import { ColorSchema } from "./assist/color";
 import { TrueSignList, TrueSignSchema } from "./assist/extended_zodiac";
+import { ObjectIdSchema } from "./assist/generics";
+import { ClientFlairSchema } from "./flair";
 
 export const SubmitUserSchema = yup.object({
   name: yup.string().required().min(3).max(50),

@@ -1,8 +1,7 @@
 import Box from "@/components/Box/Box";
-import { SignColorList } from "@/types/assist/extended_zodiac";
-import Image from "next/image";
-import Link from "next/link";
 import Flexbox from "@/components/Flexbox/Flexbox";
+import { SignColorList } from "@/types/assist/extended_zodiac";
+import Link from "next/link";
 
 export default function Colors() {
   return (

@@ -1,15 +1,16 @@
-import { notFound } from "next/navigation";
+import Box from "@/components/Box/Box";
 import ColorManager from "@/components/ColorManager/ColorManager";
-import { getUserByName } from "@/lib/trollcall/user";
+import Flexbox from "@/components/Flexbox/Flexbox";
+import Dialoglog from "@/components/shell/Dialoglog/Dialoglog";
+import TrollCard from "@/components/shell/TrollCard/TrollCard";
 import {
   ServerTrollToClientTroll,
   getTrollByName,
 } from "@/lib/trollcall/troll";
-import TrollCard from "@/components/shell/TrollCard/TrollCard";
-import Flexbox from "@/components/Flexbox/Flexbox";
-import Box from "@/components/Box/Box";
-import Link from "next/link";
+import { getUserByName } from "@/lib/trollcall/user";
 import { iswitch } from "iswitch";
+import Link from "next/link";
+import { notFound } from "next/navigation";
 
 export default async function UserPage({
   params,
@@ -33,7 +34,7 @@ export default async function UserPage({
           <Box title={"About " + troll.name[0]}>
             <p>
               {troll.name[0]} is a{" "}
-              <Link href={`/hiveswap/aspect/${troll.class.name}`}>
+              <Link href={`/hiveswap/class/${troll.class.name}`}>
                 {troll.class.name}
               </Link>{" "}
               of{" "}
@@ -164,6 +165,9 @@ export default async function UserPage({
             </Box>
           </Box>
         </Flexbox>
+      </Flexbox>
+      <Flexbox padding="8px">
+        <Dialoglog />
       </Flexbox>
     </>
   );

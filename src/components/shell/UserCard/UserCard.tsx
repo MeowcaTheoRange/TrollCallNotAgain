@@ -1,11 +1,10 @@
-import Box from "@/components/Box/Box";
 import Flexbox from "@/components/Flexbox/Flexbox";
+import SignBadge from "@/components/SignBadge/SignBadge";
+import { Color3 } from "@/types/assist/color";
 import { ClientUser } from "@/types/user";
 import Link from "next/link";
 import ReactMarkdown from "react-markdown";
 import Flair from "../Flair/Flair";
-import SignBadge from "@/components/SignBadge/SignBadge";
-import { Color3 } from "@/types/assist/color";
 import "./UserCard.css";
 
 export default function UserCard({

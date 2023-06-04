@@ -1,11 +1,11 @@
 import Box from "@/components/Box/Box";
-import { notFound } from "next/navigation";
 import ColorManager from "@/components/ColorManager/ColorManager";
-import { ServerUserToClientUser, getUserByName } from "@/lib/trollcall/user";
-import { getTrollsByUser } from "@/lib/trollcall/troll";
-import { AdaptivePossessive } from "@/types/assist/language";
 import TrollCard from "@/components/shell/TrollCard/TrollCard";
 import UserCard from "@/components/shell/UserCard/UserCard";
+import { getTrollsByUser } from "@/lib/trollcall/troll";
+import { ServerUserToClientUser, getUserByName } from "@/lib/trollcall/user";
+import { AdaptivePossessive } from "@/types/assist/language";
+import { notFound } from "next/navigation";
 
 export default async function UserPage({
   params,

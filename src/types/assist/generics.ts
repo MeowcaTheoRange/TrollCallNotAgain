@@ -1,6 +1,5 @@
-import * as yup from "yup";
 import { ObjectId } from "mongodb";
-import { Color3, ColorTypes } from "./color";
+import * as yup from "yup";
 
 export const ObjectIdSchema = yup.mixed((value): value is ObjectId =>
   ObjectId.isValid(value)

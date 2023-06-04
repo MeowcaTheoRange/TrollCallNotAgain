@@ -1,19 +1,18 @@
 "use client";
 
+import Flexbox from "@/components/Flexbox/Flexbox";
+import SignBadge from "@/components/SignBadge/SignBadge";
 import { Color3 } from "@/types/assist/color";
-import "./TrollCard.css";
-import { ClientTroll } from "@/types/troll";
-import { ReactMarkdown } from "react-markdown/lib/react-markdown";
-import { useRouter } from "next/navigation";
 import {
+  AgeConverter,
   HeightConverter,
   PronounGrouper,
-  AgeConverter,
 } from "@/types/assist/language";
-import SignBadge from "@/components/SignBadge/SignBadge";
+import { ClientTroll } from "@/types/troll";
 import Link from "next/link";
-import Flexbox from "@/components/Flexbox/Flexbox";
+import { ReactMarkdown } from "react-markdown/lib/react-markdown";
 import Flair from "../Flair/Flair";
+import "./TrollCard.css";
 
 export default function TrollCard({
   troll,

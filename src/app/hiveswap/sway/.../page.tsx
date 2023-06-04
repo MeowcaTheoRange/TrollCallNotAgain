@@ -1,8 +1,7 @@
 import Box from "@/components/Box/Box";
-import { SwayList } from "@/types/assist/extended_zodiac";
-import Image from "next/image";
-import Link from "next/link";
 import Flexbox from "@/components/Flexbox/Flexbox";
+import { SwayList } from "@/types/assist/extended_zodiac";
+import Link from "next/link";
 
 export default function Sways() {
   return (

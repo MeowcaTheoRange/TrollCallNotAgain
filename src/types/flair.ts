@@ -1,6 +1,6 @@
 import * as yup from "yup";
-import { ObjectIdSchema, PolicySchema } from "./assist/generics";
 import { ColorSchema } from "./assist/color";
+import { ObjectIdSchema } from "./assist/generics";
 
 export const SubmitFlairSchema = yup
   .object({

@@ -1,4 +1,3 @@
-import { ObjectId } from "mongodb";
 import { mainDB } from "./mongodb";
 
 export async function createOne(collection: string, doc: any) {

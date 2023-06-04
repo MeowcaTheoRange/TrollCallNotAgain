@@ -1,15 +1,15 @@
+import { TrueSign } from "@/types/assist/extended_zodiac";
+import { ClientUser, ServerUser } from "@/types/user";
 import { ObjectId, WithId } from "mongodb";
 import { readMany, readOne } from "../mongodb/crud";
-import { ClientUser, ServerUser } from "@/types/user";
 import { getFlairsByArray } from "./flair";
-import { TrueSign } from "@/types/assist/extended_zodiac";
 
-export async function getUserByID(_id: string) {
+export async function getUserByID(_id: ObjectId) {
+  // if this ID is null then there is something incredibly wrong with the server
   const userObj = (await readOne("users", {
     _id,
-  })) as WithId<ServerUser> | null;
-  if (userObj != null) return userObj;
-  return null;
+  })) as WithId<ServerUser>;
+  return userObj;
 }
 
 export async function getUserByName(name: string) {

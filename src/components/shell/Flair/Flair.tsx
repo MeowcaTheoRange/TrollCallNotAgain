@@ -1,7 +1,7 @@
-import "./Flair.css";
-import { ClientFlair } from "@/types/flair";
 import { Color3 } from "@/types/assist/color";
+import { ClientFlair } from "@/types/flair";
 import Link from "next/link";
+import "./Flair.css";
 
 export default function Flair({ flair }: { flair: ClientFlair }) {
   var flairColor = Color3.fromRGB(...flair.color);

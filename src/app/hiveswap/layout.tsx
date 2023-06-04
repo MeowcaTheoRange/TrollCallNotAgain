@@ -1,6 +1,6 @@
-import "@/styles/normalize.css";
-import "@/styles/globals.css";
 import ColorManager from "@/components/ColorManager/ColorManager";
+import "@/styles/globals.css";
+import "@/styles/normalize.css";
 
 export default function RootLayout({
   children,

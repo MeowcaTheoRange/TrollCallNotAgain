@@ -1,4 +1,4 @@
-import { Color3, ColorTypes } from "@/types/assist/color";
+import { Color3 } from "@/types/assist/color";
 
 export default function ColorManagerInline({
   mainColor,

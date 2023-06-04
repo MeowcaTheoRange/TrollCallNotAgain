@@ -1,6 +1,6 @@
 import Box from "@/components/Box/Box";
-import { brand } from "@/types/assist/branding";
 import ColorManager from "@/components/ColorManager/ColorManager";
+import { brand } from "@/types/assist/branding";
 
 export default function Home() {
   return (

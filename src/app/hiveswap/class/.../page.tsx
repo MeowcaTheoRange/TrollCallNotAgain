@@ -1,9 +1,9 @@
 import Box from "@/components/Box/Box";
+import Flexbox from "@/components/Flexbox/Flexbox";
 import { ClassList } from "@/types/assist/extended_zodiac";
+import { Pluralize } from "@/types/assist/language";
 import { iswitch } from "iswitch";
 import Link from "next/link";
-import Flexbox from "@/components/Flexbox/Flexbox";
-import { Pluralize } from "@/types/assist/language";
 
 export default function Classes() {
   return (

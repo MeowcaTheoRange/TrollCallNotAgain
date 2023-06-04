@@ -1,10 +1,10 @@
 import Box from "@/components/Box/Box";
-import { Class } from "@/types/assist/extended_zodiac";
-import { notFound } from "next/navigation";
 import Flexbox from "@/components/Flexbox/Flexbox";
+import { Class } from "@/types/assist/extended_zodiac";
+import { Pluralize } from "@/types/assist/language";
 import { iswitch } from "iswitch";
 import Link from "next/link";
-import { Pluralize } from "@/types/assist/language";
+import { notFound } from "next/navigation";
 
 export default function ClassPage({ params }: { params: { class: string } }) {
   var gottenClass = Class[params.class];

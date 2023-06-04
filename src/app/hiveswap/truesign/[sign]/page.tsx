@@ -1,10 +1,9 @@
 import Box from "@/components/Box/Box";
-import { TrueSign } from "@/types/assist/extended_zodiac";
-import Image from "next/image";
-import { notFound } from "next/navigation";
 import ColorManager from "@/components/ColorManager/ColorManager";
-import Link from "next/link";
 import Flexbox from "@/components/Flexbox/Flexbox";
+import { TrueSign } from "@/types/assist/extended_zodiac";
+import Link from "next/link";
+import { notFound } from "next/navigation";
 
 export default function TrueSignPage({ params }: { params: { sign: string } }) {
   var gottenSign = TrueSign[params.sign];

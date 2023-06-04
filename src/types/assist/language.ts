@@ -29,3 +29,7 @@ export function Pluralize(stringe: string) {
   else if (stringe.match(/(?:f|fe)$/)) return stringe.slice(0, -1) + "ves";
   else return stringe + "s";
 }
+
+export function ArraySample(array: any[]) {
+  return array[Math.floor(Math.random() * array.length)];
+}

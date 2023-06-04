@@ -1,11 +1,11 @@
 "use client";
 
+import { Color3 } from "@/types/assist/color";
 import { TrueSignType } from "@/types/assist/extended_zodiac";
-import "./SignBadge.css";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
 import Flexbox from "../Flexbox/Flexbox";
-import { Color3 } from "@/types/assist/color";
+import "./SignBadge.css";
 
 export default function SignBadge({ trueSign }: { trueSign: TrueSignType }) {
   const router = useRouter();

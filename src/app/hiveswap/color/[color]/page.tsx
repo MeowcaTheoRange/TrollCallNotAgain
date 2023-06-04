@@ -1,10 +1,9 @@
 import Box from "@/components/Box/Box";
-import { SignColor, Sway } from "@/types/assist/extended_zodiac";
-import Image from "next/image";
-import { notFound } from "next/navigation";
 import ColorManager from "@/components/ColorManager/ColorManager";
-import Link from "next/link";
 import Flexbox from "@/components/Flexbox/Flexbox";
+import { SignColor } from "@/types/assist/extended_zodiac";
+import Link from "next/link";
+import { notFound } from "next/navigation";
 
 export default function SwayPage({ params }: { params: { color: string } }) {
   var gottenSignColor = SignColor[params.color];

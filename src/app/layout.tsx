@@ -1,7 +1,7 @@
 import Footer from "@/components/Footer/Footer";
 import Nav from "@/components/Nav/Nav";
-import "@/styles/normalize.css";
 import "@/styles/globals.css";
+import "@/styles/normalize.css";
 
 export default function RootLayout({
   children,

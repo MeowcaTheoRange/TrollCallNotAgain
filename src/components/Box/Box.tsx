@@ -1,6 +1,6 @@
 import { ReactNode } from "react";
-import "./Box.css";
 import Flexbox from "../Flexbox/Flexbox";
+import "./Box.css";
 
 export default function Box({
   title,

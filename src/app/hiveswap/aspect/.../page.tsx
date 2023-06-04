@@ -1,7 +1,7 @@
 import Box from "@/components/Box/Box";
+import Flexbox from "@/components/Flexbox/Flexbox";
 import { AspectList } from "@/types/assist/extended_zodiac";
 import Link from "next/link";
-import Flexbox from "@/components/Flexbox/Flexbox";
 
 export default function Aspects() {
   return (

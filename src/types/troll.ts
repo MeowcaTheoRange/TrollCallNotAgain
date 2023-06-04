@@ -1,15 +1,15 @@
 import * as yup from "yup";
-import { ObjectIdSchema, PolicySchema } from "./assist/generics";
+import { ColorSchema } from "./assist/color";
 import {
-  ClassList,
   ClassNameList,
   ClassSchema,
   TrueSignList,
   TrueSignSchema,
 } from "./assist/extended_zodiac";
+import { ObjectIdSchema, PolicySchema } from "./assist/generics";
 import { ClientFlairSchema } from "./flair";
+import { ServerQuirkHolderSchema, SubmitQuirkHolderSchema } from "./quirks";
 import { ClientUserSchema } from "./user";
-import { ColorSchema } from "./assist/color";
 
 export const SubmitTrollSchema = yup
   .object({
@@ -77,7 +77,8 @@ export const SubmitTrollSchema = yup
       .required()
       .matches(/^(([a-z])[a-z]+)(([A-Z])[a-z]+)$/),
     textColor: ColorSchema.notRequired(), // default to trueSign color if undefined,
-    quirks: yup.object().required(), // DO NOT HANDLE RIGHT NOW.
+    quirks: SubmitQuirkHolderSchema.required(), // DO NOT HANDLE RIGHT NOW.
+    // Handled! :D
 
     /* Quirk Builder JSON
 {
@@ -176,6 +177,7 @@ export const ServerTrollSchema = SubmitTrollSchema.shape({
   _id: ObjectIdSchema.required(),
   owners: yup.array().of(ObjectIdSchema.required()).required().min(1),
   flairs: yup.array().of(ObjectIdSchema.required()).required(),
+  quirks: ServerQuirkHolderSchema.required(),
 });
 
 export type ServerTroll = yup.InferType<typeof ServerTrollSchema>;
@@ -183,6 +185,7 @@ export type ServerTroll = yup.InferType<typeof ServerTrollSchema>;
 export const ClientTrollSchema = SubmitTrollSchema.shape({
   owners: yup.array().of(ClientUserSchema.required()).required().min(1),
   flairs: yup.array().of(ClientFlairSchema.required()).required(),
+  quirks: ServerQuirkHolderSchema.required(),
   trueSign: TrueSignSchema.required(),
   falseSign: TrueSignSchema.notRequired(),
   class: ClassSchema.required(),

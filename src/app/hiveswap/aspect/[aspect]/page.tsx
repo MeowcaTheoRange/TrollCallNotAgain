@@ -1,9 +1,7 @@
 import Box from "@/components/Box/Box";
-import { Aspect } from "@/types/assist/extended_zodiac";
-import Image from "next/image";
-import { notFound } from "next/navigation";
-import ColorManager from "@/components/ColorManager/ColorManager";
 import Flexbox from "@/components/Flexbox/Flexbox";
+import { Aspect } from "@/types/assist/extended_zodiac";
+import { notFound } from "next/navigation";
 
 export default function AspectPage({ params }: { params: { aspect: string } }) {
   var gottenAspect = Aspect[params.aspect];

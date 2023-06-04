@@ -1,5 +1,5 @@
-import { Color3, ColorSchema, ColorTypes } from "./color";
 import * as yup from "yup";
+import { ColorSchema, ColorTypes } from "./color";
 
 export enum ClassGender {
   Male,

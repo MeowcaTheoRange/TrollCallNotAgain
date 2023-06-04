@@ -1,18 +1,15 @@
+import { Class, TrueSign } from "@/types/assist/extended_zodiac";
+import { ClientTroll, ServerTroll } from "@/types/troll";
 import { ObjectId, WithId } from "mongodb";
 import { readMany, readOne } from "../mongodb/crud";
-import { ServerUserToClientUser, getUserByName, getUsersByArray } from "./user";
-import { ClientTroll, ServerTroll } from "@/types/troll";
-import { Class, TrueSign } from "@/types/assist/extended_zodiac";
-import { ServerUser } from "@/types/user";
-import { ServerFlair } from "@/types/flair";
 import { getFlairsByArray } from "./flair";
+import { getUsersByArray } from "./user";
 
-export async function getTrollByID(_id: string) {
+export async function getTrollByID(_id: ObjectId) {
   const trollObj = (await readOne("trolls", {
     _id,
-  })) as WithId<ServerTroll> | null;
-  if (trollObj != null) return trollObj;
-  return null;
+  })) as WithId<ServerTroll>;
+  return trollObj;
 }
 
 export async function getTrollByName(name: string, user: any) {
@@ -23,6 +20,19 @@ export async function getTrollByName(name: string, user: any) {
   })) as WithId<ServerTroll> | null;
   if (trollObj != null) return trollObj;
   return null;
+}
+
+export async function getTrollsByArray(array: ObjectId[]) {
+  const trollArr = readMany("trolls", {
+    _id: { $in: array },
+  });
+  let trollList = [];
+  while (await trollArr.hasNext()) {
+    trollList.push(
+      await ServerTrollToClientTroll((await trollArr.next()) as ServerTroll)
+    );
+  }
+  return trollList;
 }
 
 export async function getTrollsByUser(user: any, limit?: number) {
@@ -67,6 +77,7 @@ export async function ServerTrollToClientTroll(
     pronouns: serverTroll.pronouns.map((pronoun) => [...pronoun]),
     pronunciation: [...serverTroll.pronunciation],
     quirks: serverTroll.quirks, // don't even get me fucking started. just leave this as-is and DON'T ELABORATE.
+    // ok
     species: serverTroll.species,
     textColor: serverTroll.textColor, // I don't even know what this type is or what it could be. For all I know, it's a `[number, number, number] | string | number`.
     // This is not good.

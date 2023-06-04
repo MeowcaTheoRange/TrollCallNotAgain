@@ -1,17 +1,12 @@
+import { ClientFlair, ServerFlair } from "@/types/flair";
 import { ObjectId, WithId } from "mongodb";
 import { readMany, readOne } from "../mongodb/crud";
-import { ServerUserToClientUser } from "./user";
-import { ClientTroll, ServerTroll } from "@/types/troll";
-import { Class, TrueSign } from "@/types/assist/extended_zodiac";
-import { ServerUser } from "@/types/user";
-import { ClientFlair, ServerFlair } from "@/types/flair";
 
-export async function getFlairByID(_id: string) {
+export async function getFlairByID(_id: ObjectId) {
   const flairObj = (await readOne("flairs", {
     _id,
-  })) as WithId<ServerFlair> | null;
-  if (flairObj != null) return flairObj;
-  return null;
+  })) as WithId<ServerFlair>;
+  return flairObj;
 }
 
 export async function getFlairsByArray(array: ObjectId[]) {
