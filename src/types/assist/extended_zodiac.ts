@@ -12,6 +12,12 @@ export enum ClassDisposition {
   Passive,
 }
 
+export const ClassShelfSchema = yup.object({
+  name: yup.string().required(),
+  pair: yup.string().required(),
+  keyword: yup.string().required(),
+});
+
 export type ClassShelfType = {
   name: string;
   pair: string;
@@ -51,10 +57,20 @@ export const ClassShelf: { [key: string]: ClassShelfType } = {
   },
 };
 
+export const ClassSchema = yup.object({
+  name: yup.string().required(),
+  gender: yup.string().required(),
+  disposition: yup.string().required(),
+  pair: yup.string().required(),
+  inverse: yup.string().required(),
+  keyword: yup.string().required(),
+  shelf: ClassShelfSchema.required(),
+});
+
 export type ClassType = {
   name: string;
-  gender: ClassGender; // just for "canon check"; this is not actually enforced
-  disposition: ClassDisposition;
+  gender: string; // just for "canon check"; this is not actually enforced
+  disposition: string;
   pair: string;
   inverse: string;
   keyword: string;
@@ -64,8 +80,8 @@ export type ClassType = {
 export const Class: { [key: string]: ClassType } = {
   Witch: {
     name: "Witch",
-    gender: ClassGender.Female,
-    disposition: ClassDisposition.Active,
+    gender: "Female",
+    disposition: "Active",
     keyword: "Control",
     pair: "Heir",
     inverse: "Seer",
@@ -73,8 +89,8 @@ export const Class: { [key: string]: ClassType } = {
   },
   Heir: {
     name: "Heir",
-    gender: ClassGender.Male,
-    disposition: ClassDisposition.Passive,
+    gender: "Male",
+    disposition: "Passive",
     keyword: "Influence",
     pair: "Witch",
     inverse: "Mage",
@@ -82,8 +98,8 @@ export const Class: { [key: string]: ClassType } = {
   },
   Mage: {
     name: "Mage",
-    gender: ClassGender.Unisex,
-    disposition: ClassDisposition.Active,
+    gender: "Unisex",
+    disposition: "Active",
     keyword: "Experience",
     pair: "Seer",
     inverse: "Heir",
@@ -91,8 +107,8 @@ export const Class: { [key: string]: ClassType } = {
   },
   Seer: {
     name: "Seer",
-    gender: ClassGender.Unisex,
-    disposition: ClassDisposition.Passive,
+    gender: "Unisex",
+    disposition: "Passive",
     keyword: "Study",
     pair: "Mage",
     inverse: "Witch",
@@ -100,8 +116,8 @@ export const Class: { [key: string]: ClassType } = {
   },
   Prince: {
     name: "Prince",
-    gender: ClassGender.Male,
-    disposition: ClassDisposition.Active,
+    gender: "Male",
+    disposition: "Active",
     keyword: "Demolish",
     pair: "Bard",
     inverse: "Sylph",
@@ -109,8 +125,8 @@ export const Class: { [key: string]: ClassType } = {
   },
   Bard: {
     name: "Bard",
-    gender: ClassGender.Male,
-    disposition: ClassDisposition.Passive,
+    gender: "Male",
+    disposition: "Passive",
     keyword: "Deconstruct",
     pair: "Prince",
     inverse: "Maid",
@@ -118,8 +134,8 @@ export const Class: { [key: string]: ClassType } = {
   },
   Maid: {
     name: "Maid",
-    gender: ClassGender.Female,
-    disposition: ClassDisposition.Active,
+    gender: "Female",
+    disposition: "Active",
     keyword: "Generate",
     pair: "Sylph",
     inverse: "Bard",
@@ -127,8 +143,8 @@ export const Class: { [key: string]: ClassType } = {
   },
   Sylph: {
     name: "Sylph",
-    gender: ClassGender.Female,
-    disposition: ClassDisposition.Passive,
+    gender: "Female",
+    disposition: "Passive",
     keyword: "Mend",
     pair: "Maid",
     inverse: "Prince",
@@ -136,8 +152,8 @@ export const Class: { [key: string]: ClassType } = {
   },
   Thief: {
     name: "Thief",
-    gender: ClassGender.Unisex,
-    disposition: ClassDisposition.Active,
+    gender: "Unisex",
+    disposition: "Active",
     keyword: "Take",
     pair: "Rogue",
     inverse: "Page",
@@ -145,8 +161,8 @@ export const Class: { [key: string]: ClassType } = {
   },
   Rogue: {
     name: "Rogue",
-    gender: ClassGender.Unisex,
-    disposition: ClassDisposition.Passive,
+    gender: "Unisex",
+    disposition: "Passive",
     keyword: "Share",
     pair: "Thief",
     inverse: "Knight",
@@ -154,8 +170,8 @@ export const Class: { [key: string]: ClassType } = {
   },
   Knight: {
     name: "Knight",
-    gender: ClassGender.Unisex,
-    disposition: ClassDisposition.Active,
+    gender: "Unisex",
+    disposition: "Active",
     keyword: "Exploit",
     pair: "Page",
     inverse: "Rogue",
@@ -163,8 +179,8 @@ export const Class: { [key: string]: ClassType } = {
   },
   Page: {
     name: "Page",
-    gender: ClassGender.Unisex,
-    disposition: ClassDisposition.Passive,
+    gender: "Unisex",
+    disposition: "Passive",
     keyword: "Empower",
     pair: "Knight",
     inverse: "Thief",
@@ -172,8 +188,8 @@ export const Class: { [key: string]: ClassType } = {
   },
   Lord: {
     name: "Lord",
-    gender: ClassGender.Male,
-    disposition: ClassDisposition.Active,
+    gender: "Male",
+    disposition: "Active",
     keyword: "Dominate",
     pair: "Muse",
     inverse: "Muse",
@@ -181,8 +197,8 @@ export const Class: { [key: string]: ClassType } = {
   },
   Muse: {
     name: "Muse",
-    gender: ClassGender.Female,
-    disposition: ClassDisposition.Passive,
+    gender: "Female",
+    disposition: "Passive",
     keyword: "Inspire",
     pair: "Lord",
     inverse: "Lord",

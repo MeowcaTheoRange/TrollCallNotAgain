@@ -4,6 +4,7 @@ import Image from "next/image";
 import { notFound } from "next/navigation";
 import ColorManager from "@/components/ColorManager/ColorManager";
 import Link from "next/link";
+import Flexbox from "@/components/Flexbox/Flexbox";
 
 export default function TrueSignPage({ params }: { params: { sign: string } }) {
   var gottenSign = TrueSign[params.sign];
@@ -12,7 +13,7 @@ export default function TrueSignPage({ params }: { params: { sign: string } }) {
     <>
       <ColorManager mainColor={gottenSign.color.color} />
       <Box title={gottenSign.name} primary>
-        <div className="paragraph">
+        <Flexbox gap="16px">
           <img
             className="icon"
             width={96}
@@ -42,7 +43,7 @@ export default function TrueSignPage({ params }: { params: { sign: string } }) {
             </b>
             .
           </p>
-        </div>
+        </Flexbox>
         <hr />
         <h1>Sign Class: {gottenSign.color.name}</h1>
         <p>{gottenSign.color.description}</p>

@@ -5,17 +5,27 @@ import "./TrollCard.css";
 import { ClientTroll } from "@/types/troll";
 import { ReactMarkdown } from "react-markdown/lib/react-markdown";
 import { useRouter } from "next/navigation";
-import { HeightConverter, PronounGrouper } from "@/types/assist/language";
+import {
+  HeightConverter,
+  PronounGrouper,
+  AgeConverter,
+} from "@/types/assist/language";
 import SignBadge from "@/components/SignBadge/SignBadge";
+import Link from "next/link";
+import Flexbox from "@/components/Flexbox/Flexbox";
+import Flair from "../Flair/Flair";
 
-export default function TrollCard({ troll }: { troll: ClientTroll }) {
-  const router = useRouter();
+export default function TrollCard({
+  troll,
+  inline,
+}: {
+  troll: ClientTroll;
+  inline?: boolean;
+}) {
   var trollTrueSign = troll.falseSign ?? troll.trueSign;
-  const trollColor = Color3.fromRGB(
-    ...(troll.textColor ?? trollTrueSign.color.color)
-  );
+  const trollColor = Color3.fromRGB(...trollTrueSign.color.color);
   return (
-    <button
+    <div
       className="TrollCard largelink"
       style={
         {
@@ -23,16 +33,59 @@ export default function TrollCard({ troll }: { troll: ClientTroll }) {
           "--pri-text": `#${trollColor.lighten(60).toHex()}`,
         } as React.CSSProperties
       }
-      onClick={() =>
-        router.push(`/user/${troll.owners[0].name}/troll/${troll.name[0]}`)
-      }
     >
-      <h1>{troll.name.join(" ")}</h1>
-      <div className="imagedesc">
-        <img className="image" src={troll.image} height="256"></img>
-        <div className="moreflex">
-          <SignBadge trueSign={trollTrueSign} />
-          <div className="imagedesc wrap">
+      <Flexbox gap="8px" direction="row" align="center">
+        {inline ? (
+          <h1>{troll.name.join(" ")}</h1>
+        ) : (
+          <Link href={`/user/${troll.owners[0].name}/troll/${troll.name[0]}`}>
+            <h1>{troll.name.join(" ")}</h1>
+          </Link>
+        )}
+        <span>
+          <i>({troll.pronunciation.join(" ")})</i>
+        </span>
+      </Flexbox>
+      <Flexbox gap="16px" direction="row">
+        {troll.flairs.map((flair, i) => (
+          <Flair key={i} flair={flair} />
+        ))}
+      </Flexbox>
+      <Flexbox gap={inline ? "0px" : "8px"} fw wrap>
+        {inline ? (
+          <></>
+        ) : (
+          <img className="image" src={troll.image} height="256"></img>
+        )}
+        <Flexbox
+          direction="column"
+          gap="8px"
+          padding="8px"
+          fw
+          min="min-content"
+        >
+          <Flexbox justify="space-between" align="center" gap="8px" fw wrap>
+            <Flexbox direction="column" gap="8px" min="min-content">
+              <ul>
+                {troll.facts.map((fact, i) => (
+                  <li key={i}>{fact}</li>
+                ))}
+              </ul>
+            </Flexbox>
+            <Flexbox direction="column" gap="8px" align="flex-end">
+              {troll.falseSign ? (
+                <>
+                  <p>FALSE SIGN</p>
+                  <SignBadge trueSign={troll.falseSign} />
+                </>
+              ) : (
+                <></>
+              )}
+              <p>TRUE SIGN</p>
+              <SignBadge trueSign={troll.trueSign} />
+            </Flexbox>
+          </Flexbox>
+          <Flexbox gap="8px" justify="center" fw wrap>
             <span>
               {troll.pronouns
                 .map((pronoun) => PronounGrouper(pronoun))
@@ -40,6 +93,10 @@ export default function TrollCard({ troll }: { troll: ClientTroll }) {
             </span>
             <span>•</span>
             <span>{troll.gender}</span>
+            <span>•</span>
+            <span title={AgeConverter(troll.age, true)}>
+              {AgeConverter(troll.age, false)}
+            </span>
             <span>•</span>
             <span>{HeightConverter(troll.height)}</span>
             {troll.species ? (
@@ -50,44 +107,12 @@ export default function TrollCard({ troll }: { troll: ClientTroll }) {
             ) : (
               <></>
             )}
-          </div>
-          <div>
+          </Flexbox>
+          <Flexbox direction="column" gap="8px" padding="8px">
             <ReactMarkdown>{troll.description}</ReactMarkdown>
-          </div>
-        </div>
-      </div>
-    </button>
-  );
-}
-
-export function TrollCard_Loading() {
-  return (
-    <div className="TrollCard largelink loading">
-      <h1>STINKY AMONGU</h1>
-      <div className="imagedesc">
-        <div className="loadingpatch"></div>
-        <div className="moreflex">
-          <div className="morbius">
-            <div className="loadingpatchsign"></div>
-            <div className="morbiusvert">
-              <h2>Stinkypoop</h2>
-              <p>Fart + Poop + Pee</p>
-            </div>
-          </div>
-          <div className="imagedesc">
-            <span>he/him, they/them</span>
-            <span>•</span>
-            <span>Male</span>
-            <span>•</span>
-            <span>5'9" (1.75m)</span>
-          </div>
-          <div>
-            <ReactMarkdown>
-              I wasn't paid well enough to type this stuff out
-            </ReactMarkdown>
-          </div>
-        </div>
-      </div>
+          </Flexbox>
+        </Flexbox>
+      </Flexbox>
     </div>
   );
 }

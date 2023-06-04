@@ -1,7 +1,7 @@
 import Box from "@/components/Box/Box";
 import { AspectList } from "@/types/assist/extended_zodiac";
-import Image from "next/image";
 import Link from "next/link";
+import Flexbox from "@/components/Flexbox/Flexbox";
 
 export default function Aspects() {
   return (
@@ -12,7 +12,7 @@ export default function Aspects() {
           <h1>
             <Link href={`/hiveswap/aspect/${aspect.name}`}>{aspect.name}</Link>
           </h1>
-          <div className="paragraph">
+          <Flexbox gap="16px">
             <img
               className="icon"
               width={96}
@@ -21,7 +21,7 @@ export default function Aspects() {
               alt={aspect.name}
             ></img>
             <p>{aspect.description}</p>
-          </div>
+          </Flexbox>
         </>
       ))}
     </Box>

@@ -15,25 +15,6 @@
   border-radius: 2px;
 }
 
-.Nav .left {
-  text-align: left;
-  display: flex;
-  flex-direction: row;
-  align-items: center;
-  justify-content: flex-start;
-  flex-wrap: wrap;
-  gap: 16px;
-}
-
-.Nav .right {
-  text-align: right;
-  display: flex;
-  flex-direction: row;
-  align-items: center;
-  justify-content: flex-end;
-  gap: 16px;
-}
-
 .Nav * {
   vertical-align: middle;
 }

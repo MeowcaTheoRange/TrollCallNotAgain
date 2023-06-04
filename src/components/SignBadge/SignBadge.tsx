@@ -4,15 +4,23 @@ import { TrueSignType } from "@/types/assist/extended_zodiac";
 import "./SignBadge.css";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
+import Flexbox from "../Flexbox/Flexbox";
+import { Color3 } from "@/types/assist/color";
 
 export default function SignBadge({ trueSign }: { trueSign: TrueSignType }) {
   const router = useRouter();
+  const color = Color3.fromRGB(...trueSign.color.color);
   return (
     <button
       className="SignBadge"
+      style={
+        {
+          "--pri-box": `#${color.darken(60).toHex()}`,
+          "--pri-text": `#${color.lighten(60).toHex()}`,
+        } as React.CSSProperties
+      }
       onClick={(e) => {
         router.push(`/hiveswap/truesign/${trueSign.name}`);
-        e.stopPropagation();
       }}
     >
       <img
@@ -21,7 +29,7 @@ export default function SignBadge({ trueSign }: { trueSign: TrueSignType }) {
         height="64"
         width="64"
       ></img>
-      <div className="morbiusvert">
+      <Flexbox direction="column" gap="8px">
         <h2>{trueSign.name}</h2>
         <p>
           <Link
@@ -45,7 +53,7 @@ export default function SignBadge({ trueSign }: { trueSign: TrueSignType }) {
             {trueSign.aspect.name}
           </Link>
         </p>
-      </div>
+      </Flexbox>
     </button>
   );
 }

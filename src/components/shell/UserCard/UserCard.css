@@ -1,4 +1,4 @@
-.TrollCard {
+.UserCard {
   border: 1px solid var(--pri-text);
   background-color: var(--pri-box);
   color: var(--pri-text);
@@ -8,9 +8,4 @@
   gap: 8px;
   padding: 8px;
   width: 100%;
-}
-
-.TrollCard .image {
-  height: 256px;
-  object-fit: contain;
 }

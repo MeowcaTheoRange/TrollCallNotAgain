@@ -2,6 +2,7 @@ import Box from "@/components/Box/Box";
 import { SignColorList } from "@/types/assist/extended_zodiac";
 import Image from "next/image";
 import Link from "next/link";
+import Flexbox from "@/components/Flexbox/Flexbox";
 
 export default function Colors() {
   return (
@@ -12,7 +13,7 @@ export default function Colors() {
           <h1>
             <Link href={`/hiveswap/color/${color.name}`}>{color.name}</Link>
           </h1>
-          <div className="paragraph">
+          <Flexbox gap="16px">
             <img
               className="icon"
               width={96}
@@ -21,7 +22,7 @@ export default function Colors() {
               alt={color.name}
             ></img>
             <p>{color.description}</p>
-          </div>
+          </Flexbox>
         </>
       ))}
     </Box>

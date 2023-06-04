@@ -3,6 +3,7 @@ import { Aspect } from "@/types/assist/extended_zodiac";
 import Image from "next/image";
 import { notFound } from "next/navigation";
 import ColorManager from "@/components/ColorManager/ColorManager";
+import Flexbox from "@/components/Flexbox/Flexbox";
 
 export default function AspectPage({ params }: { params: { aspect: string } }) {
   var gottenAspect = Aspect[params.aspect];
@@ -10,7 +11,7 @@ export default function AspectPage({ params }: { params: { aspect: string } }) {
   return (
     <>
       <Box title={gottenAspect.name} primary>
-        <div className="paragraph">
+        <Flexbox gap="16px">
           <img
             className="icon"
             width={96}
@@ -19,7 +20,7 @@ export default function AspectPage({ params }: { params: { aspect: string } }) {
             alt={gottenAspect.name}
           ></img>
           <p>{gottenAspect.description}</p>
-        </div>
+        </Flexbox>
       </Box>
     </>
   );

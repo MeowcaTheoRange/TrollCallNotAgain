@@ -1,5 +1,6 @@
 import { ReactNode } from "react";
 import "./Box.css";
+import Flexbox from "../Flexbox/Flexbox";
 
 export default function Box({
   title,
@@ -20,7 +21,9 @@ export default function Box({
     <div className={`Box${primary ? " primary" : ""}${noBG ? "" : " solid"}`}>
       {title && <p className={`title${small ? " small" : ""}`}>{title}</p>}
       {hr && <hr />}
-      <div className="children">{children}</div>
+      <Flexbox fw direction="column" gap="8px" padding="8px">
+        {children}
+      </Flexbox>
     </div>
   );
 }

@@ -3,6 +3,7 @@ import { Sway } from "@/types/assist/extended_zodiac";
 import Image from "next/image";
 import { notFound } from "next/navigation";
 import ColorManager from "@/components/ColorManager/ColorManager";
+import Flexbox from "@/components/Flexbox/Flexbox";
 
 export default function SwayPage({ params }: { params: { sway: string } }) {
   var gottenSway = Sway[params.sway];
@@ -10,7 +11,7 @@ export default function SwayPage({ params }: { params: { sway: string } }) {
   return (
     <>
       <Box title={gottenSway.name} primary>
-        <div className="paragraph">
+        <Flexbox gap="16px">
           <img
             className="icon"
             width={96}
@@ -19,7 +20,7 @@ export default function SwayPage({ params }: { params: { sway: string } }) {
             alt={gottenSway.name}
           ></img>
           <p>{gottenSway.description}</p>
-        </div>
+        </Flexbox>
       </Box>
     </>
   );

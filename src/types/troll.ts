@@ -3,6 +3,7 @@ import { ObjectIdSchema, PolicySchema } from "./assist/generics";
 import {
   ClassList,
   ClassNameList,
+  ClassSchema,
   TrueSignList,
   TrueSignSchema,
 } from "./assist/extended_zodiac";
@@ -184,7 +185,7 @@ export const ClientTrollSchema = SubmitTrollSchema.shape({
   flairs: yup.array().of(ClientFlairSchema.required()).required(),
   trueSign: TrueSignSchema.required(),
   falseSign: TrueSignSchema.notRequired(),
-  class: yup.object().required(),
+  class: ClassSchema.required(),
 });
 
 export type ClientTroll = yup.InferType<typeof ClientTrollSchema>;
