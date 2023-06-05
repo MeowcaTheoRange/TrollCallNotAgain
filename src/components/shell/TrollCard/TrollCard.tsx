@@ -33,7 +33,7 @@ export default function TrollCard({
         } as React.CSSProperties
       }
     >
-      <Flexbox gap="8px" direction="row" align="center">
+      <Flexbox gap="8px" direction="row" align="center" justify="flex-start">
         {inline ? (
           <h1>{troll.name.join(" ")}</h1>
         ) : (

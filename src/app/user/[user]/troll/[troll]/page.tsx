@@ -29,7 +29,7 @@ export default async function UserPage({
     <>
       <ColorManager mainColor={trollTrueSign.color.color} />
       <TrollCard troll={troll} inline />
-      <Flexbox gap="8px" fw wrap>
+      <Flexbox gap="8px" justify="center" align="center" fw wrap>
         <img src={troll.image} width="256"></img>
         <Flexbox direction="column" gap="8px" fw min="min-content">
           <Box title={"About " + troll.name[0]}>

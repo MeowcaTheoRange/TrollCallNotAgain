@@ -77,9 +77,11 @@ export default function Dialoglog({ dialoglog }: { dialoglog: ClientDialog }) {
           . --
         </p>
       )}
-      {dialoglog.log.map((speech) => {
+      {dialoglog.log.map((speech, k) => {
         if (speech.character == null)
-          return <p>-- {jsonPathFinder(characterData, speech.text)} --</p>;
+          return (
+            <p key={k}>-- {jsonPathFinder(characterData, speech.text)} --</p>
+          );
         var thisCharacterData = characterData[speech.character];
         var joinedThing: ReactNode = "";
         if (
@@ -88,7 +90,7 @@ export default function Dialoglog({ dialoglog }: { dialoglog: ClientDialog }) {
           !thisCharacterData.hasResponded
         ) {
           joinedThing = (
-            <p>
+            <p key={k + "join"}>
               --{" "}
               <span
                 style={{
@@ -106,6 +108,7 @@ export default function Dialoglog({ dialoglog }: { dialoglog: ClientDialog }) {
           <>
             {joinedThing}
             <p
+              key={k}
               style={{
                 color: thisCharacterData.color,
               }}

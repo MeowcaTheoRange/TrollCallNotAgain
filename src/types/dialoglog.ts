@@ -1,5 +1,5 @@
 import * as yup from "yup";
-import { ObjectIdSchema } from "./assist/generics";
+import { ObjectIdSchema } from "./assist/mongo";
 import { ClientTroll, ClientTrollSchema } from "./troll";
 import { ClientUserSchema } from "./user";
 

@@ -148,6 +148,7 @@ h6 {
   line-height: 24px;
   margin: 0 !important;
   font-weight: normal;
+  display: inline-block;
 }
 
 .largelink:hover {
@@ -160,4 +161,8 @@ h6 {
 
 :not(.material):not(.Flair)[title] {
   text-decoration: underline;
+}
+
+img {
+  height: 100%;
 }
