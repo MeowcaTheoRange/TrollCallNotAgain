@@ -1,6 +1,6 @@
 import * as yup from "yup";
 import { ObjectIdSchema } from "./assist/generics";
-import { ClientTrollSchema } from "./troll";
+import { ClientTroll, ClientTrollSchema } from "./troll";
 import { ClientUserSchema } from "./user";
 
 export const SubmitDialogSchema = yup.object({
@@ -23,7 +23,7 @@ export const SubmitDialogSchema = yup.object({
     .of(
       yup
         .object({
-          character: yup.number().required().min(0),
+          character: yup.number().notRequired().min(0),
           quirk: yup.string().default("default"),
           text: yup.string().required().max(2000),
         })
@@ -67,4 +67,9 @@ export const ClientDialogSchema = SubmitDialogSchema.shape({
     .required(),
 });
 
-export type ClientDialog = yup.InferType<typeof ClientDialogSchema>;
+export interface ClientDialog extends yup.InferType<typeof ClientDialogSchema> {
+  characters: {
+    troll: ClientTroll;
+    time: string;
+  }[];
+} // [SEARCH: HACK] a hack. thanks, jquense

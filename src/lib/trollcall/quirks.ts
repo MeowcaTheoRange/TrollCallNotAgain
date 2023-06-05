@@ -36,7 +36,6 @@ export function parseQuirk(string: string, quirk: Quirk) {
         break;
       }
       case "case": {
-        if (quirkFunction.find == undefined) break;
         mutatingString =
           replaceValue === "lower"
             ? mutatingString.toLowerCase()

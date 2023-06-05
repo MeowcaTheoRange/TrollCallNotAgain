@@ -8,7 +8,11 @@ import {
 } from "./assist/extended_zodiac";
 import { ObjectIdSchema, PolicySchema } from "./assist/generics";
 import { ClientFlairSchema } from "./flair";
-import { ServerQuirkHolderSchema, SubmitQuirkHolderSchema } from "./quirks";
+import {
+  ServerQuirkHolder,
+  ServerQuirkHolderSchema,
+  SubmitQuirkHolderSchema,
+} from "./quirks";
 import { ClientUserSchema } from "./user";
 
 export const SubmitTrollSchema = yup
@@ -80,76 +84,6 @@ export const SubmitTrollSchema = yup
     quirks: SubmitQuirkHolderSchema.required(), // DO NOT HANDLE RIGHT NOW.
     // Handled! :D
 
-    /* Quirk Builder JSON
-{
-  "Default": {
-    "color": "#000000",
-    "handle": "",
-    "quirk": [
-      {
-        "type": "prefix",
-        "prefix": "["
-      },
-      {
-        "type": "suffix",
-        "suffix": "]"
-      },
-      {
-        "type": "simple",
-        "find": " ",
-        "replace": "]~["
-      }
-    ]
-  },
-  "mpewfmnkp;ewfmk;ewf": {
-    "handle": "AC",
-    "color": "#416600",
-    "quirk": [
-      {
-        "type": "prefix",
-        "prefix": ":33 < "
-      },
-      {
-        "type": "prefix",
-        "prefix": "X33 < ",
-        "condition": "!"
-      },
-      {
-        "type": "simple",
-        "find": "ee",
-        "replace": "33",
-        "condition": "awnaw"
-      },
-      {
-        "type": "suffix",
-        "suffix": "wefnkewjnklewnklewf",
-        "condition": "???"
-      },
-      {
-        "type": "simple",
-        "find": "ee",
-        "replace": "wewg",
-        "condition": "???"
-      },
-      {
-        "type": "regex",
-        "regex": "balls",
-        "replace": "among us",
-        "condition": "sussy"
-      },
-      {
-        "type": "random",
-        "regex": "two bit",
-        "replaces": [
-          "stupid"
-        ],
-        "condition": "idiot"
-      }
-    ]
-  }
-}
-  */
-
     // Physical stuff
     species: yup.string().notRequired(), // "Troll-*" if defined. Otherwise, just "Troll".
     height: yup.number().required().positive(), // Inches
@@ -191,4 +125,6 @@ export const ClientTrollSchema = SubmitTrollSchema.shape({
   class: ClassSchema.required(),
 });
 
-export type ClientTroll = yup.InferType<typeof ClientTrollSchema>;
+export interface ClientTroll extends yup.InferType<typeof ClientTrollSchema> {
+  quirks: ServerQuirkHolder;
+} // [SEARCH: HACK] a hack. thanks, jquense

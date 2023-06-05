@@ -38,7 +38,7 @@ export default function UserCard({
         ))}
       </Flexbox>
       <Flexbox fw direction="column" gap="8px" padding="8px" wrap>
-        <Flexbox justify="space-between" align="center" gap="8px" fw wrap>
+        <Flexbox justify="space-between" gap="8px" fw wrap>
           <Flexbox direction="column" gap="8px" min="min-content">
             {user.url ? (
               <p>
@@ -50,14 +50,14 @@ export default function UserCard({
             ) : (
               <></>
             )}
+            <Flexbox direction="column" gap="8px" padding="8px">
+              <ReactMarkdown>{user.description}</ReactMarkdown>
+            </Flexbox>
           </Flexbox>
           <Flexbox direction="column" gap="8px" align="flex-end">
             <p>TRUE SIGN</p>
             <SignBadge trueSign={user.trueSign} />
           </Flexbox>
-        </Flexbox>
-        <Flexbox direction="column" gap="8px" padding="8px">
-          <ReactMarkdown>{user.description}</ReactMarkdown>
         </Flexbox>
       </Flexbox>
     </div>

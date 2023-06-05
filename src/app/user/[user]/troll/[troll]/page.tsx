@@ -3,6 +3,7 @@ import ColorManager from "@/components/ColorManager/ColorManager";
 import Flexbox from "@/components/Flexbox/Flexbox";
 import Dialoglog from "@/components/shell/Dialoglog/Dialoglog";
 import TrollCard from "@/components/shell/TrollCard/TrollCard";
+import UserCard from "@/components/shell/UserCard/UserCard";
 import {
   ServerTrollToClientTroll,
   getTrollByName,
@@ -166,9 +167,29 @@ export default async function UserPage({
           </Box>
         </Flexbox>
       </Flexbox>
-      <Flexbox padding="8px">
-        <Dialoglog />
+      <Flexbox>
+        <Dialoglog
+          dialoglog={{
+            owners: troll.owners,
+            name: "Quirk Displayer",
+            description: "Test display for a character's quirks.",
+            characters: [{ troll: troll, time: "" }],
+            log: Object.keys(troll.quirks).map((name) => ({
+              character: 0,
+              quirk: name,
+              text:
+                "Hi, I'm {{0.fullUsername}}. This is me testing my " +
+                name +
+                " quirk. The quick brown fox jumped over the lazy dog.",
+            })),
+          }}
+        />
       </Flexbox>
+      <Box title={"Owner" + (troll.owners.length > 1 ? "s" : "")}>
+        {troll.owners.map((owner, i) => (
+          <UserCard user={owner} key={i} />
+        ))}
+      </Box>
     </>
   );
 }
