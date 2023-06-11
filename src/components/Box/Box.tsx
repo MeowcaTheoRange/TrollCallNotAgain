@@ -19,7 +19,7 @@ export default function Box({
 }) {
   return (
     <div className={`Box${primary ? " primary" : ""}${noBG ? "" : " solid"}`}>
-      {title && <p className={`title${small ? " small" : ""}`}>{title}</p>}
+      {title && <h1 className={`title${small ? " small" : ""}`}>{title}</h1>}
       {hr && <hr />}
       <Flexbox fw direction="column" gap="8px" padding="8px">
         {children}

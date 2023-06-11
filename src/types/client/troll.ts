@@ -9,15 +9,31 @@ export const SubmitTrollSchema = yup
     // Name and identification
     name: yup
       .tuple([
-        yup.string().required().length(6),
-        yup.string().required().length(6),
+        yup
+          .string()
+          .required()
+          .matches(/^[A-z]+$/, "Letters only")
+          .length(6),
+        yup
+          .string()
+          .required()
+          .matches(/^[A-z]+$/, "Letters only")
+          .length(6),
       ])
       .required(),
     description: yup.string().max(10000).ensure(),
     pronunciation: yup
       .tuple([
-        yup.string().required().lowercase(),
-        yup.string().required().lowercase(),
+        yup
+          .string()
+          .required()
+          .matches(/^[A-z-]+$/, "Letters only")
+          .lowercase(),
+        yup
+          .string()
+          .required()
+          .matches(/^[A-z-]+$/, "Letters only")
+          .lowercase(),
       ])
       .required(),
     pronouns: yup
@@ -25,15 +41,35 @@ export const SubmitTrollSchema = yup
       .of(
         yup
           .tuple([
-            yup.string().required().min(1).max(10), // she, he, they
-            yup.string().required().min(1).max(10), // her, him, them
-            yup.string().required().min(1).max(10), // hers, his, theirs
+            yup
+              .string()
+              .required()
+              .matches(/^[A-z]+$/, "Letters only")
+              .min(1)
+              .max(10), // she, he, they
+            yup
+              .string()
+              .required()
+              .matches(/^[A-z]+$/, "Letters only")
+              .min(1)
+              .max(10), // her, him, them
+            yup
+              .string()
+              .required()
+              .matches(/^[A-z]+$/, "Letters only")
+              .min(1)
+              .max(10), // hers, his, theirs
           ])
           .required()
       )
       .required()
       .min(1),
-    gender: yup.string().required().min(3).max(30),
+    gender: yup
+      .string()
+      .required()
+      .matches(/^[A-z]+$/, "Letters only")
+      .min(3)
+      .max(30),
 
     // Personal
     preferences: yup
@@ -74,7 +110,10 @@ export const SubmitTrollSchema = yup
     // Handled! :D
 
     // Physical stuff
-    species: yup.string().notRequired(), // "Troll-*" if defined. Otherwise, just "Troll".
+    species: yup
+      .string()
+      .notRequired()
+      .matches(/^[A-z-]+$/, "Letters only"), // "Troll-*" if defined. Otherwise, just "Troll".
     height: yup.number().required().positive(), // Inches
     age: yup.number().required().positive(), // Sweeps
     image: yup.string().required().url(),

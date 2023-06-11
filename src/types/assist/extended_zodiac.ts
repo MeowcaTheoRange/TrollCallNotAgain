@@ -314,6 +314,9 @@ export const SignColorSchema = yup.object({
   description: yup.string().required(),
   sign: yup.string().required(),
   color: ColorSchema.required(),
+  dates: yup
+    .tuple([yup.string().required(), yup.string().required()])
+    .required(),
 });
 
 export type SignColorType = {
@@ -321,6 +324,7 @@ export type SignColorType = {
   description: string;
   sign: string;
   color: ColorTypes;
+  dates: [string, string];
 };
 
 export const SignColor: {
@@ -332,6 +336,7 @@ export const SignColor: {
       "Adventure motivates Rust Signs more than anything else. They crave new experiences, the wilder and farther-from-home, the better. They are confident and energetic, ready to face the unknown. This dynamism makes them great leaders, but it can also make them foolhardy. Often, they don't posses the level of caution they should for someone so willing to jump into new things. Their willingness to trust can get them into trouble, but they are also incredibly resilient. Their ability to bounce back from trauma and injury leaves them as the toughest sign class on the spectrum. Rust Signs make great friends and traveling companions, but they also can be selfish and quick to anger. If what they deem to be an acceptable level of \"excitement\" isn't happening around them, they have a tendency to try to stir some up. They love the drama. They have incredibly high expectations for themselves and for romantic partners. If someone doesn't live up to these, they may deem them not worth their time. If they aren't careful, Rust Signs can end up in a cycle of excitement, followed by crushed expectations, followed by a quick recovery and new flush of excitement. ",
     sign: "Aries",
     color: [255, 0, 0],
+    dates: ["March 21", "April 19"],
   },
   Bronze: {
     name: "Bronze",
@@ -339,6 +344,7 @@ export const SignColor: {
       "Bronze Signs have a warm and generous disposition, but you might not accuse them of it the first time you meet. They have a tendency toward being withdrawn and slow to open up with new people. This can make them come off as arrogant and cold, like they think they are too good for everyone, although the reality couldn't be further from the truth. In fact, they crave validation and companionship. They are very open-hearted, but if a Bronze Sign decides to dig their heels in, it can be like talking to a wall. More so than any of the other sign classes, Bronze Signs have a marked love of creature comforts. They crave stability and safety, and if they have the means, their homes will be full of beautiful things. Some might accuse them of being hedonistic; they would probably just claim to know what they like. As lovers they can be quite needy, wanting assurances that the affection they feel is reciprocated. Maybe because of this, they have a particular affinity for animals. Don't try to break a Bronze's Sign's routines-they'll resent you for it, even if oftentimes they are too polite to say so.",
     sign: "Taurus",
     color: [255, 128, 0],
+    dates: ["April 20", "May 20"],
   },
   Gold: {
     name: "Gold",
@@ -346,6 +352,7 @@ export const SignColor: {
       "Gold Signs are the reigning geniuses of the sign class spectrum, and chances are they know it. Witty and widely read, they enjoy conversation and debate, even when that conversation gets a little one-sided. They can come off as preachy, and they have a tendency to railroad, just driving into their interlocutors with the force of their intellect. Their arguments make perfect sense to themselves, but not always to those around them. Gold Signs are interested in a wide variety of topics, so they tend to be Jacks-of-all-trade, and can have trouble dedicating themselves to just a single hobby or career. They have a tendency to be high-energy, and can stress people out, including themselves. Their anxiety is such that they often need quite a bit of time alone with their projects. They can talk circles around most people, and they aren't afraid to use their intelligence to manipulate others to get what they want. They are good at making money, and also good at spending it. They aren't great financial planners, tending toward impulse purchases. In romance they lean toward partners who can keep up with them, both with their intellect and their energy, which can both be hard to match. ",
     sign: "Gemini",
     color: [255, 255, 0],
+    dates: ["May 21", "June 21"],
   },
   Lime: {
     name: "Lime",
@@ -353,6 +360,7 @@ export const SignColor: {
       "Lime Signs are tumultuous, bringing great emotion and creativity to their endeavors. They are resolute in their decisions; if they are going to do something, they do it. They have a tendency toward melodrama, especially when they feel passionately about something, and their bad moods are loud and usually difficult to conceal. Hiding their feelings does not come naturally to them, so many Lime Signs cultivate a hard outer shell to hide the passionate, caring person inside. Lime Signs tend to have a large group of friends-they draw people to them with allure and the promise of excitement, and are usually unaware that they are doing it. They tend to focus on their own flaws, rather than their good points. Although they are exceedingly kind and empathetic individuals, many Lime Signs posses a mean streak. If you catch them on a bad day, they can be incredibly vicious. But it they take care to use their power for good, they make very loyal companions. Romance is extremely important to Lime Signs, and when they fall, they fall hard. They don't take rejection well, and a breakup can send them into a tailspin requiring an extended period of recovery.",
     sign: "Cancer",
     color: [127, 255, 0],
+    dates: ["June 22", "July 22"],
   },
   Olive: {
     name: "Olive",
@@ -360,6 +368,7 @@ export const SignColor: {
       "Olive Signs are, by and large, incredibly agreeable people. They are generous and enthusiastic, ready to offer help to anyone who needs it. Luck plays a large role in their lives; Olive Signs have a knack for being in the right place at the right time. And even in the case that their luck goes bad, they can ride rough patches out without falling too far into depression or hopelessness. That said, Olive Signs are most comfortable with things that they are familiar with; new places and ideas often alarm them, resulting in a dogmatic insistence that their way is the right way. They can be quite bossy and domineering, although that usually comes out of a genuine belief that they know best and can help the ones they care about. They are extremely faithful friends and lovers, ready to drop everything and go into helper mode. However, if their trust is breached, there's no going back. No one can hold a grudge like an Olive Sign, and they aren't afraid to just pick up and leave if they decide something isn't working for them. Romance and companionship are extremely important to them, so even if they get hurt, their hearts remain open.",
     sign: "Leo",
     color: [0, 255, 0],
+    dates: ["July 23", "August 22"],
   },
   Jade: {
     name: "Jade",
@@ -367,6 +376,7 @@ export const SignColor: {
       "Jade Signs are the zodiac's caretakers. Intelligent and steady, they are excellent organizers and planners. They are detail-oriented, and can tend toward perfectionism, never satisfied with their endeavors. If you hire on a Jade Sign, be prepared for an excellent product, but also no peace until that project is flawless. They are fussy and particular, which can cause friction with those around them, although a Jade Sign holds no one to as high a standard as they hold themselves. Since they are shy with strangers and slow to open up, Jade Signs can often come off as timid or doormats, when really they just prefer to come at conflicts in a less combative way. Naturally loyal and loving, they make wonderful doctors, parents, and caretakers, whether they are taking care of people, pets, or plants. In relationships, they can be slow to open up, and need someone willing to be patient enough to go at their pace. If all of this makes Jade Signs sound soft and nurturing, they are, but keep in mind that they can also be fiercely destructive if those they care about are threatened. It takes a lot to make a Jade Sign snap, but if they do, take cover.",
     sign: "Virgo",
     color: [0, 255, 127],
+    dates: ["August 23", "September 22"],
   },
   Teal: {
     name: "Teal",
@@ -374,6 +384,7 @@ export const SignColor: {
       "Teal Signs are natural charmers. Social and flirtatious, they are great at parties and public speaking events. Even though they aren't afraid to use their many engaging qualities in both personal and business ventures, they have a strong moral sense. Right and wrong are very obvious to a Teal Sign, and it can frustrate them that others don't see the world the same way they do. Their idealism can make them strong defenders of justice, but it can also result in them being incredibly let down. Their strict adherence to procedure can lead to errors in judgement; they can be gullible and too quick to trust. They have vibrant imaginations, and enjoy fiction and roleplaying, and often those games will resemble the lives they want to be living. Deep down, they often long for a hero, someone they can idolize and count on, with the smarts and charisma to keep up with them. Unfortunately, they have a tendency to get involved with people who are very obviously wrong for them out of a desire not to be alone. Many Teal Signs are better off being single, at least until someone really extraordinary comes along.",
     sign: "Libra",
     color: [0, 255, 255],
+    dates: ["September 23", "October 23"],
   },
   Blue: {
     name: "Blue",
@@ -381,6 +392,7 @@ export const SignColor: {
       "Let's not mince words: Blue Signs are the ones to watch. Of all the sign classes, they have the potential to do the most good, but also cause the worse harm. They can be incredibly effective, and also incredibly destructive. Tell a Blue Sign this and chances are they would agree with you. They are magnetic and adaptive, able to adjust how they present themselves in any situation. They have a mask for every occasion. They are obsessively dedicated, willing to throw themselves into work, play, and everything in between. Because of this, Blue Signs are highly valuable allies and friends. However, they are very selective when it comes to who they let into their inner circle. You could be best friends with a Blue Sign and still never truly know them. They are powerful and successful, but they also tend toward jealousy. They often resent those they see as more well-positioned than they are. A well-adjusted Blue Sign is fantastically competent and inspiring, but a Blue Sign at their worst is a force for chaos. In love they can find themselves having to choose between their ambitions and their relationships, often with great difficulty.",
     sign: "Scorpio",
     color: [0, 127, 255],
+    dates: ["October 24", "November 21"],
   },
   Indigo: {
     name: "Indigo",
@@ -388,6 +400,7 @@ export const SignColor: {
       "Indigo Signs are the enthusiasts of the sign classes. Friendly and cheerful, their optimism is contagious. Being around a well-adjusted Indigo Sign is always a good time. It's hard not to be drawn into their excitable orbit, just like they are drawn in by anything and everything that piques their interest. And those interests are liable to change at any time. Indigo Signs will often surprise their friends and family by declaring they are no longer interested in what just last week they were claiming was their jam. If you catch an Indigo Signs in a philosophical mood, they can be unexpectedly poignant and introspective. A downside of all this jovial enthusiasm is that Indigo Signs often don't know their own strength. They are known to be careless, both physically and emotionally, their conversations punctuated by jostling elbows and tactless comments. They don't usually mean to offend, and are often shocked to find out they upset anyone. When this happens, they can dig their heels in and insist they did nothing wrong. In romance, Indigo Signs need partners who can keep up with their expansive personalities, as well as forgive them for the occasional hurt feeling or two.",
     sign: "Sagittarius",
     color: [0, 0, 255],
+    dates: ["November 22", "December 21"],
   },
   Purple: {
     name: "Purple",
@@ -395,6 +408,7 @@ export const SignColor: {
       "Purple Signs are the workaholics of the sign classes. Ambitious and driven, they have a very specific path in mind to reach the pinnacle of their field, and will work tirelessly toward it. However, if their practical brains convince them that their goal is unrealistic, they may be slow to trust anyone with the secret of their true desires. They are often very funny, their wit veering toward the dryly macabre. Their fatalism can be incredibly humorous or terrible, depending who you ask. Purple Signs are usually the people who will say out loud what everyone else was thinking but was too nervous to mention. They are very stubborn, and once they've made up their mind about something, whether it be a restaurant choice or a political affiliation, it is difficult to change. They have trouble admitting they were mistaken, and also that they are upset. An oft-repeated phrase of the Purple Signs is, \"It's fine, don't worry about it.\" They will let arguments fester rather than face them head on. In love they tend to be strictly monogamous and fiercely devoted, ready to pledge themselves to a person the same way they do their goals-utterly, and without reservation.",
     sign: "Capricorn",
     color: [127, 0, 255],
+    dates: ["December 22", "January 19"],
   },
   Violet: {
     name: "Violet",
@@ -402,6 +416,7 @@ export const SignColor: {
       "Violet Signs are the universe's eccentrics. Forget marching to their own drummer-Violets built their own drum, and it's probably weird. A good deal of this is natural, but they also have a distinct bent toward contrariness. They are the sorts to give the popular thing a pass. Personable and outlandish, they are ready to make friends with anyone, although if they aren't careful their 'game for anything' attitude can come across as clingy or desperate. When their feelings are reciprocated, however, they are very loyal friends. Politics and humanitarian causes are often very important to Violet Signs, and they will turn their considerable inventive energy into a sort of noblesse oblige, happy to offer their nontraditional approaches to help others. At their very best Violet Signs are artistic and inspired, but they tread the fine line between genius and maniac. Too often their more esoteric interests can come across as perverse or untoward, and they can have a hard time holding their tempers, especially if they feel that they are being belittled or ignored. Intelligence is enormously attractive to Violet Signs, and often an intellectual connection is necessary for them to be attracted to a prospective partner.",
     sign: "Aquarius",
     color: [255, 0, 255],
+    dates: ["January 20", "February 18"],
   },
   Fuchsia: {
     name: "Fuchsia",
@@ -409,6 +424,7 @@ export const SignColor: {
       "Fuchsia Signs are the final of the sign classes, fittingly, also the most enigmatic. Possessing a strong imagination, they have an otherworldly quality to them that draws others in. Often, it has more to do with what they don't tell you than what they do, giving them an air of mystery that would more than likely perplex a Fuchsia sign if you told them about it. They aren't usually trying to be alluring-they're just lost in thought. Highly emotional, Fuchsia signs are sensitive and anxious, and tend to spend a lot of time worrying-about the world, the future, and what others think of them. They are artistic and talented, but can suffer from crippling bouts of depression, holding themselves to impossibly high standards. They have rich fantasy lives, and can get so caught up in daydreams that they sometimes forget to actually do things. Many Fuchsia Signs have trouble with follow-through, and it can take a lot to kick them out of their inertia. As far as romance goes, they need partners who are willing to put in the time to go at their pace, and who can handle how sensitive and emotional they can be.",
     sign: "Pisces",
     color: [255, 0, 127],
+    dates: ["February 19", "March 20"],
   },
 };
 

@@ -1,6 +1,8 @@
 import { TrueSign } from "@/types/assist/extended_zodiac";
+import { SubmitUser, SubmitUserSchema } from "@/types/client/user";
 import { ClientUser, ServerUser } from "@/types/user";
 import { ObjectId, WithId } from "mongodb";
+import { nanoid } from "nanoid";
 import { readMany, readOne } from "../mongodb/crud";
 import { getFlairsByArray } from "./flair";
 
@@ -14,7 +16,7 @@ export async function getUserByID(_id: ObjectId) {
 
 export async function getUserByName(name: string) {
   const userObj = (await readOne("users", {
-    name,
+    name: name.toLowerCase(),
   })) as WithId<ServerUser> | null;
   if (userObj != null) return userObj;
   return null;
@@ -31,6 +33,28 @@ export async function getUsersByArray(array: ObjectId[]) {
     );
   }
   return userList;
+}
+
+export async function SubmitUserToServerUser(
+  submitUser: SubmitUser
+): Promise<ServerUser> {
+  try {
+    submitUser = await SubmitUserSchema.validate(submitUser);
+  } catch (err) {
+    throw err;
+  } // yup validate
+  let serverUser: ServerUser = {
+    _id: new ObjectId(),
+    name: submitUser.name,
+    description: submitUser.description,
+    url: submitUser.url,
+    color: submitUser.color,
+    trueSign: submitUser.trueSign,
+    code: submitUser.code || nanoid(16),
+    flairs: [],
+  };
+
+  return serverUser;
 }
 
 export async function ServerUserToClientUser(

@@ -1,8 +1,18 @@
+form {
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+  justify-content: flex-start;
+  gap: 8px;
+}
+
 div.section {
   display: flex;
   flex-direction: column;
   justify-content: flex-start;
   gap: 8px;
+  padding: 8px 0;
+  max-width: 100%;
 }
 
 div.section label {
@@ -14,20 +24,47 @@ div.section label {
   width: 100%;
 }
 
-div.section input {
-  width: 14ch;
-  background-color: transparent;
+div.section input,
+div.section textarea,
+div.section select,
+div.section button[type="button"] {
+  width: 28ch;
+  background-color: var(--pri-box);
   border: 1px solid transparent;
   color: var(--pri-text);
 }
 
-div.section input::placeholder {
+div.section textarea {
+  display: inline-block;
+  max-width: 100%;
+}
+
+div.section input[type="number"] {
+  width: 8ch;
+}
+
+div.section button[type="button"] {
+  width: max-content;
+}
+
+div.section input::placeholder,
+div.section textarea::placeholder,
+div.section select::placeholder {
   color: #c0c0c0;
 }
 
 div.section input:hover,
 div.section input:focus,
-div.section input:active {
+div.section input:active,
+div.section textarea:hover,
+div.section textarea:focus,
+div.section textarea:active,
+div.section select:hover,
+div.section select:focus,
+div.section select:active,
+div.section button[type="button"]:hover,
+div.section button[type="button"]:focus,
+div.section button[type="button"]:active {
   outline: none;
   border: 1px dotted var(--pri-text);
   color: var(--pri-text);
@@ -35,22 +72,43 @@ div.section input:active {
 
 div.section div.error {
   color: #ff8080;
-  text-shadow: 0 0 2px currentColor;
+  text-shadow: 0 0 1px currentColor;
 }
 
-div.section p.note {
+div.section div.note {
   opacity: 0.5;
 }
 
-div.FieldGroup {
+div.FieldGroup,
+div.FieldHolder,
+button[type="submit"],
+button[type="reset"] {
   display: flex;
   flex-direction: row;
   justify-content: flex-start;
   align-items: center;
-  gap: 8px;
+  /* gap: 8px; */
   border: 1px solid var(--pri-text);
   background-color: var(--pri-box);
   color: var(--pri-text);
   padding: 8px;
   width: max-content;
+  max-width: 100%;
+}
+
+button[type="submit"]:hover,
+button[type="reset"]:hover {
+  background-color: var(--pri-text);
+  color: var(--pri-box);
+}
+
+button[type="submit"]:disabled,
+button[type="reset"]:disabled {
+  border: 1px dashed var(--sec-text);
+  background-color: var(--sec-box);
+  color: var(--sec-text);
+}
+
+div.FieldGroup input {
+  width: 14ch;
 }

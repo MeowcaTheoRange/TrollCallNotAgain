@@ -1,0 +1,9 @@
+.LengthLimiter {
+  display: inline;
+}
+.LengthLimiter.danger {
+  color: #f80;
+}
+.LengthLimiter.error {
+  color: #f00;
+}

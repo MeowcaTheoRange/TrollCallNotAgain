@@ -5,6 +5,7 @@ import {
   source,
   sourceCopyright,
 } from "@/types/assist/branding";
+import Link from "next/link";
 import Box from "../Box/Box";
 import "./Footer.css";
 
@@ -22,6 +23,9 @@ export default function Footer() {
         an entity context or a project context.
       </p>
       <p>{sourceCopyright}</p>
+      <p>
+        <Link href="/about/privacy">Privacy Policy</Link>
+      </p>
     </Box>
   );
 }
