@@ -8,11 +8,17 @@ import LengthLimiter from "@/components/LengthLimiter/LengthLimiter";
 import SignBadge from "@/components/SignBadge/SignBadge";
 import { TrueSign, TrueSignList } from "@/types/assist/extended_zodiac";
 import { ErrorComponent } from "@/types/assist/formik";
-import { SubmitUserSchema } from "@/types/client/user";
+import { GiveUserCookies } from "@/types/assist/utility";
+import { SubmitUser, SubmitUserSchema } from "@/types/client/user";
+import { ServerUser } from "@/types/user";
 import { ErrorMessage, Field, Formik } from "formik";
 import Link from "next/link";
+import { useRouter } from "next/navigation";
+import { useCookies } from "react-cookie";
 
-export default function Form() {
+export default function Form({ params }: { params?: { user: SubmitUser } }) {
+  const router = useRouter();
+  const [cookies, setCookie, removeCookie] = useCookies();
   return (
     <>
       <Box title={`Submit User`} primary>
@@ -20,14 +26,23 @@ export default function Form() {
       </Box>
       <Formik
         initialValues={SubmitUserSchema.cast(
-          { color: [0, 0, 0] },
+          params?.user ?? { color: [0, 0, 0] },
           { assert: false }
         )}
         onSubmit={(values, { setSubmitting }) => {
-          setTimeout(() => {
-            alert(JSON.stringify(values, null, 2));
-            setSubmitting(false);
-          }, 400);
+          fetch("/api/user/", {
+            method: "POST",
+            body: JSON.stringify(values),
+          }).then(async (res) => {
+            if (res.status !== 200) {
+              alert(await res.text());
+              setSubmitting(false);
+              return;
+            }
+            const user: ServerUser = await res.json();
+            GiveUserCookies(setCookie, user.name, user.code);
+            router.push("/user/" + values.name);
+          });
         }}
         validationSchema={SubmitUserSchema}
       >

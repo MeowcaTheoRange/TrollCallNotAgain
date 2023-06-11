@@ -7,7 +7,8 @@ export default async function UserAuthWall() {
   var userName = cookieStore.get("TROLLCALL_NAME")?.value;
   var userCode = cookieStore.get("TROLLCALL_CODE")?.value;
   if (userName != null) user = await getUserByName(userName);
+  console.log("UserAuthWall", userName, userCode, user);
   if (user == null) return "Not Authenticated";
   if (userCode !== user.code) return "Code Incorrect";
-  return "Logged In";
+  return user;
 }

@@ -82,7 +82,8 @@ div.section div.note {
 div.FieldGroup,
 div.FieldHolder,
 button[type="submit"],
-button[type="reset"] {
+button[type="reset"],
+button.shell {
   display: flex;
   flex-direction: row;
   justify-content: flex-start;
@@ -97,13 +98,15 @@ button[type="reset"] {
 }
 
 button[type="submit"]:hover,
-button[type="reset"]:hover {
+button[type="reset"]:hover,
+button.shell:hover {
   background-color: var(--pri-text);
   color: var(--pri-box);
 }
 
 button[type="submit"]:disabled,
-button[type="reset"]:disabled {
+button[type="reset"]:disabled,
+button.shell:disabled {
   border: 1px dashed var(--sec-text);
   background-color: var(--sec-box);
   color: var(--sec-text);

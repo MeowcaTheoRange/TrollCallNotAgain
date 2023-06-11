@@ -15,11 +15,7 @@ export const SubmitUserSchema = yup
     url: yup.string().notRequired().url(),
     trueSign: yup.string().required().oneOf(TrueSignList),
     color: ColorSchema.required(),
-    code: yup
-      .string()
-      .notRequired()
-      .min(6, "Be a little more secure, please. (min 6 characters)")
-      .max(256, "Too secure!!"),
+    code: yup.string().notRequired().max(256, "Too secure!!"),
     // flairs: yup.array().of(ClientFlairSchema).required(),
   })
   .required();

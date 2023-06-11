@@ -1,0 +1,67 @@
+{
+  "_id": {
+    "$oid": "647a97d5853b3b0b6719b6f1"
+  },
+  "age": 6,
+  "class": "Maid",
+  "description": "Little Trash Boy",
+  "facts": [
+    "Trash creature",
+    "Will bite you if you get too close",
+    "Little scrimblo 🥺"
+  ],
+  "flairs": [
+    {
+      "$oid": "647a997f853b3b0b6719b6f5"
+    }
+  ],
+  "owners": [
+    {
+      "$oid": "647a9741853b3b0b6719b6ed"
+    }
+  ],
+  "gender": "Male",
+  "height": 64,
+  "name": ["Traobi", "Dunbat"],
+  "policies": {
+    "fanart": "yes",
+    "fanartOthers": "yes",
+    "kinning": "ask",
+    "shipping": "no",
+    "fanfiction": "no"
+  },
+  "preferences": {
+    "love": ["Their dumpster", "Scrawling stuff on walls", "Biting"],
+    "hate": ["Seeing other trolls", "grrrr", "blah"]
+  },
+  "pronouns": [
+    ["they", "them", "theirs"],
+    ["he", "him", "his"]
+  ],
+  "pronunciation": ["tray-oh-bee", "dune-bat"],
+  "quirks": {
+    "default": {
+      "quirk": [
+        {
+          "type": "regex",
+          "find": "\\b(?!\\w*(\\w)\\1)(\\w)\\w{2,}\\b",
+          "replace": ["$2$&"]
+        },
+        {
+          "type": "regex",
+          "find": "(\")(.+?)(\")",
+          "replace": ["$1$1 $2 $3$3"]
+        },
+        {
+          "type": "case",
+          "replace": ["lower"]
+        }
+      ]
+    }
+  },
+  "species": "Troll-Monarch",
+  "textColor": null,
+  "trueSign": "Ariborn",
+  "username": "untidyArtistry",
+  "image": "https://file.garden/Ysc96rutTE5LCa4O/trollcall/traobi.png"
+}

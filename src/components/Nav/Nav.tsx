@@ -18,7 +18,18 @@ export default function Nav() {
         <span className="path">Path 3</span>
       </Flexbox>
       <Flexbox align="center" wrap gap="16px" justify="flex-end">
-        <span className="path">Hello, {userName}!</span>
+        {userName != null ? (
+          <>
+            <span className="path">Hello, {userName}!</span>
+            <Link href="/submit/user">↑ Account</Link>
+            <Link href="/about/logout">← Log Out</Link>
+          </>
+        ) : (
+          <>
+            <Link href="/about/login">→ Log In</Link>
+            <Link href="/submit/user">↑ Sign Up</Link>
+          </>
+        )}
       </Flexbox>
     </div>
   );

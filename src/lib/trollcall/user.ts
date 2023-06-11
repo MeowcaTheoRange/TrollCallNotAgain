@@ -57,6 +57,19 @@ export async function SubmitUserToServerUser(
   return serverUser;
 }
 
+export function ServerUsertoSubmitUser(serverUser: ServerUser): SubmitUser {
+  let submitUser: SubmitUser = {
+    name: serverUser.name,
+    description: serverUser.description,
+    url: serverUser.url,
+    color: serverUser.color,
+    trueSign: serverUser.trueSign,
+    code: serverUser.code,
+  };
+
+  return submitUser;
+}
+
 export async function ServerUserToClientUser(
   serverUser: ServerUser
 ): Promise<ClientUser> {

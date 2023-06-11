@@ -1,0 +1,15 @@
+{
+  "_id": {
+    "$oid": "647a9741853b3b0b6719b6ed"
+  },
+  "name": "meowcatheorange",
+  "description": "# Markdown test!\n[Hello, world!](https://example.com)\n- What\n- Is\n- This\n- Lol",
+  "url": "https://trollcall.xyz/",
+  "color": [255, 128, 0],
+  "flairs": [
+    {
+      "$oid": "647a96e1853b3b0b6719b6e7"
+    }
+  ],
+  "trueSign": "Lepio"
+}
