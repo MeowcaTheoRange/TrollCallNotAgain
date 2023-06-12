@@ -13,12 +13,14 @@ export const SubmitTrollSchema = yup
           .string()
           .required()
           .matches(/^[A-z]+$/, "Letters only")
-          .length(6),
+          .length(6)
+          .lowercase(),
         yup
           .string()
           .required()
           .matches(/^[A-z]+$/, "Letters only")
-          .length(6),
+          .length(6)
+          .lowercase(),
       ])
       .required(),
     description: yup.string().max(10000).ensure(),
@@ -104,7 +106,10 @@ export const SubmitTrollSchema = yup
     username: yup
       .string()
       .required()
-      .matches(/^(([a-z])[a-z]+)(([A-Z])[a-z]+)$/),
+      .matches(
+        /^(([a-z])[a-z]+)(([A-Z])[a-z]+)$/,
+        "Username must match Pesterchum formatting."
+      ),
     textColor: ColorSchema.notRequired(), // default to trueSign color if undefined,
     quirks: SubmitQuirkHolderSchema.required(), // DO NOT HANDLE RIGHT NOW.
     // Handled! :D
@@ -127,8 +132,8 @@ export const SubmitTrollSchema = yup
         fanfiction: PolicySchema.required(),
       })
       .required(),
-    owners: yup.array().of(yup.string().required()).required().min(1),
-    flairs: yup.array().of(yup.string().required()).ensure(),
+    // owners: yup.array().of(yup.string().required()).required().min(1),
+    // flairs: yup.array().of(yup.string().required()).ensure(),
   })
   .required();
 

@@ -2,7 +2,7 @@
   display: inline-block;
   position: fixed;
   right: 16px;
-  top: 16px;
+  bottom: 16px;
   background-color: #0008;
   color: white;
   font-family: "Courier New", Courier, monospace;

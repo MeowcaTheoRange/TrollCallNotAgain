@@ -26,7 +26,7 @@ export default function Form({ params }: { params?: { user: SubmitUser } }) {
       </Box>
       <Formik
         initialValues={SubmitUserSchema.cast(
-          params?.user ?? { color: [0, 0, 0] },
+          params?.user ?? { color: [0, 0, 0], trueSign: "Aries" },
           { assert: false }
         )}
         onSubmit={(values, { setSubmitting }) => {

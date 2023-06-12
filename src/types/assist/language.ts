@@ -33,3 +33,10 @@ export function Pluralize(stringe: string) {
 export function ArraySample(array: any[]) {
   return array[Math.floor(Math.random() * array.length)];
 }
+
+export function ProperNounCase(string: string) {
+  return string
+    .split(" ")
+    .map((x) => x.charAt(0).toUpperCase() + x.slice(1).toLowerCase())
+    .join(" ");
+}

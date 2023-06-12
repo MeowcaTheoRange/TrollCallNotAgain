@@ -8,5 +8,6 @@ export default async function TrollSubmitLayout({
   children: ReactNode;
 }): Promise<ReactNode> {
   const isLoggedIn = await UserAuthWall();
-  return isLoggedIn == "Logged In" ? children : isLoggedIn;
+  if (typeof isLoggedIn === "object") return children;
+  else return isLoggedIn;
 }

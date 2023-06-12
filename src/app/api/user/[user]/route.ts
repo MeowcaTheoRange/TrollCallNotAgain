@@ -14,7 +14,5 @@ export async function GET(
   ];
   var user = await getUserByName(params.user);
   if (user == null) return { notFound: true };
-  if (userName === user.name && userCode === user.code)
-    return NextResponse.json(user);
   return NextResponse.json(await ServerUserToClientUser(user as ServerUser));
 }

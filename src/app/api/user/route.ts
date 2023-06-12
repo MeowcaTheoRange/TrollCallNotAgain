@@ -1,5 +1,10 @@
 import { createOne, replaceOne } from "@/lib/mongodb/crud";
-import { SubmitUserToServerUser, getUserByName } from "@/lib/trollcall/user";
+import {
+  ServerUserToClientUser,
+  SubmitUserToServerUser,
+  getUserByName,
+} from "@/lib/trollcall/user";
+import { ServerUser } from "@/types/user";
 import { cookies } from "next/headers";
 import { NextResponse } from "next/server";
 import { ValidationError } from "yup";
@@ -41,4 +46,17 @@ export async function POST(request: Request) {
   //ok, now post
   await createOne("users", user);
   return NextResponse.json(user);
+}
+
+export async function GET(request: Request) {
+  const authCookies = cookies();
+  const [userName, userCode] = [
+    authCookies.get("TROLLCALL_NAME")?.value,
+    authCookies.get("TROLLCALL_CODE")?.value,
+  ];
+  if (userName == null) return new Response("Name empty", { status: 403 });
+  var user = await getUserByName(userName);
+  if (user == null) return { notFound: true };
+  if (userCode === user.code) return NextResponse.json(user);
+  return NextResponse.json(await ServerUserToClientUser(user as ServerUser));
 }
