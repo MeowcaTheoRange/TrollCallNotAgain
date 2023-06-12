@@ -782,7 +782,7 @@ export default function TrollSubmit({
                     values.quirks && values.quirks.length > 0 ? (
                       <>
                         {values.quirks.map((QuirkMode, QuirkModeIndex) => (
-                          <details>
+                          <details key={QuirkModeIndex}>
                             <summary>
                               <div key={QuirkModeIndex} className="FieldHolder">
                                 <Field
@@ -821,7 +821,10 @@ export default function TrollSubmit({
                                           QuirkReplacement,
                                           QuirkReplacementIndex
                                         ) => (
-                                          <div className="subsection">
+                                          <div
+                                            className="subsection"
+                                            key={QuirkReplacementIndex}
+                                          >
                                             <label>
                                               Quirk Modifier #
                                               {QuirkReplacementIndex + 1}
