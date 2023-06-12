@@ -1,6 +1,6 @@
-import { Color } from "@/types/assist/extended_zodiac";
+import { SignColor } from "@/types/assist/extended_zodiac";
 import { NextResponse } from "next/server";
 
 export async function GET(request: Request) {
-  return NextResponse.json(Color);
+  return NextResponse.json(SignColor);
 }
