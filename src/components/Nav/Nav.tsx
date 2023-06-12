@@ -20,7 +20,7 @@ export default function Nav() {
       <Flexbox align="center" wrap gap="16px" justify="flex-end">
         {userName != null ? (
           <>
-            <span className="path">Hello, {userName}!</span>
+            <Link href={"/user/" + userName}>↓ {userName}</Link>
             <Link href="/submit/user">↑ Account</Link>
             <Link href="/about/logout">← Log Out</Link>
           </>

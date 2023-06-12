@@ -9,6 +9,7 @@ import {
   getTrollByName,
 } from "@/lib/trollcall/troll";
 import { getUserByName } from "@/lib/trollcall/user";
+import { ProperNounCase } from "@/types/assist/language";
 import { iswitch } from "iswitch";
 import Link from "next/link";
 import { notFound } from "next/navigation";
@@ -34,7 +35,7 @@ export default async function UserPage({
         <Flexbox direction="column" gap="8px" fw min="min-content">
           <Box title={"About " + troll.name[0]}>
             <p>
-              {troll.name[0]} is a{" "}
+              {ProperNounCase(troll.name[0])} is a{" "}
               <Link href={`/hiveswap/class/${troll.class.name}`}>
                 {troll.class.name}
               </Link>{" "}
@@ -102,7 +103,7 @@ export default async function UserPage({
                     ["yes", () => "can"],
                     ["ask", () => "might be able to"]
                   )}{" "}
-                  kin {troll.name[0]}.
+                  kin {ProperNounCase(troll.name[0])}.
                 </span>
               </Flexbox>
               <Flexbox gap="8px" align="center">
