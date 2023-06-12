@@ -1,8 +1,10 @@
 {
-  "extends": "next/core-web-vitals",
+  "extends": ["next/core-web-vitals", "next", "prettier"],
   "plugins": ["unused-imports"],
   "rules": {
-    "unused-imports/no-unused-imports": "error",
+    "react/no-unescaped-entities": "off",
+    "@next/next/no-page-custom-font": "off",
+    "unused-imports/no-unused-imports": "warn",
     "unused-imports/no-unused-vars": [
       "warn",
       {
