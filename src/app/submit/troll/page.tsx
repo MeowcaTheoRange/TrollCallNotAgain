@@ -17,14 +17,18 @@ import {
   HeightConverter,
   ProperNounCase,
 } from "@/types/assist/language";
-import { SubmitTrollSchema } from "@/types/client/troll";
+import { SubmitTroll, SubmitTrollSchema } from "@/types/client/troll";
 import { ErrorMessage, Field, FieldArray, Formik } from "formik";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
 import { useEffect, useState } from "react";
 import { useCookies } from "react-cookie";
 
-export default function TrollSubmit() {
+export default function TrollSubmit({
+  params,
+}: {
+  params: { troll: SubmitTroll };
+}) {
   const router = useRouter();
   const [cookies, setCookie, removeCookie] = useCookies([
     "TROLLCALL_NAME",
@@ -41,7 +45,7 @@ export default function TrollSubmit() {
       </Box>
       <Formik
         initialValues={SubmitTrollSchema.cast(
-          {
+          params?.troll ?? {
             owners: [],
             pronouns: [["", "", ""]],
             preferences: {

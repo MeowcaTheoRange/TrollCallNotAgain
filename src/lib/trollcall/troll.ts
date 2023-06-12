@@ -1,5 +1,7 @@
 import { Class, TrueSign } from "@/types/assist/extended_zodiac";
+import { SubmitTroll, SubmitTrollSchema } from "@/types/client/troll";
 import { ClientTroll, ServerTroll } from "@/types/troll";
+import { ServerUser } from "@/types/user";
 import { ObjectId, WithId } from "mongodb";
 import { readMany, readOne } from "../mongodb/crud";
 import { getFlairsByArray } from "./flair";
@@ -50,6 +52,83 @@ export async function getTrollsByUser(user: any, limit?: number) {
   return null;
 }
 
+export async function SubmitTrollToServerTroll(
+  submitTroll: SubmitTroll,
+  owner: ServerUser
+): Promise<ServerTroll> {
+  try {
+    submitTroll = await SubmitTrollSchema.validate(submitTroll);
+  } catch (err) {
+    throw err;
+  } // yup validate
+  let serverTroll: ServerTroll = {
+    age: submitTroll.age,
+    class: submitTroll.class,
+    description: submitTroll.description,
+    facts: [...submitTroll.facts],
+    // @ts-ignore
+    flairs: null,
+    // @ts-ignore
+    owners: [owner._id],
+    gender: submitTroll.gender,
+    height: submitTroll.height,
+    image: submitTroll.image,
+    name: [...submitTroll.name],
+    policies: { ...submitTroll.policies },
+    preferences: {
+      love: [...submitTroll.preferences.love],
+      hate: [...submitTroll.preferences.hate],
+    },
+    pronouns: submitTroll.pronouns.map((pronoun) => [...pronoun]),
+    pronunciation: [...submitTroll.pronunciation],
+    quirks: Object.fromEntries(submitTroll.quirks), // don't even get me fucking started. just leave this as-is and DON'T ELABORATE.
+    // ok
+    species:
+      submitTroll.species != null && submitTroll.species != ""
+        ? "Troll-" + submitTroll.species
+        : "Troll",
+    textColor: submitTroll.textColor,
+    trueSign: submitTroll.trueSign,
+    falseSign: submitTroll.falseSign ?? null,
+    username: submitTroll.username,
+  };
+
+  return serverTroll;
+}
+
+export function ServerTrollToSubmitTroll(
+  serverTroll: ServerTroll
+): SubmitTroll {
+  let submitTroll: SubmitTroll = {
+    age: serverTroll.age,
+    class: serverTroll.class,
+    description: serverTroll.description,
+    facts: [...serverTroll.facts],
+    // @ts-ignore
+    owners: [...serverTroll.owners],
+    gender: serverTroll.gender,
+    height: serverTroll.height,
+    image: serverTroll.image,
+    name: [...serverTroll.name],
+    policies: { ...serverTroll.policies },
+    preferences: {
+      love: [...serverTroll.preferences.love],
+      hate: [...serverTroll.preferences.hate],
+    },
+    pronouns: serverTroll.pronouns.map((pronoun) => [...pronoun]),
+    pronunciation: [...serverTroll.pronunciation],
+    quirks: Object.entries(serverTroll.quirks), // don't even get me fucking started. just leave this as-is and DON'T ELABORATE.
+    // ok
+    species: serverTroll.species?.replace("Troll-", ""),
+    textColor: serverTroll.textColor,
+    trueSign: serverTroll.trueSign,
+    falseSign: serverTroll.falseSign ?? null,
+    username: serverTroll.username,
+  };
+
+  return submitTroll;
+}
+
 export async function ServerTrollToClientTroll(
   serverTroll: ServerTroll
 ): Promise<ClientTroll> {
@@ -58,9 +137,6 @@ export async function ServerTrollToClientTroll(
     class: Class[serverTroll.class],
     description: serverTroll.description,
     facts: [...serverTroll.facts],
-    ...(serverTroll.falseSign && {
-      falseSign: TrueSign[serverTroll.falseSign],
-    }),
     // @ts-ignore
     flairs: null,
     // @ts-ignore

@@ -1,10 +1,5 @@
 import { createOne, replaceOne } from "@/lib/mongodb/crud";
-import {
-  ServerUserToClientUser,
-  SubmitUserToServerUser,
-  getUserByName,
-} from "@/lib/trollcall/user";
-import { ServerUser } from "@/types/user";
+import { SubmitUserToServerUser, getUserByName } from "@/lib/trollcall/user";
 import { cookies } from "next/headers";
 import { NextResponse } from "next/server";
 import { ValidationError } from "yup";
@@ -58,5 +53,5 @@ export async function GET(request: Request) {
   var user = await getUserByName(userName);
   if (user == null) return { notFound: true };
   if (userCode === user.code) return NextResponse.json(user);
-  return NextResponse.json(await ServerUserToClientUser(user as ServerUser));
+  return { notFound: true };
 }
