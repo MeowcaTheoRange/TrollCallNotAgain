@@ -18,7 +18,7 @@ export async function getTrollByName(name: string, user: any) {
   if (user == null) return null;
   const trollObj = (await readOne("trolls", {
     owners: user._id,
-    "name.0": name,
+    "name.0": name.toLowerCase(),
   })) as WithId<ServerTroll> | null;
   if (trollObj != null) return trollObj;
   return null;
@@ -62,12 +62,13 @@ export async function SubmitTrollToServerTroll(
     throw err;
   } // yup validate
   let serverTroll: ServerTroll = {
+    _id: new ObjectId(),
     age: submitTroll.age,
     class: submitTroll.class,
     description: submitTroll.description,
     facts: [...submitTroll.facts],
     // @ts-ignore
-    flairs: null,
+    flairs: [],
     // @ts-ignore
     owners: [owner._id],
     gender: submitTroll.gender,
