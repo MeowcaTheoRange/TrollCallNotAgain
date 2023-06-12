@@ -13,14 +13,24 @@ export default function Nav() {
         <span className="logo">
           <Link href="/">{brand.name}</Link>
         </span>
-        <span className="path">Path 1</span>
-        <span className="path">Path 2</span>
-        <span className="path">Path 3</span>
+        {userName != null ? (
+          <span className="path">
+            <Link href="/submit/troll/">+ Add Troll</Link>
+          </span>
+        ) : (
+          <></>
+        )}
+        <span className="path">
+          <Link href="https://discord.trollcall.xyz/">Discord</Link>
+        </span>
+        <span className="path">
+          <Link href="/hiveswap/">Hiveswap Resources</Link>
+        </span>
       </Flexbox>
       <Flexbox align="center" wrap gap="16px" justify="flex-end">
         {userName != null ? (
           <>
-            <Link href={"/user/" + userName}>↓ {userName}</Link>
+            <Link href={"/user/" + userName}>→ {userName}</Link>
             <Link href="/submit/user">↑ Account</Link>
             <Link href="/about/logout">← Log Out</Link>
           </>

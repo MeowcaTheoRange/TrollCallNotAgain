@@ -3,7 +3,7 @@ import { SubmitUser, SubmitUserSchema } from "@/types/client/user";
 import { ClientUser, ServerUser } from "@/types/user";
 import { ObjectId, WithId } from "mongodb";
 import { nanoid } from "nanoid";
-import { readMany, readOne } from "../mongodb/crud";
+import { countMany, readMany, readOne } from "../mongodb/crud";
 import { getFlairsByArray } from "./flair";
 
 export async function getUserByID(_id: ObjectId) {
@@ -33,6 +33,27 @@ export async function getUsersByArray(array: ObjectId[]) {
     );
   }
   return userList;
+}
+
+export async function getUsersByPage(limit: number = 0, page: number = 0) {
+  const userArr = readMany("users", {})
+    .limit(limit)
+    .skip(limit * page);
+  const userCount = await countMany("users", {});
+  let userList = [];
+  while (await userArr.hasNext()) {
+    userList.push(
+      await ServerUserToClientUser((await userArr.next()) as ServerUser)
+    );
+  }
+  if (userArr != null)
+    return {
+      list: userList,
+      endOfPagination: userList.length < limit,
+      count: userCount,
+      countPages: Math.floor(userCount / limit),
+    };
+  return null;
 }
 
 export async function SubmitUserToServerUser(

@@ -2,7 +2,6 @@
 
 import Box from "@/components/Box/Box";
 import ColorChip from "@/components/ColorChip/ColorChip";
-import DebugBox from "@/components/DebugBox/DebugBox";
 import Flexbox from "@/components/Flexbox/Flexbox";
 import LengthLimiter from "@/components/LengthLimiter/LengthLimiter";
 import SignBadge from "@/components/SignBadge/SignBadge";
@@ -56,7 +55,6 @@ export default function Form({ params }: { params?: { user: SubmitUser } }) {
           setFieldValue,
         }) => (
           <form onReset={handleReset} onSubmit={handleSubmit}>
-            <DebugBox text={values} />
             <Box title="identity" hr>
               <div className="section">
                 <label htmlFor="name">Name</label>

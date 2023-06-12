@@ -1,7 +1,6 @@
 "use client";
 
 import Box from "@/components/Box/Box";
-import DebugBox from "@/components/DebugBox/DebugBox";
 import Flexbox from "@/components/Flexbox/Flexbox";
 import LengthLimiter from "@/components/LengthLimiter/LengthLimiter";
 import SignBadge from "@/components/SignBadge/SignBadge";
@@ -18,6 +17,7 @@ import {
   ProperNounCase,
 } from "@/types/assist/language";
 import { SubmitTroll, SubmitTrollSchema } from "@/types/client/troll";
+import { QuirkReplacementTypes } from "@/types/quirks";
 import { ErrorMessage, Field, FieldArray, Formik } from "formik";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
@@ -55,6 +55,7 @@ export default function TrollSubmit({
             facts: ["", "", ""],
             trueSign: "Aries",
             class: "Witch",
+            quirks: [["default", { quirk: [] }]],
           },
           {
             assert: false,
@@ -87,7 +88,6 @@ export default function TrollSubmit({
           setFieldValue,
         }) => (
           <form onReset={handleReset} onSubmit={handleSubmit}>
-            <DebugBox text={values} />
             <Box title="identity" hr>
               <div className="section">
                 <label htmlFor="name0">Name</label>
@@ -271,7 +271,6 @@ export default function TrollSubmit({
                         type="button"
                         onClick={() => {
                           arrfunc.push(["", "", ""]);
-                          console.log(values.pronouns);
                         }}
                       >
                         Add Pronoun Set
@@ -439,8 +438,8 @@ export default function TrollSubmit({
                           <div key={index} className="FieldHolder">
                             <Field
                               type="text"
-                              name={`preferences.love[${index}]`}
-                              id={`preferences.love${index}`}
+                              name={`preferences.hate[${index}]`}
+                              id={`preferences.hate${index}`}
                               placeholder="Lorem ipsum dolor sit amet..."
                             />
                             <button
@@ -654,7 +653,6 @@ export default function TrollSubmit({
                         type="button"
                         onClick={() => {
                           arrfunc.push("");
-                          console.log(values.facts);
                         }}
                       >
                         Add Fact
@@ -769,6 +767,377 @@ export default function TrollSubmit({
                   name="policies.fanfiction"
                   render={ErrorComponent}
                 />
+              </div>
+            </Box>
+            <Box title="Quirk Editor" hr>
+              <div className="section">
+                <label htmlFor="quirks0Key">QUIRK MODES</label>
+                <p>
+                  All of the different quirks your troll uses in certain
+                  contexts, like being scared, drunk, etc.
+                </p>
+                <FieldArray
+                  name="quirks"
+                  render={(QuirkModeFunctions) =>
+                    values.quirks && values.quirks.length > 0 ? (
+                      <>
+                        {values.quirks.map((QuirkMode, QuirkModeIndex) => (
+                          <details>
+                            <summary>
+                              <div key={QuirkModeIndex} className="FieldHolder">
+                                <Field
+                                  type="text"
+                                  name={`quirks[${QuirkModeIndex}][0]`}
+                                  id={`quirks${QuirkModeIndex}Key`}
+                                  placeholder="Default..."
+                                />
+                                <button
+                                  type="button"
+                                  onClick={() =>
+                                    QuirkModeFunctions.remove(QuirkModeIndex)
+                                  }
+                                >
+                                  -
+                                </button>
+                              </div>
+                              <ErrorMessage
+                                name={`quirks[${QuirkModeIndex}][0]`}
+                                render={ErrorComponent}
+                              />
+                            </summary>
+                            {/* 2nd recursion start */}
+                            <div className="subsection">
+                              <FieldArray
+                                name={`quirks[${QuirkModeIndex}][1].quirk`}
+                                render={(QuirkReplacementFunctions) =>
+                                  values.quirks[QuirkModeIndex][1].quirk &&
+                                  values.quirks[QuirkModeIndex][1].quirk
+                                    .length > 0 ? (
+                                    <>
+                                      {values.quirks[
+                                        QuirkModeIndex
+                                      ][1].quirk.map(
+                                        (
+                                          QuirkReplacement,
+                                          QuirkReplacementIndex
+                                        ) => (
+                                          <div className="subsection">
+                                            <label>
+                                              Quirk Modifier #
+                                              {QuirkReplacementIndex + 1}
+                                            </label>
+                                            <hr />
+                                            <label>Type</label>
+                                            <div className="FieldHolder">
+                                              <Field
+                                                as="select"
+                                                name={`quirks[${QuirkModeIndex}][1].quirk[${QuirkReplacementIndex}].type`}
+                                                onChange={handleChange}
+                                                onBlur={handleBlur}
+                                              >
+                                                <option
+                                                  value={"prefix"}
+                                                  label={"Prefix"}
+                                                />
+                                                <option
+                                                  value={"suffix"}
+                                                  label={"Suffix"}
+                                                />
+                                                <option
+                                                  value={"simple"}
+                                                  label={"Simple replacement"}
+                                                />
+                                                <option
+                                                  value={"regex"}
+                                                  label={"RegExp replacement"}
+                                                />
+                                                <option
+                                                  value={"case"}
+                                                  label={"Change case"}
+                                                />
+                                                <option
+                                                  value={"case_simple"}
+                                                  label={
+                                                    "Change case with simple replacement"
+                                                  }
+                                                />
+                                                <option
+                                                  value={"case_regex"}
+                                                  label={
+                                                    "Change case with RegExp replacement"
+                                                  }
+                                                />
+                                              </Field>
+                                            </div>
+                                            <ErrorMessage
+                                              name={`quirks[${QuirkModeIndex}][1].quirk[${QuirkReplacementIndex}].type`}
+                                              render={ErrorComponent}
+                                            />
+                                            {QuirkReplacementTypes[
+                                              values.quirks[QuirkModeIndex][1]
+                                                .quirk[QuirkReplacementIndex]
+                                                .type
+                                            ].find ? (
+                                              <>
+                                                <label>Find</label>
+                                                <p>
+                                                  {
+                                                    QuirkReplacementTypes[
+                                                      values.quirks[
+                                                        QuirkModeIndex
+                                                      ][1].quirk[
+                                                        QuirkReplacementIndex
+                                                      ].type
+                                                    ].find
+                                                  }
+                                                </p>
+                                                <div
+                                                  key={QuirkReplacementIndex}
+                                                  className="FieldHolder"
+                                                >
+                                                  <Field
+                                                    type="text"
+                                                    name={`quirks[${QuirkModeIndex}][1].quirk[${QuirkReplacementIndex}].find`}
+                                                    placeholder="Find..."
+                                                  />
+                                                </div>
+                                                <ErrorMessage
+                                                  name={`quirks[${QuirkModeIndex}][1].quirk[${QuirkReplacementIndex}].find`}
+                                                  render={ErrorComponent}
+                                                />
+                                              </>
+                                            ) : (
+                                              <></>
+                                            )}
+                                            <label>Replace</label>
+                                            <p>
+                                              {
+                                                QuirkReplacementTypes[
+                                                  values.quirks[
+                                                    QuirkModeIndex
+                                                  ][1].quirk[
+                                                    QuirkReplacementIndex
+                                                  ].type
+                                                ].replace
+                                              }
+                                            </p>
+                                            <p>
+                                              Adding more replacement strings
+                                              picks one by random.
+                                            </p>
+                                            {/* FUCK NOT AGAIN */}
+                                            <FieldArray
+                                              name={`quirks[${QuirkModeIndex}][1].quirk[${QuirkReplacementIndex}].replace`}
+                                              render={(
+                                                ModifierReplaceFunctions
+                                              ) =>
+                                                values.quirks[QuirkModeIndex][1]
+                                                  .quirk[QuirkReplacementIndex]
+                                                  .replace &&
+                                                values.quirks[QuirkModeIndex][1]
+                                                  .quirk[QuirkReplacementIndex]
+                                                  .replace.length > 0 ? (
+                                                  <>
+                                                    {values.quirks[
+                                                      QuirkModeIndex
+                                                    ][1].quirk[
+                                                      QuirkReplacementIndex
+                                                    ].replace.map(
+                                                      (
+                                                        ModifierReplace,
+                                                        ModifierReplaceIndex
+                                                      ) => (
+                                                        <>
+                                                          <div
+                                                            key={
+                                                              QuirkReplacementIndex
+                                                            }
+                                                            className="FieldHolder"
+                                                          >
+                                                            <Field
+                                                              type="text"
+                                                              name={`quirks[${QuirkModeIndex}][1].quirk[${QuirkReplacementIndex}].replace[${ModifierReplaceIndex}]`}
+                                                              placeholder="Replace..."
+                                                            />
+                                                            <button
+                                                              type="button"
+                                                              onClick={() =>
+                                                                ModifierReplaceFunctions.remove(
+                                                                  ModifierReplaceIndex
+                                                                )
+                                                              }
+                                                            >
+                                                              -
+                                                            </button>
+                                                          </div>
+                                                          <ErrorMessage
+                                                            name={`quirks[${QuirkModeIndex}][1].quirk[${QuirkReplacementIndex}].replace[${ModifierReplaceIndex}]`}
+                                                            render={
+                                                              ErrorComponent
+                                                            }
+                                                          />
+                                                        </>
+                                                      )
+                                                    )}
+                                                    <button
+                                                      type="button"
+                                                      onClick={() => {
+                                                        ModifierReplaceFunctions.push(
+                                                          ""
+                                                        );
+                                                      }}
+                                                    >
+                                                      Add Replacement String
+                                                    </button>
+                                                  </>
+                                                ) : (
+                                                  <button
+                                                    type="button"
+                                                    onClick={() => {
+                                                      ModifierReplaceFunctions.push(
+                                                        ""
+                                                      );
+                                                    }}
+                                                  >
+                                                    Add Replacement String
+                                                  </button>
+                                                )
+                                              }
+                                            />
+                                            <ErrorMessage
+                                              name={`quirks[${QuirkModeIndex}][1].quirk[${QuirkReplacementIndex}].replace`}
+                                              render={ErrorComponent}
+                                            />
+                                            {/* OK GOOD ITS OVER */}
+                                            <label>Condition</label>
+                                            <p>
+                                              A Regular Expression, that when
+                                              matched with, enables this
+                                              modifier.
+                                            </p>
+                                            <div
+                                              key={QuirkReplacementIndex}
+                                              className="FieldHolder"
+                                            >
+                                              <Field
+                                                type="text"
+                                                name={`quirks[${QuirkModeIndex}][1].quirk[${QuirkReplacementIndex}].condition`}
+                                                placeholder="Condition..."
+                                              />
+                                            </div>
+                                            <ErrorMessage
+                                              name={`quirks[${QuirkModeIndex}][1].quirk[${QuirkReplacementIndex}].condition`}
+                                              render={ErrorComponent}
+                                            />
+                                            <button
+                                              type="button"
+                                              onClick={() =>
+                                                QuirkReplacementFunctions.remove(
+                                                  QuirkReplacementIndex
+                                                )
+                                              }
+                                            >
+                                              Remove Quirk Modifier
+                                            </button>
+                                            <Flexbox gap="8px">
+                                              {QuirkReplacementIndex > 0 ? (
+                                                <button
+                                                  type="button"
+                                                  onClick={() =>
+                                                    QuirkReplacementFunctions.swap(
+                                                      QuirkReplacementIndex,
+                                                      QuirkReplacementIndex - 1
+                                                    )
+                                                  }
+                                                >
+                                                  Move up
+                                                </button>
+                                              ) : (
+                                                <></>
+                                              )}
+                                              {QuirkReplacementIndex <
+                                              values.quirks[QuirkModeIndex][1]
+                                                .quirk.length -
+                                                1 ? (
+                                                <button
+                                                  type="button"
+                                                  onClick={() =>
+                                                    QuirkReplacementFunctions.swap(
+                                                      QuirkReplacementIndex,
+                                                      QuirkReplacementIndex + 1
+                                                    )
+                                                  }
+                                                >
+                                                  Move down
+                                                </button>
+                                              ) : (
+                                                <></>
+                                              )}
+                                            </Flexbox>
+                                          </div>
+                                        )
+                                      )}
+                                      <button
+                                        type="button"
+                                        onClick={() => {
+                                          QuirkReplacementFunctions.push({
+                                            type: "prefix",
+                                            find: "",
+                                            replace: [],
+                                            condition: "",
+                                          });
+                                        }}
+                                      >
+                                        Add Quirk Modifier
+                                      </button>
+                                    </>
+                                  ) : (
+                                    <button
+                                      type="button"
+                                      onClick={() => {
+                                        QuirkReplacementFunctions.push({
+                                          type: "prefix",
+                                          find: "",
+                                          replace: [],
+                                          condition: "",
+                                        });
+                                      }}
+                                    >
+                                      Add Quirk Modifier
+                                    </button>
+                                  )
+                                }
+                              />
+                              <ErrorMessage
+                                name={`quirks[${QuirkModeIndex}][1]`}
+                                render={ErrorComponent}
+                              />
+                            </div>
+                            {/* 2nd recursion end */}
+                          </details>
+                        ))}
+                        <button
+                          type="button"
+                          onClick={() => {
+                            QuirkModeFunctions.push(["", { quirk: [] }]);
+                          }}
+                        >
+                          Add Quirk Mode
+                        </button>
+                      </>
+                    ) : (
+                      <button
+                        type="button"
+                        onClick={() => {
+                          QuirkModeFunctions.push(["", { quirk: [] }]);
+                        }}
+                      >
+                        Add Quirk Mode
+                      </button>
+                    )
+                  }
+                />
+                <ErrorMessage name="quirks" render={ErrorComponent} />
               </div>
             </Box>
             <Box title="Form Config">

@@ -11,6 +11,7 @@ import {
 import { getUserByName } from "@/lib/trollcall/user";
 import { ProperNounCase } from "@/types/assist/language";
 import { iswitch } from "iswitch";
+import { cookies } from "next/headers";
 import Link from "next/link";
 import { notFound } from "next/navigation";
 
@@ -19,6 +20,7 @@ export default async function UserPage({
 }: {
   params: { troll: string; user: string };
 }) {
+  const userName = cookies().get("TROLLCALL_NAME")?.value;
   var initialUser = await getUserByName(params.user);
   if (initialUser == null) return notFound();
   var initialTroll = await getTrollByName(params.troll, initialUser);
@@ -30,6 +32,15 @@ export default async function UserPage({
     <>
       <ColorManager mainColor={trollTrueSign.color.color} />
       <TrollCard troll={troll} inline />
+      {troll.owners.some((x) => x.name === userName) ? (
+        <Box title="ADMIN PANEL" primary>
+          <Link href={"/submit/edit/troll/" + troll.name[0]} className="shell">
+            Edit {ProperNounCase(troll.name[0])}
+          </Link>
+        </Box>
+      ) : (
+        <></>
+      )}
       <Flexbox gap="8px" justify="center" align="center" fw wrap>
         <img src={troll.image} width="256"></img>
         <Flexbox direction="column" gap="8px" fw min="min-content">

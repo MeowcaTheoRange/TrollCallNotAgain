@@ -9,7 +9,6 @@ import { notFound } from "next/navigation";
 export default function ClassPage({ params }: { params: { class: string } }) {
   var gottenClass = Class[params.class];
   if (gottenClass == null) return notFound();
-  console.log(gottenClass);
   return (
     <>
       <Box title={gottenClass.name} primary>

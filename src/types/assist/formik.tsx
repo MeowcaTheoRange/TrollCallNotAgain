@@ -5,8 +5,8 @@ export const ErrorComponent = (msg: any) => {
       msg.forEach((item: any) =>
         Array.isArray(item) ? (str += checkArray(item)) : (str += item + ", ")
       );
+    if (typeof msg === "object") return "";
     else return msg;
-    return str;
   }
   msg = checkArray(msg);
   msg = msg
@@ -17,5 +17,5 @@ export const ErrorComponent = (msg: any) => {
     .replace(/, $/g, "")
     .replaceAll("undefined", "[empty]")
     .replaceAll("null", "[empty]");
-  return <div className="error">⚠️ {msg}</div>;
+  return msg != "" ? <div className="error">⚠️ {msg}</div> : <></>;
 };

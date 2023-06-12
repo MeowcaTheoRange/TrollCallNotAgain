@@ -6,13 +6,18 @@ form {
   gap: 8px;
 }
 
-div.section {
+div.section,
+div.subsection {
   display: flex;
   flex-direction: column;
   justify-content: flex-start;
   gap: 8px;
   padding: 8px 0;
   max-width: 100%;
+}
+
+div.subsection {
+  padding: 8px;
 }
 
 div.section label {
@@ -26,7 +31,7 @@ div.section label {
 
 div.section input,
 div.section textarea,
-div.section select,
+select,
 div.section button[type="button"] {
   width: 28ch;
   background-color: var(--pri-box);
@@ -49,7 +54,7 @@ div.section button[type="button"] {
 
 div.section input::placeholder,
 div.section textarea::placeholder,
-div.section select::placeholder {
+select::placeholder {
   color: #c0c0c0;
 }
 
@@ -59,9 +64,9 @@ div.section input:active,
 div.section textarea:hover,
 div.section textarea:focus,
 div.section textarea:active,
-div.section select:hover,
-div.section select:focus,
-div.section select:active,
+select:hover,
+select:focus,
+select:active,
 div.section button[type="button"]:hover,
 div.section button[type="button"]:focus,
 div.section button[type="button"]:active {
@@ -77,39 +82,6 @@ div.section div.error {
 
 div.section div.note {
   opacity: 0.5;
-}
-
-div.FieldGroup,
-div.FieldHolder,
-button[type="submit"],
-button[type="reset"],
-button.shell {
-  display: flex;
-  flex-direction: row;
-  justify-content: flex-start;
-  align-items: center;
-  /* gap: 8px; */
-  border: 1px solid var(--pri-text);
-  background-color: var(--pri-box);
-  color: var(--pri-text);
-  padding: 8px;
-  width: max-content;
-  max-width: 100%;
-}
-
-button[type="submit"]:hover,
-button[type="reset"]:hover,
-button.shell:hover {
-  background-color: var(--pri-text);
-  color: var(--pri-box);
-}
-
-button[type="submit"]:disabled,
-button[type="reset"]:disabled,
-button.shell:disabled {
-  border: 1px dashed var(--sec-text);
-  background-color: var(--sec-box);
-  color: var(--sec-text);
 }
 
 div.FieldGroup input {

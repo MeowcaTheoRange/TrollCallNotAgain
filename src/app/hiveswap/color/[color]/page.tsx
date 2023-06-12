@@ -1,7 +1,12 @@
 import Box from "@/components/Box/Box";
 import ColorManager from "@/components/ColorManager/ColorManager";
 import Flexbox from "@/components/Flexbox/Flexbox";
-import { SignColor } from "@/types/assist/extended_zodiac";
+import SignBadge from "@/components/SignBadge/SignBadge";
+import {
+  SignColor,
+  TrueSign,
+  TrueSignList,
+} from "@/types/assist/extended_zodiac";
 import Link from "next/link";
 import { notFound } from "next/navigation";
 
@@ -25,6 +30,17 @@ export default function SwayPage({ params }: { params: { color: string } }) {
         <Link href={`/hiveswap/truesign/${gottenSignColor.sign}`}>
           Go To True Sign
         </Link>
+      </Box>
+      <Box title={gottenSignColor.name + " Signs"}>
+        <Flexbox gap="16px" wrap justify="space-around">
+          {TrueSignList.map((signName, i) =>
+            TrueSign[signName].color.name === gottenSignColor.name ? (
+              <SignBadge key={i} trueSign={TrueSign[signName]} />
+            ) : (
+              <></>
+            )
+          )}
+        </Flexbox>
       </Box>
     </>
   );

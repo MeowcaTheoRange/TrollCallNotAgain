@@ -6,7 +6,6 @@ import "./Dialoglog.css";
 // this is VERY messy
 
 export default function Dialoglog({ dialoglog }: { dialoglog: ClientDialog }) {
-  console.log(dialoglog);
   var characterData = dialoglog.characters.map((x) => ({
     fullUsername: (x.time ? x.time + " " : "") + x.troll.username,
     username:

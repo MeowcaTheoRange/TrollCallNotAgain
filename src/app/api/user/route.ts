@@ -11,7 +11,6 @@ export async function POST(request: Request) {
     authCookies.get("TROLLCALL_NAME")?.value,
     authCookies.get("TROLLCALL_CODE")?.value,
   ];
-  console.log("POST", userName, userCode);
   let user;
   try {
     user = await SubmitUserToServerUser(body);

@@ -5,7 +5,7 @@ import {
 } from "@/lib/trollcall/troll";
 import { notFound } from "next/navigation";
 import { ReactNode } from "react";
-import TrollSubmit from "../page";
+import TrollSubmit from "../../../troll/page";
 
 // @ts-ignore dont care about recursion
 export default async function TrollSubmitLayout({

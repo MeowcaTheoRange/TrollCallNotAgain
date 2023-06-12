@@ -188,3 +188,36 @@ img.previewImage {
   image-rendering: crisp-edges;
   image-rendering: pixelated;
 }
+
+div.FieldGroup,
+div.FieldHolder,
+button[type="submit"],
+button[type="reset"],
+button.shell {
+  display: inline-flex;
+  flex-direction: row;
+  justify-content: flex-start;
+  align-items: center;
+  /* gap: 8px; */
+  border: 1px solid var(--pri-text);
+  background-color: var(--pri-box);
+  color: var(--pri-text);
+  padding: 8px;
+  width: max-content;
+  max-width: 100%;
+}
+
+button[type="submit"]:hover,
+button[type="reset"]:hover,
+button.shell:hover {
+  background-color: var(--pri-text);
+  color: var(--pri-box);
+}
+
+button[type="submit"]:disabled,
+button[type="reset"]:disabled,
+button.shell:disabled {
+  border: 1px dashed var(--sec-text);
+  background-color: var(--sec-box);
+  color: var(--sec-text);
+}

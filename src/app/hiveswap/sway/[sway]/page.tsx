@@ -1,6 +1,7 @@
 import Box from "@/components/Box/Box";
 import Flexbox from "@/components/Flexbox/Flexbox";
-import { Sway } from "@/types/assist/extended_zodiac";
+import SignBadge from "@/components/SignBadge/SignBadge";
+import { Sway, TrueSign, TrueSignList } from "@/types/assist/extended_zodiac";
 import { notFound } from "next/navigation";
 
 export default function SwayPage({ params }: { params: { sway: string } }) {
@@ -18,6 +19,17 @@ export default function SwayPage({ params }: { params: { sway: string } }) {
             alt={gottenSway.name}
           ></img>
           <p>{gottenSway.description}</p>
+        </Flexbox>
+      </Box>
+      <Box title={gottenSway.name + " Dreamers"}>
+        <Flexbox gap="16px" wrap justify="space-around">
+          {TrueSignList.map((signName, i) =>
+            TrueSign[signName].sway.name === gottenSway.name ? (
+              <SignBadge key={i} trueSign={TrueSign[signName]} />
+            ) : (
+              <></>
+            )
+          )}
         </Flexbox>
       </Box>
     </>

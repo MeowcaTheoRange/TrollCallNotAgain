@@ -7,6 +7,7 @@ export function parseQuirk(string: string, quirk: Quirk) {
     var replaceValue = ArraySample(quirkFunction.replace);
     if (
       quirkFunction.condition &&
+      quirkFunction.condition != "" &&
       !mutatingString.match(new RegExp(quirkFunction.condition, "g"))
     )
       return;

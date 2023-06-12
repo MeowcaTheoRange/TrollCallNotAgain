@@ -3,7 +3,7 @@ import { SubmitTroll, SubmitTrollSchema } from "@/types/client/troll";
 import { ClientTroll, ServerTroll } from "@/types/troll";
 import { ServerUser } from "@/types/user";
 import { ObjectId, WithId } from "mongodb";
-import { readMany, readOne } from "../mongodb/crud";
+import { countMany, readMany, readOne } from "../mongodb/crud";
 import { getFlairsByArray } from "./flair";
 import { getUsersByArray } from "./user";
 
@@ -37,18 +37,42 @@ export async function getTrollsByArray(array: ObjectId[]) {
   return trollList;
 }
 
-export async function getTrollsByUser(user: any, limit?: number) {
-  if (user == null) return null;
-  const trollArr = readMany("trolls", {
-    owners: user._id,
-  }).limit(limit || 0);
+export async function getTrollsByPage(
+  user?: any,
+  limit: number = 0,
+  page: number = 0
+) {
+  const trollArr = readMany(
+    "trolls",
+    user
+      ? {
+          owners: user._id,
+        }
+      : {}
+  )
+    .limit(limit)
+    .skip(limit * page);
+  const trollCount = await countMany(
+    "trolls",
+    user
+      ? {
+          owners: user._id,
+        }
+      : {}
+  );
   let trollList = [];
   while (await trollArr.hasNext()) {
     trollList.push(
       await ServerTrollToClientTroll((await trollArr.next()) as ServerTroll)
     );
   }
-  if (trollArr != null) return trollList;
+  if (trollArr != null)
+    return {
+      list: trollList,
+      endOfPagination: trollList.length < limit,
+      count: trollCount,
+      countPages: Math.floor(trollCount / limit),
+    };
   return null;
 }
 

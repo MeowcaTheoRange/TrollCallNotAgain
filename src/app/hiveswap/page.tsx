@@ -52,6 +52,11 @@ export default function Hiveswap() {
             ></img>
           </Link>
         </div>
+        <hr />
+        <p>
+          You can also just go directly to{" "}
+          <Link href="/hiveswap/truesign/...">all of the True Signs</Link>.
+        </p>
       </Box>
     </>
   );

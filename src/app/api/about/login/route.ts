@@ -7,7 +7,6 @@ export async function POST(request: Request) {
     name: body.name.toLowerCase(),
     code: body.code,
   });
-  console.log("POST", user, body);
   if (user != null) return NextResponse.json(user);
   return new Response("User does not exist or code is incorrect", {
     status: 400,
