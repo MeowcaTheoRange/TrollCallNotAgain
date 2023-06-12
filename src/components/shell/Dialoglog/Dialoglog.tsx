@@ -50,7 +50,7 @@ export default function Dialoglog({ dialoglog }: { dialoglog: ClientDialog }) {
             }}
           >
             <i>
-              // Note To Self --{" "}
+              &gt;&gt; Note To Self --{" "}
               <span title={dialoglog.description}>{dialoglog.name}</span>
             </i>
           </span>
