@@ -81,13 +81,13 @@ export const SubmitTrollSchema = yup
       .object({
         love: yup
           .array()
-          .of(yup.string().required().min(10).max(100))
+          .of(yup.string().required().min(5).max(100))
           .required()
           .min(3)
           .max(10),
         hate: yup
           .array()
-          .of(yup.string().required().min(10).max(100))
+          .of(yup.string().required().min(5).max(100))
           .required()
           .min(3)
           .max(10),
@@ -95,7 +95,7 @@ export const SubmitTrollSchema = yup
       .required(),
     facts: yup
       .array()
-      .of(yup.string().required().min(10).max(100))
+      .of(yup.string().required().min(5).max(100))
       .required()
       .min(3)
       .max(10),

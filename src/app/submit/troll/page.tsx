@@ -164,6 +164,11 @@ export default function TrollSubmit({
                   Remove Text Color
                 </button>
                 <p>This is your troll's text color.</p>
+                <p>
+                  This field determines your troll's text color. If not set,
+                  your troll's True Sign (or False Sign if applicable) color
+                  will be used instead.
+                </p>
                 <div className="FieldGroup">
                   <Field
                     type="number"
@@ -517,7 +522,7 @@ export default function TrollSubmit({
                 <p>This is your troll's age in sweeps.</p>
                 <div className="FieldHolder">
                   <Field type="number" name="age" id="age" placeholder="6" />
-                  in
+                  sweeps
                 </div>
                 <div className="note">
                   {values.age && !Number.isNaN(values.age) && values.age != 0
