@@ -12,6 +12,7 @@ export const ServerTrollSchema = SubmitTrollSchema.shape({
   owners: yup.array().of(ObjectIdSchema.required()).required().min(1),
   flairs: yup.array().of(ObjectIdSchema.required()).required(),
   quirks: ServerQuirkHolderSchema.required(),
+  updatedDate: yup.date().notRequired(),
 });
 
 export type ServerTroll = yup.InferType<typeof ServerTrollSchema>;

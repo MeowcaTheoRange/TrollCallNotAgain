@@ -31,6 +31,7 @@ export async function POST(request: Request) {
       var merge: ServerUser = { ...existingUser, ...user };
 
       if (merge.flairs == null) merge.flairs = [];
+      merge.updatedDate = new Date();
 
       console.log(merge);
 

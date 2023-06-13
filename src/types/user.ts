@@ -8,6 +8,7 @@ export const ServerUserSchema = SubmitUserSchema.shape({
   _id: ObjectIdSchema.required(),
   flairs: yup.array().of(ObjectIdSchema.required()).required(),
   code: yup.string().required(),
+  updatedDate: yup.date().notRequired(),
 });
 
 export type ServerUser = yup.InferType<typeof ServerUserSchema>;

@@ -50,7 +50,7 @@ export async function getTrollsByPage(
         }
       : {}
   )
-    .sort([["_id", -1]])
+    .sort({ updatedDate: -1, _id: -1 })
     .limit(limit)
     .skip(limit * page);
   const trollCount = await countMany(

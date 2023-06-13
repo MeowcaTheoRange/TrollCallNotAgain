@@ -37,6 +37,7 @@ export async function POST(
     var merge: ServerTroll = { ...existingTroll, ...troll };
 
     if (merge.flairs == null) merge.flairs = [];
+    merge.updatedDate = new Date();
 
     var newTroll = await replaceOne(
       "trolls",
