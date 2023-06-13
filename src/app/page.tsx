@@ -11,10 +11,10 @@ import { notFound } from "next/navigation";
 export default async function Home({
   searchParams,
 }: {
-  searchParams: { trollPage: number };
+  searchParams: { trollPage: number; userPage: number };
 }) {
   // User pagination
-  var pageIndex = +(searchParams.trollPage || 0);
+  var pageIndex = +(searchParams.userPage || 0);
   if (pageIndex < 0) return notFound();
   var getUsers = await getUsersByPage(5, pageIndex);
   if (pageIndex >= (getUsers?.countPages || 1)) return notFound();
