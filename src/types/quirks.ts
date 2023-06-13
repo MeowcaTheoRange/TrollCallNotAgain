@@ -21,6 +21,7 @@ export const QuirkSchema = yup
                 "case",
                 "case_simple",
                 "case_regex",
+                "case_pos",
               ])
               .required(),
             find: yup.string().notRequired(),
@@ -69,8 +70,9 @@ export const QuirkReplacementTypes: {
     replace: "A replacement expression that replaces the found text.",
   },
   case: {
-    find: "Change the case of all text.",
-    replace: '"lower" for lowercase. "upper" for uppercase.',
+    find: null,
+    replace:
+      'Change the case of all text. "lower" for lowercase. "upper" for uppercase.',
   },
   case_simple: {
     find: "Text to find what you want to change the case of.",
@@ -78,6 +80,10 @@ export const QuirkReplacementTypes: {
   },
   case_regex: {
     find: "A Regular Expresion to find what you want to change the case of.",
+    replace: '"lower" for lowercase. "upper" for uppercase.',
+  },
+  case_pos: {
+    find: 'A comma-separated array of properties.\n\n1st is number of characters (type "Infinity" for all),\n2nd is start position (start, end),\n3rd is character seperation (like Gamzee for selecting every other character),\n 4th is the union modifier. "true" means the position will affect the entire sentence. "false" or no input means the position will affect each word.\n\nExample: "2, start, 1, false" for words to look like "GrEetings EvErybody".',
     replace: '"lower" for lowercase. "upper" for uppercase.',
   },
 };

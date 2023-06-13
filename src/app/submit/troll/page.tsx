@@ -5,6 +5,7 @@ import Flexbox from "@/components/Flexbox/Flexbox";
 import LengthLimiter from "@/components/LengthLimiter/LengthLimiter";
 import SignBadge from "@/components/SignBadge/SignBadge";
 import "@/components/shell/Dialoglog/Dialoglog.css";
+import { parseQuirk } from "@/lib/trollcall/quirks";
 import {
   ClassNameList,
   TrueSign,
@@ -788,26 +789,39 @@ export default function TrollSubmit({
                         {values.quirks.map((QuirkMode, QuirkModeIndex) => (
                           <details open key={QuirkModeIndex}>
                             <summary>
-                              <div key={QuirkModeIndex} className="FieldHolder">
-                                <Field
-                                  type="text"
-                                  name={`quirks[${QuirkModeIndex}][0]`}
-                                  id={`quirks${QuirkModeIndex}Key`}
-                                  placeholder="Default..."
-                                />
-                                <button
-                                  type="button"
-                                  onClick={() =>
-                                    QuirkModeFunctions.remove(QuirkModeIndex)
-                                  }
+                              <Flexbox gap="8px" align="center">
+                                <div
+                                  key={QuirkModeIndex}
+                                  className="FieldHolder"
                                 >
-                                  -
-                                </button>
-                              </div>
-                              <ErrorMessage
-                                name={`quirks[${QuirkModeIndex}][0]`}
-                                render={ErrorComponent}
-                              />
+                                  <Field
+                                    type="text"
+                                    name={`quirks[${QuirkModeIndex}][0]`}
+                                    id={`quirks${QuirkModeIndex}Key`}
+                                    placeholder="Default..."
+                                  />
+                                  <button
+                                    type="button"
+                                    onClick={() =>
+                                      QuirkModeFunctions.remove(QuirkModeIndex)
+                                    }
+                                  >
+                                    -
+                                  </button>
+                                </div>
+                                <span>
+                                  "
+                                  {parseQuirk(
+                                    "The quick brown fox jumps over the lazy dog.",
+                                    values.quirks[QuirkModeIndex][1]
+                                  )}
+                                  "
+                                </span>
+                                <ErrorMessage
+                                  name={`quirks[${QuirkModeIndex}][0]`}
+                                  render={ErrorComponent}
+                                />
+                              </Flexbox>
                             </summary>
                             {/* 2nd recursion start */}
                             <div className="subsection">
@@ -874,6 +888,12 @@ export default function TrollSubmit({
                                                     "Change case with RegExp replacement"
                                                   }
                                                 />
+                                                <option
+                                                  value={"case_pos"}
+                                                  label={
+                                                    "Change case with position expression"
+                                                  }
+                                                />
                                               </Field>
                                             </div>
                                             <ErrorMessage
@@ -887,7 +907,11 @@ export default function TrollSubmit({
                                             ].find ? (
                                               <>
                                                 <label>Find</label>
-                                                <p>
+                                                <p
+                                                  style={{
+                                                    whiteSpace: "pre-line",
+                                                  }}
+                                                >
                                                   {
                                                     QuirkReplacementTypes[
                                                       values.quirks[
@@ -917,7 +941,9 @@ export default function TrollSubmit({
                                               <></>
                                             )}
                                             <label>Replace</label>
-                                            <p>
+                                            <p
+                                              style={{ whiteSpace: "pre-line" }}
+                                            >
                                               {
                                                 QuirkReplacementTypes[
                                                   values.quirks[
@@ -1090,7 +1116,7 @@ export default function TrollSubmit({
                                           QuirkReplacementFunctions.push({
                                             type: "prefix",
                                             find: "",
-                                            replace: [],
+                                            replace: [""],
                                             condition: "",
                                           });
                                         }}
@@ -1105,7 +1131,7 @@ export default function TrollSubmit({
                                         QuirkReplacementFunctions.push({
                                           type: "prefix",
                                           find: "",
-                                          replace: [],
+                                          replace: [""],
                                           condition: "",
                                         });
                                       }}
