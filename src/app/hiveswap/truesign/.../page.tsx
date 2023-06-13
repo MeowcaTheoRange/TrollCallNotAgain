@@ -13,10 +13,6 @@ import {
 } from "@/types/assist/extended_zodiac";
 import { useState } from "react";
 
-export const metadata = {
-  title: "All True Signs",
-};
-
 export default function TrueSigns() {
   var [selectedAspect, setSelectedAspect] = useState("");
   var [selectedColor, setSelectedColor] = useState("");
