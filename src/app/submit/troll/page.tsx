@@ -791,7 +791,8 @@ export default function TrollSubmit({
                 <label htmlFor="quirks0Key">QUIRK MODES</label>
                 <p>
                   All of the different quirks your troll uses in certain
-                  contexts, like being scared, drunk, etc.
+                  contexts or for different feelings, like being scared, drunk,
+                  etc.
                 </p>
                 <FieldArray
                   name="quirks"
@@ -836,7 +837,15 @@ export default function TrollSubmit({
                               </Flexbox>
                             </summary>
                             {/* 2nd recursion start */}
-                            <div className="subsection">
+                            <div className="subsection wrapper">
+                              <label>QUIRK MODIFIERS</label>
+                              <p>
+                                Quirk Modifiers are a set of rules that modify
+                                the text to make it eventually match your
+                                troll's quirk. The quirk goes through all of the
+                                modifiers one-by-one from top-to-bottom, so
+                                order is important.
+                              </p>
                               <FieldArray
                                 name={`quirks[${QuirkModeIndex}][1].quirk`}
                                 render={(QuirkReplacementFunctions) =>

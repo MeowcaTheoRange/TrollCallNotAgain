@@ -20,6 +20,11 @@ div.subsection {
   padding: 8px;
 }
 
+div.subsection.wrapper {
+  border: 1px solid currentColor;
+  margin: 8px;
+}
+
 div.section label {
   font-family: "TrollCall Display", sans-serif;
   text-transform: uppercase;
