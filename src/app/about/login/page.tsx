@@ -9,9 +9,10 @@ import { Field, Formik } from "formik";
 import { useRouter } from "next/navigation";
 import { useCookies } from "react-cookie";
 
-export default function LogOut() {
+export default function LogIn() {
   const router = useRouter();
   const [cookies, setCookie, removeCookie] = useCookies();
+
   return (
     <>
       <Box title="LOGGING IN">

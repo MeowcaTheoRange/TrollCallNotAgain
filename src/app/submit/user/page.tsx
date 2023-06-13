@@ -82,7 +82,13 @@ export default function Form({ params }: { params?: { user: SubmitUser } }) {
               </div>
               <div className="section">
                 <label htmlFor="description">DESCRIPTION</label>
-                <p>Tell us about yourself!</p>
+                <p>
+                  Tell us about yourself!{" "}
+                  <Link href="https://commonmark.org/help/" target="_blank">
+                    CommonMark
+                  </Link>{" "}
+                  Markdown is allowed.
+                </p>
                 <div className="FieldHolder">
                   <Field
                     as="textarea"

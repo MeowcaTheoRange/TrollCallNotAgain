@@ -596,7 +596,11 @@ export default function TrollSubmit({
                 <p>
                   Tell us about your troll! Feel free to use this space for
                   lore. Or well, you should, if you have nothing else to talk
-                  about.
+                  about.{" "}
+                  <Link href="https://commonmark.org/help/" target="_blank">
+                    CommonMark
+                  </Link>{" "}
+                  Markdown is allowed.
                 </p>
                 <div className="FieldHolder">
                   <Field
