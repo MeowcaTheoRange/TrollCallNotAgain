@@ -32,7 +32,7 @@ export default function UserCard({
           <h1>{user.name}</h1>
         </Link>
       )}
-      <Flexbox gap="16px" direction="row">
+      <Flexbox gap="8px" direction="row">
         {user.flairs.map((flair, i) => (
           <Flair key={i} flair={flair} />
         ))}

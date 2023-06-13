@@ -46,7 +46,7 @@ export default function TrollCard({
           <i>({troll.pronunciation.join(" ")})</i>
         </span>
       </Flexbox>
-      <Flexbox gap="16px" direction="row">
+      <Flexbox gap="8px" direction="row">
         {troll.flairs.map((flair, i) => (
           <Flair key={i} flair={flair} />
         ))}
