@@ -1,5 +1,5 @@
 .Flexbox {
-  display: flex;
+  display: inline-flex;
 }
 
 .Flexbox.row {
