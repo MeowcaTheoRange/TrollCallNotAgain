@@ -136,7 +136,7 @@ export const SubmitTrollSchema = yup
       })
       .required(),
     // owners: yup.array().of(yup.string().required()).required().min(1),
-    // flairs: yup.array().of(yup.string().required()).ensure(),
+    // flairs: yup.array().of(yup.mixed()).required().ensure(),
   })
   .required();
 

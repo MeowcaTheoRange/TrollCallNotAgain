@@ -93,9 +93,9 @@ export async function SubmitTrollToServerTroll(
     description: submitTroll.description,
     facts: [...submitTroll.facts],
     // @ts-ignore
-    flairs: [],
+    flairs: null,
     // @ts-ignore
-    owners: [owner._id],
+    owners: null,
     gender: submitTroll.gender,
     height: submitTroll.height,
     image: submitTroll.image,

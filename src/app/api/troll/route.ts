@@ -23,7 +23,7 @@ export async function POST(request: Request) {
   if (user == null) return new Response("Not Authenticated", { status: 403 });
   if (userCode !== user.code)
     return new Response("Code Incorrect", { status: 403 });
-  let troll;
+  let troll: any;
   try {
     troll = await SubmitTrollToServerTroll(body, user);
   } catch (err) {
@@ -34,12 +34,14 @@ export async function POST(request: Request) {
   // quickly, check if troll with name exists!
   var existingTroll = await getTrollByName(troll.name[0], user);
   if (existingTroll?.name[0] == troll.name[0]) {
-    // @ts-ignore dont care
     delete troll._id;
+    Object.keys(troll).forEach((key) => {
+      if (troll[key] == null) delete troll[key];
+    });
     var newTroll = await replaceOne(
       "trolls",
       { "name.0": troll.name[0] },
-      troll
+      { ...existingTroll, ...troll } // merge them to preserve null keys
     );
     return NextResponse.json(troll);
   }

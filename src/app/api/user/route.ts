@@ -11,7 +11,7 @@ export async function POST(request: Request) {
     authCookies.get("TROLLCALL_NAME")?.value,
     authCookies.get("TROLLCALL_CODE")?.value,
   ];
-  let user;
+  let user: any;
   try {
     user = await SubmitUserToServerUser(body);
   } catch (err) {
@@ -21,14 +21,16 @@ export async function POST(request: Request) {
   }
   // quickly, check if user with name exists!
   var existingUser = await getUserByName(user.name);
-  if (existingUser?.name == user.name) {
+  if (existingUser && existingUser?.name == user.name) {
     if (userName === existingUser.name && userCode === existingUser.code) {
-      // @ts-ignore dont care
       delete user._id;
+      Object.keys(user).forEach((key) => {
+        if (user[key] == null) delete user[key];
+      });
       var newUser = await replaceOne(
         "users",
         { name: userName, code: userCode },
-        user
+        { ...existingUser, ...user } // merge them to preserve null keys
       );
       return NextResponse.json(user);
     }
