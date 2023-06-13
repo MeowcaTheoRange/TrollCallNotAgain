@@ -37,6 +37,7 @@ export async function getUsersByArray(array: ObjectId[]) {
 
 export async function getUsersByPage(limit: number = 0, page: number = 0) {
   const userArr = readMany("users", {})
+    .sort([["_id", -1]])
     .limit(limit)
     .skip(limit * page);
   const userCount = await countMany("users", {});
@@ -51,7 +52,7 @@ export async function getUsersByPage(limit: number = 0, page: number = 0) {
       list: userList,
       endOfPagination: userList.length < limit,
       count: userCount,
-      countPages: Math.floor(userCount / limit),
+      countPages: Math.ceil(userCount / limit),
     };
   return null;
 }

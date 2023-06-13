@@ -50,6 +50,7 @@ export async function getTrollsByPage(
         }
       : {}
   )
+    .sort([["_id", -1]])
     .limit(limit)
     .skip(limit * page);
   const trollCount = await countMany(
@@ -71,7 +72,7 @@ export async function getTrollsByPage(
       list: trollList,
       endOfPagination: trollList.length < limit,
       count: trollCount,
-      countPages: Math.floor(trollCount / limit),
+      countPages: Math.ceil(trollCount / limit),
     };
   return null;
 }

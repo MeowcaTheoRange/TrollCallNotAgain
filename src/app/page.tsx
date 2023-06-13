@@ -14,17 +14,17 @@ export default async function Home({
   searchParams: { trollPage: number; userPage: number };
 }) {
   // User pagination
-  var pageIndex = +(searchParams.userPage || 0);
-  if (pageIndex < 0) return notFound();
-  var getUsers = await getUsersByPage(5, pageIndex);
-  if (pageIndex >= (getUsers?.countPages || 1)) return notFound();
+  var userIndex = +(searchParams.userPage || 0);
+  if (userIndex < 0) return notFound();
+  var getUsers = await getUsersByPage(5, userIndex);
+  if (userIndex >= (getUsers?.countPages || 1)) return notFound();
   var users = getUsers?.list ?? [];
 
   // Troll pagination
-  var pageIndex = +(searchParams.trollPage || 0);
-  if (pageIndex < 0) return notFound();
-  var getTrolls = await getTrollsByPage(null, 5, pageIndex);
-  if (pageIndex >= (getTrolls?.countPages || 1)) return notFound();
+  var trollIndex = +(searchParams.trollPage || 0);
+  if (trollIndex < 0) return notFound();
+  var getTrolls = await getTrollsByPage(null, 5, trollIndex);
+  if (trollIndex >= (getTrolls?.countPages || 1)) return notFound();
   var trolls = getTrolls?.list ?? [];
   return (
     <>
@@ -36,13 +36,13 @@ export default async function Home({
         {trolls?.map((troll, i) => (
           <TrollCard key={i} troll={troll} />
         ))}
-        {pageIndex > 0 ? (
-          <Link href={`?trollPage=${pageIndex - 1}`}>Previous Page</Link>
+        {trollIndex > 0 ? (
+          <Link href={`?trollPage=${trollIndex - 1}`}>Previous Page</Link>
         ) : (
           <></>
         )}
-        {pageIndex < (getTrolls?.countPages || 1) - 1 ? (
-          <Link href={`?trollPage=${pageIndex + 1}`}>Next Page</Link>
+        {trollIndex < (getTrolls?.countPages || 1) - 1 ? (
+          <Link href={`?trollPage=${trollIndex + 1}`}>Next Page</Link>
         ) : (
           <></>
         )}
@@ -51,13 +51,13 @@ export default async function Home({
         {users?.map((user, i) => (
           <UserCard key={i} user={user} />
         ))}
-        {pageIndex > 0 ? (
-          <Link href={`?trollPage=${pageIndex - 1}`}>Previous Page</Link>
+        {userIndex > 0 ? (
+          <Link href={`?userPage=${userIndex - 1}`}>Previous Page</Link>
         ) : (
           <></>
         )}
-        {pageIndex < (getUsers?.countPages || 1) - 1 ? (
-          <Link href={`?trollPage=${pageIndex + 1}`}>Next Page</Link>
+        {userIndex < (getUsers?.countPages || 1) - 1 ? (
+          <Link href={`?userPage=${userIndex + 1}`}>Next Page</Link>
         ) : (
           <></>
         )}
