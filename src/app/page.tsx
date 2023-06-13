@@ -33,6 +33,7 @@ export default async function Home({
         Welcome to {brand.name}!
       </Box>
       <Box title="RECENT TROLLS" small>
+        <Link href={`/explore/trolls/`}>See All Trolls</Link>
         {trolls?.map((troll, i) => (
           <TrollCard key={i} troll={troll} />
         ))}
@@ -48,6 +49,7 @@ export default async function Home({
         )}
       </Box>
       <Box title="USERS ON TROLLCALL" small>
+        <Link href={`/explore/users/`}>See All Users</Link>
         {users?.map((user, i) => (
           <UserCard key={i} user={user} />
         ))}
