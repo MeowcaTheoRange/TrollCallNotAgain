@@ -11,6 +11,7 @@ export default function Flexbox({
   fw,
   wrap,
   min,
+  max,
 }: {
   children: ReactNode;
   direction?: string;
@@ -21,6 +22,7 @@ export default function Flexbox({
   fw?: boolean;
   wrap?: boolean;
   min?: string;
+  max?: string;
 }) {
   return (
     <div
@@ -35,6 +37,7 @@ export default function Flexbox({
           width: fw ? "100%" : undefined,
           flexWrap: wrap ? "wrap" : "nowrap",
           minWidth: min,
+          maxWidth: max,
           flexBasis: min,
           flexGrow: min ? "1" : 0,
           // ...(wrap ? { flexShrink: "55" } : {}),

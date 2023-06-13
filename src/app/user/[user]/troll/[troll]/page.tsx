@@ -9,6 +9,7 @@ import {
   getTrollByName,
 } from "@/lib/trollcall/troll";
 import { getUserByName } from "@/lib/trollcall/user";
+import "@/styles/wide.css";
 import { ProperNounCase } from "@/types/assist/language";
 import { iswitch } from "iswitch";
 import { cookies } from "next/headers";
@@ -52,9 +53,9 @@ export default async function UserPage({
       ) : (
         <></>
       )}
-      <Flexbox gap="8px" justify="center" align="center" fw wrap>
-        <img src={troll.image} width="256"></img>
-        <Flexbox direction="column" gap="8px" fw min="min-content">
+      <Flexbox gap="8px" justify="center" align="start" fw max="1024px">
+        <img src={troll.image} style={{ width: "50%" }}></img>
+        <Flexbox direction="column" gap="8px" min="0">
           <Box title={"About " + troll.name[0]}>
             <p>
               {ProperNounCase(troll.name[0])} is a{" "}

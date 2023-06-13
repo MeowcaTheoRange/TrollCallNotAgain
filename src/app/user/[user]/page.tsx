@@ -4,6 +4,7 @@ import TrollCard from "@/components/shell/TrollCard/TrollCard";
 import UserCard from "@/components/shell/UserCard/UserCard";
 import { getTrollsByPage } from "@/lib/trollcall/troll";
 import { ServerUserToClientUser, getUserByName } from "@/lib/trollcall/user";
+import "@/styles/wide.css";
 import { AdaptivePossessive } from "@/types/assist/language";
 import Link from "next/link";
 import { notFound } from "next/navigation";
