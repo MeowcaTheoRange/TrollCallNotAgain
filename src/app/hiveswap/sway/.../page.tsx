@@ -3,6 +3,10 @@ import Flexbox from "@/components/Flexbox/Flexbox";
 import { SwayList } from "@/types/assist/extended_zodiac";
 import Link from "next/link";
 
+export const metadata = {
+  title: "Either Sway",
+};
+
 export default function Sways() {
   return (
     <Box title={"Sway"} primary>

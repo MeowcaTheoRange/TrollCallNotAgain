@@ -15,6 +15,14 @@ import { cookies } from "next/headers";
 import Link from "next/link";
 import { notFound } from "next/navigation";
 
+export function generateMetadata({
+  params,
+}: {
+  params: { troll: string; user: string };
+}) {
+  return { title: "Troll - " + ProperNounCase(params.troll) };
+}
+
 export default async function UserPage({
   params,
 }: {

@@ -5,6 +5,10 @@ import { TrueSign } from "@/types/assist/extended_zodiac";
 import Link from "next/link";
 import { notFound } from "next/navigation";
 
+export function generateMetadata({ params }: { params: { sign: string } }) {
+  return { title: "True Sign - " + params.sign };
+}
+
 export default function TrueSignPage({ params }: { params: { sign: string } }) {
   var gottenSign = TrueSign[params.sign];
   if (gottenSign == null) return notFound();

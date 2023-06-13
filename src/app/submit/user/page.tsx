@@ -21,7 +21,7 @@ export default function Form({ params }: { params?: { user: SubmitUser } }) {
   return (
     <>
       <Box title={`Submit User`} primary>
-        <p>Allan please add details</p>
+        <p>Submit a user, so you can actually use TrollCall!</p>
       </Box>
       <Formik
         initialValues={SubmitUserSchema.cast(

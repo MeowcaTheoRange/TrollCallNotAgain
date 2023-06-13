@@ -3,8 +3,13 @@ import {
   ServerTrollToSubmitTroll,
   getTrollByName,
 } from "@/lib/trollcall/troll";
+import { ProperNounCase } from "@/types/assist/language";
 import { notFound } from "next/navigation";
 import TrollSubmit from "../../../troll/page";
+
+export function generateMetadata({ params }: { params: { troll: string } }) {
+  return { title: "Edit Troll - " + ProperNounCase(params.troll) };
+}
 
 export default async function TrollSubmitLayout({
   params,

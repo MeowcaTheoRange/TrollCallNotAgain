@@ -6,6 +6,10 @@ import { iswitch } from "iswitch";
 import Link from "next/link";
 import { notFound } from "next/navigation";
 
+export function generateMetadata({ params }: { params: { class: string } }) {
+  return { title: "Class - " + params.class };
+}
+
 export default function ClassPage({ params }: { params: { class: string } }) {
   var gottenClass = Class[params.class];
   if (gottenClass == null) return notFound();

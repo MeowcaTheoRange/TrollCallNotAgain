@@ -3,6 +3,10 @@ import Nav from "@/components/Nav/Nav";
 import "@/styles/globals.css";
 import "@/styles/normalize.css";
 
+export const metadata = {
+  title: "TrollCall Home",
+};
+
 export default function RootLayout({
   children,
 }: {

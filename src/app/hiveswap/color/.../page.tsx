@@ -3,6 +3,10 @@ import Flexbox from "@/components/Flexbox/Flexbox";
 import { SignColorList } from "@/types/assist/extended_zodiac";
 import Link from "next/link";
 
+export const metadata = {
+  title: "All Colors",
+};
+
 export default function Colors() {
   return (
     <Box title={"Colors"} primary>

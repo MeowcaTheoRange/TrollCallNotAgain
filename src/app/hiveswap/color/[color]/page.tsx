@@ -10,6 +10,10 @@ import {
 import Link from "next/link";
 import { notFound } from "next/navigation";
 
+export function generateMetadata({ params }: { params: { color: string } }) {
+  return { title: "Color - " + params.color };
+}
+
 export default function SwayPage({ params }: { params: { color: string } }) {
   var gottenSignColor = SignColor[params.color];
   if (gottenSignColor == null) return notFound();

@@ -8,6 +8,10 @@ import { AdaptivePossessive } from "@/types/assist/language";
 import Link from "next/link";
 import { notFound } from "next/navigation";
 
+export function generateMetadata({ params }: { params: { user: string } }) {
+  return { title: "User - " + params.user };
+}
+
 export default async function UserPage({
   params,
   searchParams,

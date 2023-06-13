@@ -4,6 +4,10 @@ import SignBadge from "@/components/SignBadge/SignBadge";
 import { Sway, TrueSign, TrueSignList } from "@/types/assist/extended_zodiac";
 import { notFound } from "next/navigation";
 
+export function generateMetadata({ params }: { params: { sway: string } }) {
+  return { title: "Sway - " + params.sway };
+}
+
 export default function SwayPage({ params }: { params: { sway: string } }) {
   var gottenSway = Sway[params.sway];
   if (gottenSway == null) return notFound();

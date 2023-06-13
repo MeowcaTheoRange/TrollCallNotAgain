@@ -3,6 +3,10 @@ import Flexbox from "@/components/Flexbox/Flexbox";
 import { AspectList } from "@/types/assist/extended_zodiac";
 import Link from "next/link";
 
+export const metadata = {
+  title: "All Aspects",
+};
+
 export default function Aspects() {
   return (
     <Box title={"Aspects"} primary>

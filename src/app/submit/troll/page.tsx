@@ -41,7 +41,7 @@ export default function TrollSubmit({
   return (
     <>
       <Box title={`Submit Troll`} primary>
-        <p>Allan please add details</p>
+        <p>Submit one of your cool trolls to the site!</p>
       </Box>
       <Formik
         initialValues={SubmitTrollSchema.cast(

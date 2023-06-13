@@ -3,6 +3,10 @@ import { ServerUsertoSubmitUser } from "@/lib/trollcall/user";
 import { ReactNode } from "react";
 import Form from "./page";
 
+export const metadata = {
+  title: "Submit User",
+};
+
 // @ts-ignore dont care about recursion
 export default async function UserSubmitLayout({
   children,

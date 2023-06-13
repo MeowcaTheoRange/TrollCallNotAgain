@@ -2,6 +2,10 @@ import ColorManager from "@/components/ColorManager/ColorManager";
 import "@/styles/globals.css";
 import "@/styles/normalize.css";
 
+export const metadata = {
+  title: "Hiveswap Resources",
+};
+
 export default function RootLayout({
   children,
 }: {

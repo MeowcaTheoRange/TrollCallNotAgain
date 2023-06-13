@@ -5,6 +5,10 @@ import { Pluralize } from "@/types/assist/language";
 import { iswitch } from "iswitch";
 import Link from "next/link";
 
+export const metadata = {
+  title: "All Classes",
+};
+
 export default function Classes() {
   return (
     <Box title={"Classes"} primary>

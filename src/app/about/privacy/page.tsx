@@ -1,6 +1,10 @@
 import Box from "@/components/Box/Box";
 import { ReactMarkdown } from "react-markdown/lib/react-markdown";
 
+export const metadata = {
+  title: "Privacy Policy",
+};
+
 export default function PrivacyPage() {
   return (
     <Box title="Privacy Policy">

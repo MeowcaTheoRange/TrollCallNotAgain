@@ -4,6 +4,10 @@ import SignBadge from "@/components/SignBadge/SignBadge";
 import { Aspect, TrueSign, TrueSignList } from "@/types/assist/extended_zodiac";
 import { notFound } from "next/navigation";
 
+export function generateMetadata({ params }: { params: { aspect: string } }) {
+  return { title: "Aspect - " + params.aspect };
+}
+
 export default function AspectPage({ params }: { params: { aspect: string } }) {
   var gottenAspect = Aspect[params.aspect];
   if (gottenAspect == null) return notFound();
