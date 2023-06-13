@@ -9,7 +9,6 @@ import {
   getTrollByName,
 } from "@/lib/trollcall/troll";
 import { getUserByName } from "@/lib/trollcall/user";
-import "@/styles/wide.css";
 import { ProperNounCase } from "@/types/assist/language";
 import { iswitch } from "iswitch";
 import { cookies } from "next/headers";
@@ -214,6 +213,7 @@ export default async function UserPage({
           <UserCard user={owner} key={i} />
         ))}
       </Box>
+      <style>{`body div.layout {max-width: 1024px;}`}</style>
     </>
   );
 }
