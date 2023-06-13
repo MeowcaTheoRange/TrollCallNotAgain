@@ -48,19 +48,22 @@ export const SubmitTrollSchema = yup
               .required()
               .matches(/^[A-z]+$/, "Letters only")
               .min(1)
-              .max(10), // she, he, they
+              .max(10)
+              .lowercase(), // she, he, they
             yup
               .string()
               .required()
               .matches(/^[A-z]+$/, "Letters only")
               .min(1)
-              .max(10), // her, him, them
+              .max(10)
+              .lowercase(), // her, him, them
             yup
               .string()
               .required()
               .matches(/^[A-z]+$/, "Letters only")
               .min(1)
-              .max(10), // hers, his, theirs
+              .max(10)
+              .lowercase(), // hers, his, theirs
           ])
           .required()
       )
