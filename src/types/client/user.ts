@@ -15,6 +15,7 @@ export const SubmitUserSchema = yup
     url: yup.string().notRequired().url(),
     trueSign: yup.string().required().oneOf(TrueSignList),
     color: ColorSchema.required(),
+    pfp: yup.string().notRequired().url(),
     code: yup.string().notRequired().max(256, "Too secure!!"),
     // flairs: yup.array().of(ClientFlairSchema).required(),
   })

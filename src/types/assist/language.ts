@@ -40,3 +40,12 @@ export function ProperNounCase(string: string) {
     .map((x) => x.charAt(0).toUpperCase() + x.slice(1).toLowerCase())
     .join(" ");
 }
+
+export function PesterchumNameFormatter(string: string) {
+  return (
+    string +
+    " [" +
+    string.replace(/^(([a-z])[a-z]+)(([A-Z])[a-z]+)$/, "$2$4").toUpperCase() +
+    "]"
+  );
+}

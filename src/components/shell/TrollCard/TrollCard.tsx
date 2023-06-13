@@ -6,6 +6,7 @@ import { Color3 } from "@/types/assist/color";
 import {
   AgeConverter,
   HeightConverter,
+  PesterchumNameFormatter,
   PronounGrouper,
 } from "@/types/assist/language";
 import { ClientTroll } from "@/types/troll";
@@ -106,6 +107,12 @@ export default function TrollCard({
             ) : (
               <></>
             )}
+          </Flexbox>
+          <Flexbox justify="center" fw wrap>
+            <p>
+              Known as <span>{PesterchumNameFormatter(troll.username)}</span>{" "}
+              online.
+            </p>
           </Flexbox>
           <Flexbox direction="column" gap="8px" padding="8px">
             <ReactMarkdown>{troll.description}</ReactMarkdown>

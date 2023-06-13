@@ -122,6 +122,59 @@ export default function Form({ params }: { params?: { user: SubmitUser } }) {
                 <ErrorMessage name="url" render={ErrorComponent} />
               </div>
               <div className="section">
+                <label htmlFor="pfp">PFP</label>
+                <p>
+                  This is URL linking to an image that will display on your
+                  page. I recommend using{" "}
+                  <Link target="_blank" href="https://filegarden.com/">
+                    File Garden
+                  </Link>{" "}
+                  or{" "}
+                  <Link target="_blank" href="https://gravatar.com/">
+                    Gravatar
+                  </Link>
+                  .
+                </p>
+                <div className="FieldHolder">
+                  <Field
+                    type="url"
+                    name="pfp"
+                    id="pfp"
+                    placeholder="https://file.garden/..."
+                  />
+                </div>
+                {values.pfp != null && values.pfp != "" ? (
+                  <>
+                    <img
+                      id="ImageElement"
+                      className="previewImage"
+                      src={values.pfp}
+                    ></img>
+                    <div className="note">
+                      {
+                        (
+                          document.querySelector(
+                            "#ImageElement"
+                          ) as HTMLImageElement
+                        )?.naturalWidth
+                      }
+                      px x{" "}
+                      {
+                        (
+                          document.querySelector(
+                            "#ImageElement"
+                          ) as HTMLImageElement
+                        )?.naturalHeight
+                      }
+                      px
+                    </div>
+                  </>
+                ) : (
+                  <></>
+                )}
+                <ErrorMessage name="pfp" render={ErrorComponent} />
+              </div>
+              <div className="section">
                 <label htmlFor="trueSign">TRUE SIGN</label>
                 <p>
                   This is your{" "}

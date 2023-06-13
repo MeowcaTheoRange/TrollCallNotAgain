@@ -70,6 +70,7 @@ export async function SubmitUserToServerUser(
     name: submitUser.name,
     description: submitUser.description,
     url: submitUser.url,
+    pfp: submitUser.pfp,
     color: submitUser.color,
     trueSign: submitUser.trueSign,
     code: submitUser.code || nanoid(16),
@@ -84,6 +85,7 @@ export function ServerUsertoSubmitUser(serverUser: ServerUser): SubmitUser {
     name: serverUser.name,
     description: serverUser.description,
     url: serverUser.url,
+    pfp: serverUser.pfp,
     color: serverUser.color,
     trueSign: serverUser.trueSign,
     code: serverUser.code,
@@ -99,6 +101,7 @@ export async function ServerUserToClientUser(
     name: serverUser.name,
     description: serverUser.description,
     url: serverUser.url,
+    pfp: serverUser.pfp,
     color: serverUser.color,
     trueSign: TrueSign[serverUser.trueSign],
     // @ts-ignore
