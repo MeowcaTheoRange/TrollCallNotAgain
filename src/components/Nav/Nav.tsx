@@ -21,7 +21,7 @@ export default function Nav() {
           <></>
         )}
         <span className="path">
-          <Link href="https://discord.trollcall.xyz/">Discord</Link>
+          <Link href="http://discord.trollcall.xyz/">Discord</Link>
         </span>
         <span className="path">
           <Link href="/hiveswap/">Hiveswap Resources</Link>
