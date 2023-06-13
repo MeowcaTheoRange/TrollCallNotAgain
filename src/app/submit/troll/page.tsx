@@ -29,7 +29,7 @@ import { useCookies } from "react-cookie";
 export default function TrollSubmit({
   params,
 }: {
-  params: { troll: SubmitTroll };
+  params: { troll: SubmitTroll; userName: string };
 }) {
   const router = useRouter();
   const [cookies, setCookie, removeCookie] = useCookies([
@@ -64,7 +64,8 @@ export default function TrollSubmit({
           }
         )}
         onSubmit={(values, { setSubmitting }) => {
-          fetch("/api/troll/", {
+          var name = params.userName || cookies.TROLLCALL_NAME;
+          fetch("/api/user/" + name + "/troll/", {
             method: "POST",
             body: JSON.stringify(values),
           }).then(async (res) => {
@@ -74,7 +75,7 @@ export default function TrollSubmit({
               return;
             }
             router.push(
-              "/user/" + cookies.TROLLCALL_NAME + "/troll/" + values.name[0]
+              "/user/" + name + "/troll/" + values.name[0].toLowerCase()
             );
           });
         }}

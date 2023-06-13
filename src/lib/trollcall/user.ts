@@ -74,7 +74,8 @@ export async function SubmitUserToServerUser(
     color: submitUser.color,
     trueSign: submitUser.trueSign,
     code: submitUser.code || nanoid(16),
-    flairs: [],
+    // @ts-ignore
+    flairs: null,
   };
 
   return serverUser;

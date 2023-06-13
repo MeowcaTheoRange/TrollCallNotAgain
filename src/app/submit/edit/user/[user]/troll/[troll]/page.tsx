@@ -5,7 +5,7 @@ import {
 } from "@/lib/trollcall/troll";
 import { ProperNounCase } from "@/types/assist/language";
 import { notFound } from "next/navigation";
-import TrollSubmit from "../../../troll/page";
+import TrollSubmit from "../../../../../troll/page";
 
 export function generateMetadata({ params }: { params: { troll: string } }) {
   return { title: "Edit Troll - " + ProperNounCase(params.troll) };
@@ -14,14 +14,19 @@ export function generateMetadata({ params }: { params: { troll: string } }) {
 export default async function TrollSubmitLayout({
   params,
 }: {
-  params: { troll: string };
+  params: { troll: string; user: string };
 }): Promise<any> {
-  const isLoggedIn = await UserAuthWall();
+  const isLoggedIn = await UserAuthWall(params.user);
   if (typeof isLoggedIn === "object") {
     var thisTroll = await getTrollByName(params.troll, isLoggedIn);
     if (thisTroll != null)
       return (
-        <TrollSubmit params={{ troll: ServerTrollToSubmitTroll(thisTroll) }} />
+        <TrollSubmit
+          params={{
+            troll: ServerTrollToSubmitTroll(thisTroll),
+            userName: isLoggedIn.name,
+          }}
+        />
       );
     return notFound();
   } else return isLoggedIn;

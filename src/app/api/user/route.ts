@@ -1,5 +1,6 @@
 import { createOne, replaceOne } from "@/lib/mongodb/crud";
 import { SubmitUserToServerUser, getUserByName } from "@/lib/trollcall/user";
+import { ServerUser } from "@/types/user";
 import { cookies } from "next/headers";
 import { NextResponse } from "next/server";
 import { ValidationError } from "yup";
@@ -23,14 +24,20 @@ export async function POST(request: Request) {
   var existingUser = await getUserByName(user.name);
   if (existingUser && existingUser?.name == user.name) {
     if (userName === existingUser.name && userCode === existingUser.code) {
+      // remove admin-set values from the user
       delete user._id;
-      Object.keys(user).forEach((key) => {
-        if (user[key] == null) delete user[key];
-      });
+      delete user.flairs;
+
+      var merge: ServerUser = { ...existingUser, ...user };
+
+      if (merge.flairs == null) merge.flairs = [];
+
+      console.log(merge);
+
       var newUser = await replaceOne(
         "users",
         { name: userName, code: userCode },
-        { ...existingUser, ...user } // merge them to preserve null keys
+        merge // merge them to preserve null keys
       );
       return NextResponse.json(user);
     }
@@ -39,6 +46,9 @@ export async function POST(request: Request) {
       status: 409,
     });
   }
+
+  // Don't leave with no flairs!
+  user.flairs = [];
   //ok, now post
   await createOne("users", user);
   return NextResponse.json(user);

@@ -42,7 +42,10 @@ export default async function UserPage({
       <TrollCard troll={troll} inline />
       {troll.owners.some((x) => x.name === userName) ? (
         <Box title="ADMIN PANEL" primary>
-          <Link href={"/submit/edit/troll/" + troll.name[0]} className="shell">
+          <Link
+            href={"/submit/edit/user/" + userName + "/troll/" + troll.name[0]}
+            className="shell"
+          >
             Edit {ProperNounCase(troll.name[0])}
           </Link>
         </Box>

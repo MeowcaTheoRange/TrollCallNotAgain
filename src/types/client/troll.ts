@@ -121,7 +121,7 @@ export const SubmitTrollSchema = yup
     species: yup
       .string()
       .notRequired()
-      .matches(/^[A-z-]+$/, "Letters only"), // "Troll-*" if defined. Otherwise, just "Troll".
+      .matches(/^([A-z-]+)|()$/, "Letters only"), // "Troll-*" if defined. Otherwise, just "Troll".
     height: yup.number().required().positive(), // Inches
     age: yup.number().required().positive(), // Sweeps
     image: yup.string().required().url(),
