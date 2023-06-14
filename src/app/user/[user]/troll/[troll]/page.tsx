@@ -53,7 +53,7 @@ export default async function UserPage({
         <></>
       )}
       <Flexbox gap="8px" justify="center" align="start" fw max="1024px">
-        <img src={troll.image} style={{ width: "50%" }}></img>
+        <img className="ugc" src={troll.image} style={{ width: "50%" }}></img>
         <Flexbox direction="column" gap="8px" min="0">
           <Box title={"About " + troll.name[0]}>
             <p>
