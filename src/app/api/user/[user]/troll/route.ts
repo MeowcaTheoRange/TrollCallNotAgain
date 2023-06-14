@@ -49,6 +49,7 @@ export async function POST(
 
   // Don't leave with no flairs!
   troll.flairs = [];
+  troll.updatedDate = new Date();
   //ok, now post
   await createOne("trolls", troll);
   return NextResponse.json(troll);
