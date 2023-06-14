@@ -25,7 +25,16 @@ export const QuirkSchema = yup
               ])
               .required(),
             find: yup.string().notRequired(),
-            replace: yup.array().of(yup.string().required()).required().min(1),
+            replace: yup
+              .array()
+              .of(
+                yup
+                  .string()
+                  .required()
+                  .matches(/^([A-z-]+)|()$/, "Letters only")
+              )
+              .required()
+              .min(1),
             condition: yup.string().notRequired(),
           })
           .required()
@@ -38,10 +47,14 @@ export type Quirk = yup.InferType<typeof QuirkSchema>;
 
 export const SubmitQuirkHolderSchema = yup
   .array()
-  .of(yup.tuple([yup.string().required(), QuirkSchema.required()]).required())
+  .of(
+    yup
+      .tuple([yup.string().required().lowercase(), QuirkSchema.required()])
+      .required()
+  )
   .required()
   .test("has-default", 'Needs "default" Quirk Mode', (v) =>
-    v.some(([k, v]) => k === "default")
+    v.some(([k, v]) => k === "default" || k === "Default")
   );
 
 export type SubmitQuirkHolder = yup.InferType<typeof SubmitQuirkHolderSchema>;

@@ -91,15 +91,21 @@ div.gallery img {
 
 /* INDV. ELEMENT STYLES */
 
-a {
+a,
+button.invis {
   /* display: inline; */
   color: inherit;
   text-decoration: none;
   text-shadow: 0 0 2px currentcolor;
   transition: text-shadow 0.125s;
+  background-color: transparent;
+  border: none;
+  padding: 0;
+  text-align: left;
 }
 
-a:hover {
+a:hover,
+button.invis:hover {
   text-decoration: underline;
   text-shadow: 0 0 4px currentcolor;
 }

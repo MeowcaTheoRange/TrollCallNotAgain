@@ -55,7 +55,7 @@ export default function TrollCard({
         {inline ? (
           <></>
         ) : (
-          <img className="image" src={troll.image} height="256"></img>
+          <img className="image ugc" src={troll.image} height="256"></img>
         )}
         <Flexbox
           direction="column"
@@ -63,16 +63,16 @@ export default function TrollCard({
           padding="8px"
           fw
           min="min-content"
+          wrap
         >
-          <Flexbox justify="space-between" align="center" gap="8px" fw wrap>
-            <Flexbox direction="column" gap="8px" min="min-content">
-              <ul>
-                {troll.facts.map((fact, i) => (
-                  <li key={i}>{fact}</li>
-                ))}
-              </ul>
-            </Flexbox>
-            <Flexbox direction="column" gap="8px" align="flex-end">
+          <Flexbox
+            justify="space-between"
+            align="flex-start"
+            gap="16px"
+            fw
+            wrap
+          >
+            <Flexbox direction="column" gap="8px" align="flex-start">
               {troll.falseSign ? (
                 <>
                   <p>FALSE SIGN</p>
@@ -83,6 +83,13 @@ export default function TrollCard({
               )}
               <p>TRUE SIGN</p>
               <SignBadge trueSign={troll.trueSign} />
+            </Flexbox>
+            <Flexbox direction="column" gap="8px" min="20ch">
+              <ul>
+                {troll.facts.map((fact, i) => (
+                  <li key={i}>{fact}</li>
+                ))}
+              </ul>
             </Flexbox>
           </Flexbox>
           <Flexbox gap="8px" justify="center" fw wrap>

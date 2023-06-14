@@ -72,7 +72,7 @@ export const SubmitTrollSchema = yup
     gender: yup
       .string()
       .required()
-      .matches(/^[A-z]+$/, "Letters only")
+      .matches(/^[A-z-_]+$/, "Letters only")
       .min(3)
       .max(30),
 

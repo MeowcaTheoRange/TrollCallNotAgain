@@ -39,13 +39,13 @@ export default function UserCard({
       </Flexbox>
       <Flexbox gap="8px">
         {user.pfp ? (
-          <img alt="" src={user.pfp} width="128" height="128" />
+          <img alt="" className="ugc" src={user.pfp} width="150" height="150" />
         ) : (
           <></>
         )}
         <Flexbox fw direction="column" gap="8px" padding="8px" wrap>
-          <Flexbox justify="space-between" gap="8px" fw wrap>
-            <Flexbox direction="column" gap="8px" min="min-content">
+          <Flexbox justify="space-between" gap="16px" fw wrap>
+            <Flexbox direction="column" gap="8px" min="15ch">
               {user.url ? (
                 <p>
                   at{" "}
