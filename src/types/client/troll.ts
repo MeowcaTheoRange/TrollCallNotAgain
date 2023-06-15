@@ -102,7 +102,13 @@ export const SubmitTrollSchema = yup
 
     // Hiveswap identity
     trueSign: yup.string().required().oneOf(TrueSignList),
-    falseSign: yup.string().notRequired().oneOf(TrueSignList), // "Keelez Bunbat"
+    falseSign: yup
+      .string()
+      .nullable()
+      .transform((v) => {
+        return v === "" ? null : v;
+      })
+      .oneOf(TrueSignList), // "Keelez Bunbat"
     class: yup.string().required().oneOf(ClassNameList),
 
     // Trollian
