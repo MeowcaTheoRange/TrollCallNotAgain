@@ -48,6 +48,8 @@ export default function TrollSubmit({
       <Formik
         initialValues={SubmitTrollSchema.cast(
           params?.troll ?? {
+            name: ["", ""],
+            pronunciation: ["", ""],
             owners: [],
             pronouns: [["", "", ""]],
             preferences: {
@@ -89,6 +91,7 @@ export default function TrollSubmit({
           handleReset,
           handleSubmit,
           setFieldValue,
+          errors,
         }) => (
           <form onReset={handleReset} onSubmit={handleSubmit}>
             {window.location.hostname.includes("localhost") ? (
@@ -1208,6 +1211,17 @@ export default function TrollSubmit({
                 <button type="submit" disabled={isSubmitting}>
                   Submit
                 </button>
+                {window.location.hostname.includes("localhost") ? (
+                  <button
+                    type="button"
+                    disabled={isSubmitting}
+                    onClick={() => console.log(errors)}
+                  >
+                    Log Errors
+                  </button>
+                ) : (
+                  <></>
+                )}
               </Flexbox>
             </Box>
           </form>

@@ -5,8 +5,8 @@ export const ErrorComponent = (msg: any) => {
       msg.forEach((item: any) =>
         Array.isArray(item) ? (str += checkArray(item)) : (str += item + ", ")
       );
-    if (typeof msg === "object") return "";
-    else return msg;
+    else if (typeof msg === "object") return "";
+    return str;
   }
   msg = checkArray(msg);
   msg = msg
