@@ -1,4 +1,5 @@
 import Box from "@/components/Box/Box";
+import BuyMeACoffee from "@/components/BuyMeACoffee/BuyMeACoffee";
 import ColorManager from "@/components/ColorManager/ColorManager";
 import TrollCard from "@/components/shell/TrollCard/TrollCard";
 import UserCard from "@/components/shell/UserCard/UserCard";
@@ -32,6 +33,7 @@ export default async function Home({
       <Box title={`Hello!`} primary>
         Welcome to {brand.name}!
       </Box>
+      <BuyMeACoffee />
       <Box title="RECENT TROLLS" small>
         <Link href={`/explore/trolls/`}>See All Trolls</Link>
         {trolls?.map((troll, i) => (
