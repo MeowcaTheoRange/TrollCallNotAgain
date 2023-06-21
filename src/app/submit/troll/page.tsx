@@ -339,7 +339,7 @@ export default function TrollSubmit({
                     onChange={handleChange}
                     onBlur={handleBlur}
                   >
-                    <option value={null} label="[None]" />
+                    <option value={undefined} label="[None]" />
                     {TrueSignList.map((v, i) => (
                       <option key={i} value={v} label={v} />
                     ))}
