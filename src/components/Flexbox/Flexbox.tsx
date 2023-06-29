@@ -26,7 +26,7 @@ export default function Flexbox({
 }) {
   return (
     <div
-      className={`Flexbox`}
+      className="Flexbox"
       style={
         {
           flexDirection: direction,

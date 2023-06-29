@@ -11,6 +11,7 @@ import {
 } from "@/types/assist/language";
 import { ClientTroll } from "@/types/troll";
 import Link from "next/link";
+import { useState } from "react";
 import { ReactMarkdown } from "react-markdown/lib/react-markdown";
 import Flair from "../Flair/Flair";
 import "./TrollCard.css";
@@ -24,6 +25,10 @@ export default function TrollCard({
 }) {
   var trollTrueSign = troll.falseSign ?? troll.trueSign;
   const trollColor = Color3.fromRGB(...trollTrueSign.color.color);
+  var [showMore, setShowMore] = useState(false);
+  var descArray = troll.description.split(" ");
+  var smallDesc = descArray.slice(0, 100);
+  var requiredSlice = descArray.length !== smallDesc.length;
   return (
     <div
       className="TrollCard largelink"
@@ -121,10 +126,29 @@ export default function TrollCard({
               online.
             </p>
           </Flexbox>
-          <Flexbox direction="column" gap="8px" padding="8px">
-            <ReactMarkdown>{troll.description}</ReactMarkdown>
-          </Flexbox>
         </Flexbox>
+      </Flexbox>
+      <Flexbox direction="column" gap="8px" padding="8px">
+        <ReactMarkdown>
+          {(requiredSlice && showMore ? descArray : smallDesc).join(" ")}
+        </ReactMarkdown>
+        {requiredSlice ? (
+          !showMore ? (
+            <>
+              <button className="inline" onClick={() => setShowMore(true)}>
+                Show More
+              </button>
+            </>
+          ) : (
+            <>
+              <button className="inline" onClick={() => setShowMore(false)}>
+                Show Less
+              </button>
+            </>
+          )
+        ) : (
+          <></>
+        )}
       </Flexbox>
     </div>
   );

@@ -227,3 +227,14 @@ button.shell:disabled {
   background-color: var(--sec-box);
   color: var(--sec-text);
 }
+
+button.inline {
+  display: inline;
+  border: none;
+  background-color: transparent;
+  color: inherit;
+}
+
+button.inline:hover {
+  outline: 1px dotted currentColor;
+}
