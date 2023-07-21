@@ -538,7 +538,9 @@ export default function TrollSubmit({
                 <label htmlFor="species">SPECIES</label>
                 <p>
                   This is your troll's species mix, if applicable. Kind of like
-                  "troll-human" or "troll-cat" or whatever..
+                  "troll-human" or "troll-cat" or whatever. Please leave this
+                  field empty if your troll is just a normal troll, otherwise
+                  you will get "Troll-Troll", and that will be embarrassing.
                 </p>
                 <div className="FieldHolder">
                   Troll

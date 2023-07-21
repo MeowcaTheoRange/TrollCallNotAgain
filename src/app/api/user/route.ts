@@ -50,6 +50,7 @@ export async function POST(request: Request) {
 
   // Don't leave with no flairs!
   user.flairs = [];
+  user.updatedDate = new Date();
   //ok, now post
   await createOne("users", user);
   return NextResponse.json(user);
