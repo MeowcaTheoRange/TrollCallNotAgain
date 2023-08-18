@@ -37,7 +37,7 @@ export default function UserCard({
           <Flair key={i} flair={flair} />
         ))}
       </Flexbox>
-      <Flexbox gap="8px">
+      <Flexbox gap="8px" wrap>
         {user.pfp ? (
           <img alt="" className="ugc" src={user.pfp} width="150" height="150" />
         ) : (
