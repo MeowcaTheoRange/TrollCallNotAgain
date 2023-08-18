@@ -38,31 +38,37 @@ export default function UserCard({
         ))}
       </Flexbox>
       <Flexbox gap="8px" wrap>
-        {user.pfp ? (
-          <img alt="" className="ugc" src={user.pfp} width="150" height="150" />
-        ) : (
-          <></>
-        )}
+        <Flexbox gap="8px" align="center" justify="space-between" fw>
+          {user.pfp ? (
+            <img
+              alt=""
+              className="ugc"
+              src={user.pfp}
+              width="150"
+              height="150"
+            />
+          ) : (
+            <></>
+          )}
+          <Flexbox direction="column" gap="8px" align="flex-end">
+            <p>TRUE SIGN</p>
+            <SignBadge trueSign={user.trueSign} />
+          </Flexbox>
+        </Flexbox>
         <Flexbox fw direction="column" gap="8px" padding="8px" wrap>
-          <Flexbox justify="space-between" gap="16px" fw wrap>
-            <Flexbox direction="column" gap="8px" min="15ch">
-              {user.url ? (
-                <p>
-                  at{" "}
-                  <Link href={user.url} target="_blank">
-                    {user.url}
-                  </Link>
-                </p>
-              ) : (
-                <></>
-              )}
-              <Flexbox direction="column" gap="8px" padding="8px">
-                <ReactMarkdown>{user.description}</ReactMarkdown>
-              </Flexbox>
-            </Flexbox>
-            <Flexbox direction="column" gap="8px" align="flex-end">
-              <p>TRUE SIGN</p>
-              <SignBadge trueSign={user.trueSign} />
+          <Flexbox direction="column" gap="8px" min="15ch">
+            {user.url ? (
+              <p>
+                at{" "}
+                <Link href={user.url} target="_blank">
+                  {user.url}
+                </Link>
+              </p>
+            ) : (
+              <></>
+            )}
+            <Flexbox direction="column" gap="8px" padding="8px">
+              <ReactMarkdown>{user.description}</ReactMarkdown>
             </Flexbox>
           </Flexbox>
         </Flexbox>
