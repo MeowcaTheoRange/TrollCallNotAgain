@@ -32,6 +32,12 @@ export default async function Home({
       <ColorManager mainColor={[0xff, 0xff, 0xe0]} />
       <Box title={`Hello!`} primary>
         Welcome to {brand.name}!
+        <p>
+          This is a somewhat old version. Editing has been disabled, but you can
+          find your user credentials <Link href={"/submit/user"}>here</Link> so
+          you can log into{" "}
+          <Link href={"https://beta.trollcall.xyz/"}>the beta</Link>!
+        </p>
       </Box>
       <BuyMeACoffee />
       <Box title="RECENT TROLLS" small>
